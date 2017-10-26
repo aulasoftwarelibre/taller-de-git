@@ -1,6 +1,9 @@
 site_name: Taller de Git
 site_author: 'Sergio Gómez <sergio@uco.es>'
 site_description: 'Curso básico de git'
+site_favicon: 'images/logoasl.png'
+repo_name: 'aulasoftwarelibre/taller-de-git'
+repo_url: 'https://github.com/aulasoftwarelibre/taller-de-git.git'
 
 theme: 'material'
 extra_css: [extra.css]

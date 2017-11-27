@@ -8,3 +8,6 @@
 * [Chuleta con las órdenes más usuales de Git](http://byte.kde.org/~zrusin/git/git-cheat-sheet-large.png).
 * [Gitmagic (ingles y español). Otro manual de Git](http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/es/)
 * [Artículo técnico: Un modelo exitoso de ramificación en Git ](http://nvie.com/posts/a-successful-git-branching-model/).
+* [Curso detallado y gratuito sobre Git y github](https://www.uco.es/aulasoftwarelibre/curso-de-git/)
+* [Otra guia rápida de git](https://github.com/github/training-kit/blob/master/downloads/github-git-cheat-sheet.pdf)
+* [Guía de estilos según Udacity](http://udacity.github.io/git-styleguide/)

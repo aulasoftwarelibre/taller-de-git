@@ -321,7 +321,7 @@ Desarrollado por Sergio Gómez.
 
 Como mensaje del _commit_: _'Indicado que se realiza en el ASL'_.
 
-Y ahora probamos a actualizar con `git push`:
+Y ahora probamos a actualizar con `git pull`:
 
 ```
 $ git pull

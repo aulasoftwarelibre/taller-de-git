@@ -159,7 +159,92 @@ Almacenamos los cambios por separado:
      1 file changed, 1 insertion(+)    
 
 !!! info
-    El valor "." despues de `git add` indica que se añadan todos los archivos que hayan cambiado.
+    El valor "." despues de `git add` indica que se añadan todos los archivos de forma recursiva.
+
+!!! warning
+    Cuidado cuando uses `git add .` asegúrate de que no estás añadiendo archivos que no quieres añadir.
+
+### Ignorando archivos
+
+La orden `git add .` o `git add nombre_directorio` es muy cómoda, ya que nos permite añadir todos los archivos del proyecto o todos los contenidos en un directorio y sus subdirectorios. Es mucho más rápido que tener que ir añadiéndolos uno por uno. El problema es que, si no se tiene cuidado, se puede terminar por añadir archivos innecesarios o con información sensible.
+
+Por lo general se debe evitar añadir archivos que se hayan generado como producto de la compilación del proyecto, los que generen los entornos de desarrollo (archivos de configuración y temporales) y aquellos que contentan información sensible, como contraseñas o tokens de autenticación. Por ejemplo, en un proyecto de `C/C++`, los archivos objeto no deben incluirse, solo los que contengan código fuente y los make que los generen.
+
+Para indicarle a _git_ que debe ignorar un archivo, se puede crear un fichero llamado _.gitignore_, bien en la raíz del proyecto o en los subdirectorios que queramos. Dicho fichero puede contener patrones, uno en cada línea, que especiquen qué archivos deben ignorarse. El formato es el siguiente:
+
+```
+# .gitignore
+dir1/           # ignora todo lo que contenga el directorio dir1
+!dir1/info.txt  # El operador ! excluye del ignore a dir1/info.txt (sí se guardaría)
+dir2/*.txt      # ignora todos los archivos txt que hay en el directorio dir2
+dir3/**/*.txt   # ignora todos los archivos txt que hay en el dir3 y sus subdirectorios
+*.o             # ignora todos los archivos con extensión .o en todos los directorios
+```
+
+Cada tipo de proyecto genera sus ficheros temporales, así que para cada proyecto hay un `.gitignore` apropiado. Existen repositorios que ya tienen creadas plantillas. Podéis encontrar uno en [https://github.com/github/gitignore](https://github.com/github/gitignore)
+
+### Ignorando archivos globalmente
+
+Si bien, los archivos que hemos metido en `.gitignore`, deben ser aquellos ficheros temporales o de configuración que se pueden crear durante las fases de compilación o ejecución del programa, en ocasiones habrá otros ficheros que tampoco debemos introducir en el repositorio y que son recurrentes en todos los proyectos. En dicho caso, es más útil tener un _gitignore_ que sea global a todos nuestros proyectos. Esta configuración sería complementaria a la que ya tenemos. Ejemplos de lo que se puede ignorar de forma global son los ficheros temporales del sistema operativo (`*~`, `.nfs*`) y los que generan los entornos de desarrollo.
+
+Para indicar a _git_ que queremos tener un fichero de _gitignore_ global, tenemos que configurarlo con la siguiente orden:
+
+```
+git config --global core.excludesfile $HOME/.gitignore_global
+```
+
+Ahora podemos crear un archivo llamado `.gitignore_global` en la raíz de nuestra cuenta con este contenido:
+
+
+```
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+*.swp
+
+# IDEs               #
+######################
+.idea
+.settings/
+.classpath
+.project
+```
+
 
 ## Trabajando con el historial
 

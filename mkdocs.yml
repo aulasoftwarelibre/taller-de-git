@@ -5,10 +5,12 @@ site_favicon: 'images/logoasl.png'
 repo_name: 'aulasoftwarelibre/taller-de-git'
 repo_url: 'https://github.com/aulasoftwarelibre/taller-de-git.git'
 
-theme: 'material'
+theme:
+  name: 'material'
+  language: 'es'
+
 extra_css: [extra.css]
 extra:
-  language: 'es'
   palette:
     primary: 'green'
     accent: 'light green'
@@ -22,12 +24,14 @@ extra:
   feature:
     tabs: true
 markdown_extensions:
-  - admonition
+  - admonition: ~
   - codehilite:
       guess_lang: false
   - toc:
       permalink: true
-  - def_list
+  - def_list: ~
+  - inline_graphviz: ~
+
 pages:
     - Inicio: index.md
     - Sistemas de control de versiones: cvs.md

@@ -26,6 +26,7 @@ manuales libres que pueden encontrarse en la sección de [Referencias](referenci
 
 Este curso ha sido impartido por las siguientes personas:
 
+- [Adrián López](https://github.com/AdrianLopezGue)
 - [Héctor Romero](https://github.com/cyberh99)
 - [José Márquez](https://github.com/IronSenior)
 - [Sergio Gómez](https://github.com/sgomez)

@@ -1,49 +1,54 @@
 site_name: Taller de Git
-site_author: 'Sergio Gómez <sergio@uco.es>'
-site_description: 'Curso básico de git'
-site_favicon: 'images/logoasl.png'
-repo_name: 'aulasoftwarelibre/taller-de-git'
-repo_url: 'https://github.com/aulasoftwarelibre/taller-de-git.git'
+site_author: "Sergio Gómez <sergio@uco.es>"
+site_description: "Curso básico de git"
+repo_name: "aulasoftwarelibre/taller-de-git"
+repo_url: "https://github.com/aulasoftwarelibre/taller-de-git.git"
 
 theme:
-  name: 'material'
-  language: 'es'
-
+  name: "material"
+  language: "es"
+  favicon: "images/logoasl.png"
 extra_css: [extra.css]
 extra:
   palette:
-    primary: 'green'
-    accent: 'light green'
+    primary: "green"
+    accent: "light green"
   social:
-    - type: 'github'
-      link: 'https://github.com/aulasoftwarelibre'
-    - type: 'twitter'
-      link: 'https://twitter.com/aulasl'
-    - type: 'facebook'
-      link: 'https://facebook.com/aulasl'
+    - type: "github"
+      link: "https://github.com/aulasoftwarelibre"
+    - type: "twitter"
+      link: "https://twitter.com/aulasl"
+    - type: "facebook"
+      link: "https://facebook.com/aulasl"
+    - type: "instagram"
+      link: "https://instagram.com/aulasoftwarelibre"
   feature:
     tabs: true
+
 markdown_extensions:
+  - footnotes: ~
   - admonition: ~
   - codehilite:
       guess_lang: false
+      linenums: true
   - toc:
       permalink: true
   - def_list: ~
-  - inline_graphviz: ~
+  - mdx_inline_graphviz: ~
 
-pages:
-    - Inicio: index.md
-    - Sistemas de control de versiones: cvs.md
-    - Introducción a Git: introduccion.md
-    - Aspectos básicos de Git: git.md
-    - Uso básico: usobasico.md
-    - Uso avanzado: usoavanzado.md
-    - Ramas: ramas.md
-    - Github: github.md
-    - Github avanzado: github-avanzado.md
-    - Flujo de trabajo con Git (git flow): gitflow.md
-    - Referencias: referencias.md
+nav:
+  - Inicio: index.md
+  - Sistemas de control de versiones: cvs.md
+  - Introducción a Git: introduccion.md
+  - Aspectos básicos de Git: git.md
+  - Uso básico: usobasico.md
+  - Uso avanzado: usoavanzado.md
+  - Ramas: ramas.md
+  - Github: github.md
+  - Github avanzado: github-avanzado.md
+  - Flujo de trabajo con Git (git flow): gitflow.md
+  - Referencias: referencias.md
+
 google_analytics:
-  - 'UA-51754922-1'
-  - 'auto'
+  - "UA-51754922-1"
+  - "auto"

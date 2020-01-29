@@ -32,3 +32,7 @@ Este curso ha sido impartido por las siguientes personas:
 - [Héctor Romero](https://github.com/cyberh99)
 - [José Márquez](https://github.com/IronSenior)
 - [Sergio Gómez](https://github.com/sgomez)
+
+## Licencia
+
+El material está publicado con licencia [Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/deed.es)

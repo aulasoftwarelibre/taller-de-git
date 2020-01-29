@@ -10,14 +10,14 @@ Nos vamos a la web del proyecto en el que queremos colaborar. En este caso el pr
 
 Una vez se termine de clonar el repositorio, nos encontraremos con el espacio de trabajo del mismo:
 
-* En la parte superior información sobre los commits, ramas, etiquetas, etc.
-* Justo debajo un explorador de archivos.
-* En la parte derecha un selector para cambiar de contexto entre: explorador de código, peticiones de colaboración (pull request), wiki, configuración, etc.
-* Justo abajo a la derecha información sobre como clonar localmente o descargar un proyecto.
+- En la parte superior información sobre los commits, ramas, etiquetas, etc.
+- Justo debajo un explorador de archivos.
+- En la parte derecha un selector para cambiar de contexto entre: explorador de código, peticiones de colaboración (pull request), wiki, configuración, etc.
+- Justo abajo a la derecha información sobre como clonar localmente o descargar un proyecto.
 
 ![Espacio de trabajo](images/github-main.png)
 
-Github nos permite clonar localmente un proyecto por tres vías: HTTPS, SSH y Subversion. Seleccionamos SSH y copiamos el texto que después añadiremos a la orden ```git clone``` como en la primera línea del siguiente grupo de órdenes:
+Github nos permite clonar localmente un proyecto por tres vías: HTTPS, SSH y Subversion. Seleccionamos SSH y copiamos el texto que después añadiremos a la orden `git clone` como en la primera línea del siguiente grupo de órdenes:
 
     $ git clone git@github.com:miusuario/miniblog.git
     $ cd miniblog
@@ -37,8 +37,8 @@ Y probamos que nuestra aplicación funciona:
 
 Podemos usar dos direcciones para probarla:
 
-* Frontend: `http://localhost:9999/index_dev.php`
-* Backend: `http://localhost:9999/index_dev.php/admin/` con usuario admin y contraseña 1234.
+- Frontend: `http://localhost:9999/index_dev.php`
+- Backend: `http://localhost:9999/index_dev.php/admin/` con usuario admin y contraseña 1234.
 
 ### Sincronizar con el repositorio original
 
@@ -139,6 +139,17 @@ Muy poco sentido tiene ponernos a crear ramas en github si aún no entendemos c�
 
 ## Último paso, documentación.
 
-Github permite crear documentación. En primer lugar, generando un archivo llamado README. También permite crear una web propia para el proyecto y, además, una wiki. Para marcar el texto, se utiliza un lenguaje de marcado de texto denominado _Markdown_. En la siguiente web hay un tutorial interactivo: [http://www.markdowntutorial.com/](http://www.markdowntutorial.com/). Como en principio, no es necesario saber Markdown para poder trabajar con Git o con Github, no vamos a incidir más en este asunto.
+Github permite crear documentación. En primer lugar, generando un archivo llamado `README.md`. También permite crear una web propia para el proyecto y, además, una wiki. Para marcar el texto, se utiliza un lenguaje de marcado de texto denominado _Markdown_. En la siguiente web hay un tutorial interactivo: [http://www.markdowntutorial.com/](http://www.markdowntutorial.com/). Como en principio, no es necesario saber Markdown para poder trabajar con Git o con Github, no vamos a incidir más en este asunto.
 
-Sin embargo, para los curiosos dejamos como referencia la web de [Easybook](http://easybook-project.org/). Este proyecto, que se encuentra también en Github, permite crear documentos en PDF, HTML o ePub a partir de documentos escritos en Markdown. Este manual, por ejemplo, ha sido escrito en Markdown y pasado a PDF con Easybook.
+En el propio GitHub podemos encontrar algunas plantillas que nos sirvan de referencia.
+
+Algunos ejemplos:
+
+- [Plantilla básica](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
+- [Plantilla avanzada](https://github.com/othneildrew/Best-README-Template)
+
+### Documentación del curso
+
+Esta documentación está hecha en Markdown y pasada a HTML gracia a la herramienta [mkdocs](https://www.mkdocs.org/). La plantilla usada es [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
+
+El material está publicado con licencia [Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/deed.es)

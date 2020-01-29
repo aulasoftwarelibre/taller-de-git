@@ -43,15 +43,3 @@ También se recomienda configurar el siguiente parámetro:
 
 _Bash completion_ es una utilidad que permite a bash completar órdenes y parámetros. Por defecto suele venir desactivada en Ubuntu y es necesario modificar el archivo `$HOME/.bashrc` para poder activarla. Simplemente hay que descomentar las líneas que lo activan,
 
-### Tu clave pública/privada ###
-
-Muchos servidores Git utilizan la autentificación a través de claves públicas SSH. Y, para ello, cada usuario del sistema ha de generarse una, si es que no la tiene ya. El proceso para hacerlo es similar en casi cualquier sistema operativo. Ante todo, asegurarte que no tengas ya una clave. (comprueba que el directorio `$HOME/usuario/.ssh` no tiene un archivo id_dsa.pub o id_rsa.pub).
-
-Para crear una nueva clave usamos la siguiente orden:
-
-    $ ssh-keygen -t rsa -C "Cuenta Thinstation"
-
-!!! warning
-    Tu clave RSA te identifica contra los repositorios remotos, asegúrate de
-    no compartir la clave privada con nadie. Por defecto la clave se crea como
-    _solo lectura_.

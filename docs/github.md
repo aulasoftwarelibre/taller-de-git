@@ -11,6 +11,18 @@ Github es lo que se denomina una forja, un repositorio de proyectos que usan Git
 
 Lo primero es entrar en el portal ([https://github.com/](https://github.com/)) para crearnos una cuenta si no la tenemos aún.
 
+## Tu clave pública/privada ##
+
+Muchos servidores Git utilizan la autentificación a través de claves públicas SSH. Y, para ello, cada usuario del sistema ha de generarse una, si es que no la tiene ya. El proceso para hacerlo es similar en casi cualquier sistema operativo. Ante todo, asegurarte que no tengas ya una clave. (comprueba que el directorio `$HOME/usuario/.ssh` no tiene un archivo id_dsa.pub o id_rsa.pub).
+
+Para crear una nueva clave usamos la siguiente orden:
+
+    $ ssh-keygen -t rsa -C "Cuenta Thinstation"
+
+!!! warning
+    Tu clave RSA te identifica contra los repositorios remotos, asegúrate de
+    no compartir la clave privada con nadie. Por defecto la clave se crea como
+    _solo lectura_.
 
 ## Configuración ##
 

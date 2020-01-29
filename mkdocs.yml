@@ -46,6 +46,7 @@ nav:
   - Ramas: ramas.md
   - Github: github.md
   - Github avanzado: github-avanzado.md
+  - Comandos de git: commands.md
   - Flujo de trabajo con Git (git flow): gitflow.md
   - Referencias: referencias.md
 

@@ -300,10 +300,18 @@ Una versión muy útil de `git log` es la siguiente, pues nos permite ver en que
 
 ### Crear alias
 
-Como estas órdenes son demasiado largas, Git nos permite crear alias para crear nuevas órdenes parametrizadas. Para ello editaremos un archivo llamado `.gitconfig` que está en nuestro `$HOME` y le añadiremos estas líneas al final:
+Como estas órdenes son demasiado largas, Git nos permite crear alias para crear nuevas órdenes parametrizadas. Para ello podemos configurar nuestro entorno con la orden `git config` de la siguiente manera:
 
-    [alias]
-      hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+
+!!! example
+    Puedes configurar incluso alias para abreviar comandos. Algunos ejemplos de alias útiles:
+
+        git config --global alias.br branch
+        git config --global alias.co checkout
+        git config --global alias.ci commit
+        git config --global alias.st "status -u"
+        git config --global alias.cane "commit --amend --no-edit"
 
 
 ### Recuperando versiones anteriores

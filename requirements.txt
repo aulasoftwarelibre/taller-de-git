@@ -2,3 +2,4 @@ mkdocs
 mkdocs-material
 mkdocs-pandoc
 markdown-inline-graphviz
+pymdown-extensions

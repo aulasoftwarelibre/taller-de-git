@@ -392,6 +392,30 @@ no hemos recibido esos cambios. Es decir, ambos repositorios se han actualizado
 y el remoto tiene preferencia. Hay un conflicto en ciernes y se debe resolver
 localmente antes de continuar.
 
+Vamos a provocar una situación donde podamos ver esto en acción. Vamos a modificar el
+archivo `README.md` tanto en local como en remoto a través del interfaz web.
+
+En el web vamos a cambiar el título para que aparezca de la siguiente manera.
+
+    Curso de GIT, 2020
+
+En local vamos a cambiar el título para que aparezca de la siguiente manera.
+
+    Curso de GIT, febrero
+
+!!! question 
+
+    Haz el commit para guardar el cambio en local.
+
+??? example "Respuesta al ejercicio anterior"
+
+    Añadimos el fichero actualizado:
+
+        $ git commit -am "Añadido el mes al README"        
+        [master 1e8c0b7] Añadido el mes al README
+        1 file changed, 1 insertion(+), 1 deletion(-)
+
+
 La forma de proceder en este caso es hacer un `git fetch` y un `git rebase`. Si
 hay conflictos deberán resolverse. Cuando esté todo solucionado ya podremos hacer
 `git push`.
@@ -400,7 +424,55 @@ hay conflictos deberán resolverse. Cuando esté todo solucionado ya podremos ha
     Por defecto `git pull` lo que hace es un `git merge`, si queremos hacer
     `git rebase` deberemos especificarlos con el parámetro `-r`:
 
-        $ git pull -r
+        $ git pull --rebase
+
+Vamos a hacer el pull con rebase y ver qué sucede.
+
+    $ git pull --rebase
+    First, rewinding head to replay your work on top of it...
+    Applying: Añadido el mes al README
+    Using index info to reconstruct a base tree...
+    M	README.md
+    Falling back to patching base and 3-way merge...
+    Auto-merging README.md
+    CONFLICT (content): Merge conflict in README.md
+    error: Failed to merge in the changes.
+    Patch failed at 0001 Añadido el mes al README
+    hint: Use 'git am --show-current-patch' to see the failed patch
+
+    Resolve all conflicts manually, mark them as resolved with
+    "git add/rm <conflicted_files>", then run "git rebase --continue".
+    You can instead skip this commit: run "git rebase --skip".
+    To abort and get back to the state before "git rebase", run "git rebase --abort".
+
+Evidentemente hay un conflicto porque hemos tocado el mismo archivo. Se deja como ejercicio resolverlo.
+
+??? example "Respuesta al ejercicio anterior"
+
+    El contenido del fichero final podría ser:
+
+        Curso de GIT, febrero, 2020
+    
+    A continuación confirmamos los cambios y los enviamos al servidor
+
+        $ git add README.md
+        $ git rebase --continue
+        $ git push
+
+!!! warning
+
+    ¿Por qué hemos hecho rebase en master si a lo largo del curso hemos dicho que no se debe cambiar
+    la linea principal?
+
+    Básicamente hemos dicho que lo que no debemos hacer es modificar la línea temporal **compartida**. 
+    En este caso nuestros cambios en _master_ solo estaban en nuestro repositorio, porque al fallar
+    el envío nadie más ha visto nuestras actualizaciones. Al hacer _rebase_ estamos deshaciendo nuestros
+    cambios, bajarnos la última actualización compartida de _master_ y volviéndolos a aplicar. Con lo que
+    realmente la historia compartida no se ha modificado.
+
+Este es un problema que debemos evitar en la medida de lo posible. La menor cantidad
+de gente posible debe tener acceso de escritura en master y las actualizaciones de dicha rama deben
+hacerse a través de ramas secundarias y haciendo merge en master como hemos visto en el capítulo de ramas.
 
 
 ### No puedo hacer pull
@@ -423,13 +495,34 @@ los cambios, solo queremos sincronizar y seguir trabajando. Para casos como esto
 _git_ ofrece una pila para guardar cambios temporalmente. Esta pila se llama _stash_
 y nos permite restaurar el espacio de trabajo al último commit.
 
+De nuevo vamos a modificar nuestro proyecto para ver esta situación en acción.
+
+!!! example
+
+    En remoto borra el año de la fecha y en local borra el mes. Pero esta vez
+    **no hagas commit en local**. El archivo solo debe quedar modificado.
+
 La forma de proceder es la siguiente:
 
 ```
 $ git stash save # Guardamos los cambios en la pila
-$ git pull # Sincronizamos con el repositorio remoto
+$ git pull # Sincronizamos con el repositorio remoto, -r para hacer rebase puede ser requerido
 $ git stash pop # Sacamos los cambios de la pila
 ```
 
+!!! info
+
+    Como ocurre habitualmente, git nos proporciona una forma de hacer todos estos pasos de una
+    sola vez. Para ello tenemos que ejecutar lo siguiente:
+
+        $ git pull --autostash
+
+    En general no es mala idea ejecutar lo siguiente si somos conscientes, además, de que tenemos varios
+    cambios sin sincronizar:
+
+        $ git pull --autostash --rebase
+
 Podría darse el caso de que al sacar los cambios de la pila hubiera algún
 conflicto. En ese caso actuamos como con el caso de _merge_ o _rebase_.
+
+De nuevo este tipo de problemas no deben suceder si nos acostumbramos a trabajar en ramas.

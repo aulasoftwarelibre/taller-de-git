@@ -28,6 +28,7 @@ extra:
 markdown_extensions:
   - footnotes: ~
   - admonition: ~
+  - pymdownx.details: ~
   - codehilite:
       guess_lang: false
       linenums: true

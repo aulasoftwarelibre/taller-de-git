@@ -112,7 +112,7 @@ Si se ha borrado el directorio a mano (en vez de usando remove), eso no implica 
 
 Lo ideal en un equipo de desarrollo es que el código pase por todas las manos para así mejorar su calidad.
 
-Con git blame nos permite saber quien fue el último en modificar una linea concreta de código, en que commit y en que fecha lo hizo.
+Con git blame podemos saber quién fue el último en modificar una línea concreta de código, en qué commit y en qué fecha lo hizo.
 
     $ git blame ejemplo.php
     33cdd02c (Sergio Gómez 2020-01-20 16:58:52 +0100  8)   name: "material"

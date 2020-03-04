@@ -116,5 +116,4 @@ Con git blame nos permite saber quien fue el último en modificar una linea conc
 
     $ git blame ejemplo.php
     33cdd02c (Sergio Gómez 2020-01-20 16:58:52 +0100  8)   name: "material"
-    33cdd02c (Sergio Gómez 2020-01-20 16:58:52 +0100  9)   language: "es" <sergio@uco.es>"
-
+    33cdd02c (Sergio Gómez 2020-01-20 16:58:52 +0100  9)   language: "es"

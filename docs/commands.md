@@ -106,3 +106,14 @@ Una cuestión importante, es que las ramas que estén desplegadas en otro espaci
 Esto significa que si estamos trabajando en la rama developer, creamos otro worktree en otro directorio de la rama master, no podemos hacer pasar a master. No es posible tener la misma rama en varios espacios de trabajo.
 
 Si se ha borrado el directorio a mano (en vez de usando remove), eso no implica que el bloqueo desparezca. Con esta orden podemos hacer que git compruebe que los espacios de trabajo secundario se comprueben de nuevo para ver si siguen existiendo y se elimine el bloqueo.
+
+
+## Git blame
+
+Lo ideal en un equipo de desarrollo es que el código pase por todas las manos para así mejorar su calidad.
+
+Con git blame podemos saber quién fue el último en modificar una línea concreta de código, en qué commit y en qué fecha lo hizo.
+
+    $ git blame ejemplo.php
+    33cdd02c (Sergio Gómez 2020-01-20 16:58:52 +0100  8)   name: "material"
+    33cdd02c (Sergio Gómez 2020-01-20 16:58:52 +0100  9)   language: "es"

@@ -318,7 +318,7 @@ $ git hist --all
 ```
 
 Como las operaciones de traer cambios (`git fetch`) y de mezclar ramas (`git merge` o `git rebase`)
-están muy asociadas, _git_ nos ofrece una posibilidad para ahorrar pasos que es la orden `git push`
+están muy asociadas, _git_ nos ofrece una posibilidad para ahorrar pasos que es la orden `git pull`
 que realiza las dos acciones simultáneamente.
 
 Para probar, vamos a editar de nuevo el archivo README.md y añadimos algo más:

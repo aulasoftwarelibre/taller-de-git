@@ -28,6 +28,7 @@ Este curso ha sido impartido por las siguientes personas:
 
 - [Adrián López](https://github.com/AdrianLopezGue)
 - [Héctor Romero](https://github.com/cyberh99)
+- [Javier de Santiago](https://github.com/jdes01)
 - [José Márquez](https://github.com/IronSenior)
 - [Sergio Gómez](https://github.com/sgomez)
 

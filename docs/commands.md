@@ -107,7 +107,6 @@ Esto significa que si estamos trabajando en la rama developer, creamos otro work
 
 Si se ha borrado el directorio a mano (en vez de usando remove), eso no implica que el bloqueo desparezca. Con esta orden podemos hacer que git compruebe que los espacios de trabajo secundario se comprueben de nuevo para ver si siguen existiendo y se elimine el bloqueo.
 
-
 ## Git blame
 
 Lo ideal en un equipo de desarrollo es que el código pase por todas las manos para así mejorar su calidad.

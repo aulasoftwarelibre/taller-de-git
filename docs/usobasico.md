@@ -1,6 +1,6 @@
-# Uso básico de Git #
+# Uso básico de Git
 
-## Crear un proyecto ##
+## Crear un proyecto
 
 ### Crear un programa "Hola Mundo"
 
@@ -127,8 +127,8 @@ Podemos ver como aparecen el archivo _hola.php_ dos veces. El primero está prep
 para ser confirmado y está almacenado en la zona de _staging_. El segundo indica
 que el directorio hola.php está modificado otra vez en la zona de trabajo (_workdir_).
 
-
 !!! warning
+
     Si volvieramos a hacer un `git add hola.php` sobreescribiríamos los cambios previos
     que había en la zona de _staging_.
 
@@ -156,12 +156,14 @@ Almacenamos los cambios por separado:
     #
     $ git commit -m "Se añade un comentario al cambio del valor por defecto"
     [master fd4da94] Se añade un comentario al cambio del valor por defecto
-     1 file changed, 1 insertion(+)    
+     1 file changed, 1 insertion(+)
 
 !!! info
+
     El valor "." despues de `git add` indica que se añadan todos los archivos de forma recursiva.
 
 !!! warning
+
     Cuidado cuando uses `git add .` asegúrate de que no estás añadiendo archivos que no quieres añadir.
 
 ### Ignorando archivos
@@ -194,7 +196,6 @@ git config --global core.excludesfile $HOME/.gitignore_global
 ```
 
 Ahora podemos crear un archivo llamado `.gitignore_global` en la raíz de nuestra cuenta con este contenido:
-
 
 ```
 # Compiled source #
@@ -244,7 +245,6 @@ Thumbs.db
 .classpath
 .project
 ```
-
 
 ## Trabajando con el historial
 
@@ -305,6 +305,7 @@ Como estas órdenes son demasiado largas, Git nos permite crear alias para crear
     git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 
 !!! example
+
     Puedes configurar incluso alias para abreviar comandos. Algunos ejemplos de alias útiles:
 
         git config --global alias.br branch
@@ -312,7 +313,6 @@ Como estas órdenes son demasiado largas, Git nos permite crear alias para crear
         git config --global alias.ci commit
         git config --global alias.st "status -u"
         git config --global alias.cane "commit --amend --no-edit"
-
 
 ### Recuperando versiones anteriores
 
@@ -378,7 +378,7 @@ Para borrar etiquetas:
 
 ### Visualizar cambios
 
-Para ver los cambios que se han realizado en el código usamos  la orden `git diff`. La orden sin especificar nada más, mostrará los cambios que no han sido añadidos aún, es decir, todos los cambios que se han hecho antes de usar la orden `git add`. Después se puede indicar un parámetro y dará los cambios entre la versión indicada y el estado actual. O para comparar dos versiones entre sí, se indica la más antigua y la más nueva. Ejemplo:
+Para ver los cambios que se han realizado en el código usamos la orden `git diff`. La orden sin especificar nada más, mostrará los cambios que no han sido añadidos aún, es decir, todos los cambios que se han hecho antes de usar la orden `git add`. Después se puede indicar un parámetro y dará los cambios entre la versión indicada y el estado actual. O para comparar dos versiones entre sí, se indica la más antigua y la más nueva. Ejemplo:
 
     $ git diff v1-beta v1
     diff --git a/hola.php b/hola.php

@@ -132,6 +132,7 @@ El anterior apartado revierte un commit, pero deja huella en el historial de cam
 El resto de cambios no se han borrado (aún), simplemente no están accesibles porque git no sabe como referenciarlos. Si sabemos su hash podemos acceder aún a ellos. Pasado un tiempo, eventualmente Git tiene un recolector de basura que los borrará. Se puede evitar etiquetando el estado final.
 
 !!! danger
+
     La orden _reset_ es una operación delicada. Debe evitarse si no se sabe bien lo que se está haciendo,
     sobre todo cuando se trabaja en repositorios compartidos, porque podríamos alterar la historia de cambios
     lo cual puede provocar problemas de sincronización.
@@ -156,6 +157,7 @@ Y lo confirmamos:
      1 file changed, 1 insertion(+)
 
 !!! tip
+
     El parámetro `-a` hace un `git add` antes de hacer _commit_ de todos los archivos modificados
      o borrados (de los nuevos no), con lo que nos ahorramos un paso.
 
@@ -183,6 +185,7 @@ Y en esta ocasión usamos `commit --amend` que nos permite modificar el último 
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
 !!! danger
+
     Nunca modifiques un _commit_ que ya hayas sincronizado con otro repositorio o
     que hayas recibido de él. Estarías alterando la historia de cambios y provocarías
     problemas de sincronización.

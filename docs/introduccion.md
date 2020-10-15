@@ -30,8 +30,8 @@ Al permitir múltiples repositorios remotos, en Git es posible tener un flujo de
 
 ![ Flujo de trabajo del Gestor-de-Integraciones ](images/flujo-integracion.png)
 
-
 !!! info
+
     Este modelo se puso muy de moda a raíz de la forja GitHub que se verá más adelante.
 
 ### Flujo de trabajo con Dictador y Tenientes

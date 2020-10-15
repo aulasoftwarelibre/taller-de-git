@@ -10,8 +10,8 @@ En la introducción vimos los diferentes esquemas de organización externa de lo
 
 En este esquema hay dos ramas principales con un tiempo de vida indefinido:
 
-* master (_origin/master_): el código apuntado por _HEAD_ siempre contiene un estado listo para producción.
-* develop (_origin/develop_): el código apuntado por _HEAD_ siempre contiene los últimos cambios desarrollados para la próxima versión del software. También se le puede llamar _rama de integración_. No es necesariamente estable.
+- master (_origin/master_): el código apuntado por _HEAD_ siempre contiene un estado listo para producción.
+- develop (_origin/develop_): el código apuntado por _HEAD_ siempre contiene los últimos cambios desarrollados para la próxima versión del software. También se le puede llamar _rama de integración_. No es necesariamente estable.
 
 Cuando el código de la rama de desarrollo es lo suficientemente estable, se integra con la rama master y una nueva versión es lanzada.
 
@@ -19,27 +19,27 @@ Cuando el código de la rama de desarrollo es lo suficientemente estable, se int
 
 Para labores concretas, pueden usarse otro tipo de ramas, las cuales tienen un tiempo de vida definido. Es decir, cuando ya no son necesarias se eliminan:
 
-* Ramas de funcionalidad (feature branches)
-* Ramas de versión (release branches)
-* Ramas de parches (hotfix branches)
+- Ramas de funcionalidad (feature branches)
+- Ramas de versión (release branches)
+- Ramas de parches (hotfix branches)
 
 #### Feature branches
 
-* Pueden partir de: develop
-* Deben fusionarse con: develop
-* Convenición de nombres: feature-NUMissue-*.
+- Pueden partir de: develop
+- Deben fusionarse con: develop
+- Convenición de nombres: feature-NUMissue-\*.
 
 #### Release branches
 
-* Pueden partir de: develop
-* Deben fusionarse con: develop y master
-* Convenición de nombres: release-*
+- Pueden partir de: develop
+- Deben fusionarse con: develop y master
+- Convenición de nombres: release-\*
 
 #### Hotfix branches
 
-* Pueden partir de: master
-* Deben fusionarse con: develop y master
-* Convenición de nombres: hotfix-\*
+- Pueden partir de: master
+- Deben fusionarse con: develop y master
+- Convenición de nombres: hotfix-\*
 
 ## La extensión flow de Git
 
@@ -51,11 +51,11 @@ Aunque la fuente original de la extensión es del mismo autor del artículo, el 
 
 ### Uso
 
-Para cambiar a las ramas master y develop, seguiremos usando  `git checkout`, pero para trabajar con las ramas antes indicadas gitflow nos facilita las siguientes órdenes:
+Para cambiar a las ramas master y develop, seguiremos usando `git checkout`, pero para trabajar con las ramas antes indicadas gitflow nos facilita las siguientes órdenes:
 
-* `git flow init`: Permite inicializar el espacio de trabajo.
-* `git flow feature`: Permite crear y trabajar con ramas de funcionalidades.
-* `git flow release`: Permite crear y trabajar con ramas de versiones.
-* `git flow hotfix`: Permite crear y trabajar con ramas de parches.
+- `git flow init`: Permite inicializar el espacio de trabajo.
+- `git flow feature`: Permite crear y trabajar con ramas de funcionalidades.
+- `git flow release`: Permite crear y trabajar con ramas de versiones.
+- `git flow hotfix`: Permite crear y trabajar con ramas de parches.
 
 En el siguiente capítulo veremos como usarlas para trabajar en un proyecto ya creado.

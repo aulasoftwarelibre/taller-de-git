@@ -1,12 +1,12 @@
-# Sistemas de control de versiones #
+# Sistemas de control de versiones
 
-## Definición, clasificación y funcionamiento ##
+## Definición, clasificación y funcionamiento
 
 Se llama control de versiones a la gestión de los diversos cambios que se realizan sobre los elementos de algún producto o una configuración del mismo. Una versión, revisión o edición de un producto, es el estado en el que se encuentra dicho producto en un momento dado de su desarrollo o modificación. Aunque un sistema de control de versiones puede realizarse de forma manual, es muy aconsejable disponer de herramientas que faciliten esta gestión dando lugar a los llamados sistemas de control de versiones o SVC (del inglés System Version Control).
 
 Estos sistemas facilitan la administración de las distintas versiones de cada producto desarrollado, así como las posibles especializaciones realizadas (por ejemplo, para algún cliente específico). Ejemplos de este tipo de herramientas son entre otros: CVS, Subversion, SourceSafe, ClearCase, Darcs, Bazaar , Plastic SCM, Git, Mercurial, Perforce.
 
-## Terminología ##
+## Terminología
 
 Repositorio ("repository")
 : El repositorio es el lugar en el que se almacenan los datos actualizados e históricos de cambios.
@@ -41,17 +41,18 @@ Tronco ("trunk")
 Fusionar, integrar, mezclar ("merge")
 : Una fusión o integración es una operación en la que se aplican dos tipos de cambios en un archivo o conjunto de archivos. Algunos escenarios de ejemplo son los siguientes:
 
-  * Un usuario, trabajando en un conjunto de archivos, actualiza o sincroniza su copia de trabajo con los cambios realizados y confirmados, por otros usuarios, en el repositorio.
-  * Un usuario intenta confirmar archivos que han sido actualizado por otros usuarios desde el último despliegue ('checkout'), y el software de control de versiones integra automáticamente los archivos (por lo general, después de preguntarle al usuario si se debe proceder con la integración automática, y en algunos casos sólo se hace si la fusión puede ser clara y razonablemente resuelta).
-  * Un conjunto de archivos se bifurca, un problema que existía antes de la ramificación se trabaja en una nueva rama, y la solución se combina luego en la otra rama.
-  * Se crea una rama, el código de los archivos es independiente editado, y la rama actualizada se incorpora más tarde en un único tronco unificado.
+- Un usuario, trabajando en un conjunto de archivos, actualiza o sincroniza su copia de trabajo con los cambios realizados y confirmados, por otros usuarios, en el repositorio.
+- Un usuario intenta confirmar archivos que han sido actualizado por otros usuarios desde el último despliegue ('checkout'), y el software de control de versiones integra automáticamente los archivos (por lo general, después de preguntarle al usuario si se debe proceder con la integración automática, y en algunos casos sólo se hace si la fusión puede ser clara y razonablemente resuelta).
+- Un conjunto de archivos se bifurca, un problema que existía antes de la ramificación se trabaja en una nueva rama, y la solución se combina luego en la otra rama.
+- Se crea una rama, el código de los archivos es independiente editado, y la rama actualizada se incorpora más tarde en un único tronco unificado.
 
-## Clasificación ##
+## Clasificación
 
 Podemos clasificar los sistemas de control de versiones atendiendo a la arquitectura utilizada para el almacenamiento del código: locales, centralizados y distribuidos.
 
 ### Locales
-:	Los cambios son guardados localmente y no se comparten con nadie. Esta arquitectura es la antecesora de las dos siguientes.
+
+Los cambios son guardados localmente y no se comparten con nadie. Esta arquitectura es la antecesora de las dos siguientes.
 
 ![Sistema de control de versiones local](images/git-local.png)
 
@@ -69,8 +70,8 @@ Cada usuario tiene su propio repositorio. Los distintos repositorios pueden inte
 
 #### Ventajas de sistemas distribuidos
 
-* No es necesario estar conectado para guardar cambios.
-* Posibilidad de continuar trabajando si el repositorio remoto no está accesible.
-* El repositorio central está más libre de ramas de pruebas.
-* Se necesitan menos recursos para el repositorio remoto.
-* Más flexibles al permitir gestionar cada repositorio personal como se quiera.
+- No es necesario estar conectado para guardar cambios.
+- Posibilidad de continuar trabajando si el repositorio remoto no está accesible.
+- El repositorio central está más libre de ramas de pruebas.
+- Se necesitan menos recursos para el repositorio remoto.
+- Más flexibles al permitir gestionar cada repositorio personal como se quiera.

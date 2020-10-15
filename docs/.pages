@@ -1,0 +1,15 @@
+arrange:
+  - index.md
+  - cvs.md
+  - introduccion.md
+  - git.md
+  - usobasico.md
+  - usoavanzado.md
+  - ramas.md
+  - github.md
+  - github-zenodo.md
+  - github-flow.md
+  - github-avanzado.md
+  - commands.md
+  - gitflow.md
+  - referencias.md

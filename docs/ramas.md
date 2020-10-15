@@ -13,6 +13,7 @@ git branch hola
 ```
 
 !!! info
+
     Si usamos `git branch` sin ningún argumento, nos devolverá la lista de ramas
     disponibles.
 
@@ -23,6 +24,7 @@ debemos usar _checkout_:
     Switched to branch 'hola'
 
 !!! tip
+
     Hay una forma más rapida de hacer ambas acciones en un solo paso. Con el parámetro
     `-b` de `git checkout` podemos cambiarnos a una rama que, si no existe, se crea
     instantáneamente.
@@ -110,7 +112,7 @@ Y lo añadimos a nuestro repositorio en la rama en la que estamos:
     * c3e65d0 2013-06-16 | Añadido README.md (HEAD, master) [Sergio Gómez]
     | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
     | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
-    |/  
+    |/
     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
@@ -135,12 +137,12 @@ Podemos incorporar los cambios de una rama a otra con la orden `git merge`
      create mode 100644 README.md
     $ git hist --all
     *   9c6ac06 2013-06-16 | Merge commit 'c3e65d0' into hola (HEAD, hola) [Sergio Gómez]
-    |\  
+    |\
     * | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
     * | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
     | |
     | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-    |/  
+    |/
     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
@@ -175,13 +177,13 @@ Y guardamos los cambios:
      1 file changed, 2 insertions(+), 2 deletions(-)
     $ git hist --all
     *   9c6ac06 2013-06-16 | Merge commit 'c3e65d0' into hola (hola) [Sergio Gómez]
-    |\  
+    |\
     * | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
     * | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
     | | * 9c85275 2013-06-16 | Programa interactivo (HEAD, master) [Sergio Gómez]
-    | |/  
+    | |/
     | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-    |/  
+    |/
     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
@@ -244,15 +246,15 @@ Para ello podemos usar la orden `git reset` que nos permite mover HEAD donde que
     Switched to branch 'hola'
     $ git hist
     *   a36af04 2013-06-16 | Solucionado el conflicto al fusionar con la rama master (HEAD, hola) [Sergio Gómez]
-    |\  
+    |\
     | * 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
     * |   9c6ac06 2013-06-16 | Merge commit 'c3e65d0' into hola [Sergio Gómez]
-    |\ \  
-    | |/  
+    |\ \
+    | |/
     | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
     * | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
     * | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
-    |/  
+    |/
     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
@@ -269,7 +271,7 @@ Y nuestro estado será:
     * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
     | * 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
     | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-    |/  
+    |/
     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
@@ -337,7 +339,6 @@ Y ahora vemos que nuestro árbol tiene un aspecto distinto, mucho más limpio:
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-
 Lo que hace rebase es volver a aplicar todos los cambios a la rama máster, desde su nodo más reciente. Eso significa que se modifica el orden o la historia de creación de los cambios. Por eso rebase no debe usarse si el orden es importante o si la rama es compartida.
 
 ## Mezclando con la rama master
@@ -365,7 +366,7 @@ Ya hemos terminado de implementar los cambios en nuestra rama secundaria y es ho
      * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
      * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-Vemos que indica que el tipo de fusión es _fast-forward_. Este tipo de fusión tiene el problema que no deja rastro de la fusión, por eso suele ser recomendable usar el parámetro  `--no-ff` para que quede constancia siempre de que se ha fusionado una rama con otra.
+Vemos que indica que el tipo de fusión es _fast-forward_. Este tipo de fusión tiene el problema que no deja rastro de la fusión, por eso suele ser recomendable usar el parámetro `--no-ff` para que quede constancia siempre de que se ha fusionado una rama con otra.
 
 Vamos a volver a probar ahora sin hacer _fast-forward_. Reseteamos _master_ al estado _"Programa interactivo"_.
 

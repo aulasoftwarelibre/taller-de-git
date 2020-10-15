@@ -2,16 +2,16 @@
 
 Github es lo que se denomina una forja, un repositorio de proyectos que usan Git como sistema de control de versiones. Es la forja más popular, ya que alberga más de 10 millones de repositorios. Debe su popularidad a sus funcionalidades sociales, principalmente dos: la posibilidad de hacer forks de otros proyectos y la posibilidad de cooperar aportando código para arreglar errores o mejorar el código. Si bien, no es que fuera una novedad, sí lo es lo fácil que resulta hacerlo. A raíz de este proyecto han surgido otros como _Gitorius_ o _Gitlab_, pero _Github_ sigue siendo el más popular y el que tiene mejores y mayores características. algunas de estas son:
 
-* Un wiki para documentar el proyecto, que usa MarkDown como lenguaje de marca.
-* Un portal web para cada proyecto.
-* Funcionalidades de redes sociales como followers.
-* Gráficos estadísticos.
-* Revisión de código y comentarios.
-* Sistemas de seguimiento de incidencias.
+- Un wiki para documentar el proyecto, que usa MarkDown como lenguaje de marca.
+- Un portal web para cada proyecto.
+- Funcionalidades de redes sociales como followers.
+- Gráficos estadísticos.
+- Revisión de código y comentarios.
+- Sistemas de seguimiento de incidencias.
 
 Lo primero es entrar en el portal ([https://github.com/](https://github.com/)) para crearnos una cuenta si no la tenemos aún.
 
-## Tu clave pública/privada ##
+## Tu clave pública/privada
 
 Muchos servidores Git utilizan la autentificación a través de claves públicas SSH. Y, para ello, cada usuario del sistema ha de generarse una, si es que no la tiene ya. El proceso para hacerlo es similar en casi cualquier sistema operativo. Ante todo, asegurarte que no tengas ya una clave. (comprueba que el directorio `$HOME/usuario/.ssh` no tiene un archivo id_dsa.pub o id_rsa.pub).
 
@@ -20,11 +20,12 @@ Para crear una nueva clave usamos la siguiente orden:
     $ ssh-keygen -t rsa -C "Cuenta Thinstation"
 
 !!! warning
+
     Tu clave RSA te identifica contra los repositorios remotos, asegúrate de
     no compartir la clave privada con nadie. Por defecto la clave se crea como
     _solo lectura_.
 
-## Configuración ##
+## Configuración
 
 Vamos a aprovechar para añadir la clave RSA que generamos antes, para poder acceder desde git a los repositorios. Para ellos nos vamos al menú de configuración de usuario (_Settings_)
 
@@ -36,13 +37,13 @@ Nos vamos al menú 'SSH and GPG Keys' y añadimos una nueva clave. En _Title_ in
 
 Con esto ya tendriamos todo nuestro entorno para poder empezar a trabajar desde nuestro equipo.
 
-## Clientes gráficos para GitHub ##
+## Clientes gráficos para GitHub
 
 Además, para Github existe un cliente propio tanto para Windows como para MacOSX:
 
-* Cliente Windows: [http://windows.github.com/](http://windows.github.com/)
+- Cliente Windows: [http://windows.github.com/](http://windows.github.com/)
 
-* Cliente MacOSX: [http://mac.github.com/](http://mac.github.com/)
+- Cliente MacOSX: [http://mac.github.com/](http://mac.github.com/)
 
 Para Linux no hay cliente propio, pero sí hay plugin para la mayoría de editores de texto como atom, netbeans, eclipe o los editores de jetbrains.
 
@@ -128,6 +129,7 @@ Aparece que hay una nueva rama llamada `origin/master`. Esta rama indica el esta
 de nuestro repositorio con un repositorio remoto llamado _origin_. En este caso el de _Github_.
 
 !!! info
+
     Por norma se llama automáticamente _origin_ al primer repositorio con el que
     sincronizamos nuestro repositorio.
 
@@ -216,6 +218,7 @@ Así que vamos a enviar los cambios con la primera de las acciones que vimos `gi
     Branch master set up to track remote branch master from origin.
 
 !!! info
+
     La orden `git push` necesita dos parámetros para funcionar: el repositorio
     y la rama destino. Así que realmente lo que teníamos que haber escrito es:
 
@@ -243,8 +246,8 @@ Esto nos permite editar el archivo.
 
 ![Editar archivo](images/github-edit.png)
 
-
 !!! info
+
     Los archivos con extensión `.md` están en un formato denominado _MarkDown_. Se trata
     de un lenguaje de marca que nos permite escribir texto enriquecido de manera muy sencilla.
 
@@ -367,7 +370,6 @@ $ git hist --all
 Vemos que los cambios se han incorporado y que las ramas remota y local de _master_ están
 sincronizadas.
 
-
 ## Problemas de sincronización
 
 ### No puedo hacer push
@@ -403,7 +405,7 @@ En local vamos a cambiar el título para que aparezca de la siguiente manera.
 
     Curso de GIT, febrero
 
-!!! question 
+!!! question
 
     Haz el commit para guardar el cambio en local.
 
@@ -411,16 +413,16 @@ En local vamos a cambiar el título para que aparezca de la siguiente manera.
 
     Añadimos el fichero actualizado:
 
-        $ git commit -am "Añadido el mes al README"        
+        $ git commit -am "Añadido el mes al README"
         [master 1e8c0b7] Añadido el mes al README
         1 file changed, 1 insertion(+), 1 deletion(-)
-
 
 La forma de proceder en este caso es hacer un `git fetch` y un `git rebase`. Si
 hay conflictos deberán resolverse. Cuando esté todo solucionado ya podremos hacer
 `git push`.
 
 !!! info
+
     Por defecto `git pull` lo que hace es un `git merge`, si queremos hacer
     `git rebase` deberemos especificarlos con el parámetro `-r`:
 
@@ -452,7 +454,7 @@ Evidentemente hay un conflicto porque hemos tocado el mismo archivo. Se deja com
     El contenido del fichero final podría ser:
 
         Curso de GIT, febrero, 2020
-    
+
     A continuación confirmamos los cambios y los enviamos al servidor
 
         $ git add README.md
@@ -464,7 +466,7 @@ Evidentemente hay un conflicto porque hemos tocado el mismo archivo. Se deja com
     ¿Por qué hemos hecho rebase en master si a lo largo del curso hemos dicho que no se debe cambiar
     la linea principal?
 
-    Básicamente hemos dicho que lo que no debemos hacer es modificar la línea temporal **compartida**. 
+    Básicamente hemos dicho que lo que no debemos hacer es modificar la línea temporal **compartida**.
     En este caso nuestros cambios en _master_ solo estaban en nuestro repositorio, porque al fallar
     el envío nadie más ha visto nuestras actualizaciones. Al hacer _rebase_ estamos deshaciendo nuestros
     cambios, bajarnos la última actualización compartida de _master_ y volviéndolos a aplicar. Con lo que
@@ -473,7 +475,6 @@ Evidentemente hay un conflicto porque hemos tocado el mismo archivo. Se deja com
 Este es un problema que debemos evitar en la medida de lo posible. La menor cantidad
 de gente posible debe tener acceso de escritura en master y las actualizaciones de dicha rama deben
 hacerse a través de ramas secundarias y haciendo merge en master como hemos visto en el capítulo de ramas.
-
 
 ### No puedo hacer pull
 

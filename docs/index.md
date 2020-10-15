@@ -1,8 +1,6 @@
-# Taller de introducción a Git
+# Inicio
 
-<div align="center">
-    <img width="272" src="./images/logoasl.png" alt="Aula Software Libre de la UCO">
-</div>
+![Aula Software Libre de la UCO](images/logo-cuadrado-invertido.svg)
 
 Este taller forma parte de las actividades del [Aula de Software Libre de la
 Universidad de Córdoba](https://www.uco.es/aulasoftwarelibre).
@@ -30,6 +28,7 @@ Este curso ha sido impartido por las siguientes personas:
 
 - [Adrián López](https://github.com/AdrianLopezGue)
 - [Héctor Romero](https://github.com/cyberh99)
+- [Javier de Santiago](https://github.com/jdes01)
 - [José Márquez](https://github.com/IronSenior)
 - [Sergio Gómez](https://github.com/sgomez)
 

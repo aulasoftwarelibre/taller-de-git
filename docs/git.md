@@ -1,8 +1,8 @@
-#Aspectos básicos de Git#
+# Aspectos básicos de Git
 
-## Instalación ##
+## Instalación
 
-### Instalando en Linux ###
+### Instalando en Linux
 
 Si quieres instalar Git en Linux a través de un instalador binario, en general puedes hacerlo a través de la herramienta básica de gestión de paquetes que trae tu distribución. Si estás en Fedora, puedes usar yum:
 
@@ -12,7 +12,7 @@ O si estás en una distribución basada en Debian como Ubuntu, prueba con apt-ge
 
     $ apt-get install git
 
-### Instalando en Windows ###
+### Instalando en Windows
 
 Instalar Git en Windows es muy fácil. El proyecto msysGit tiene uno de los procesos de instalación más sencillos. Simplemente descarga el archivo exe del instalador desde la página de GitHub, y ejecútalo:
 
@@ -26,9 +26,9 @@ En MacOS se recomienda tener instalada la herramienta [homebrew](https://brew.sh
 
     $ brew install git
 
-## Configuración ##
+## Configuración
 
-### Tu identidad ###
+### Tu identidad
 
 Lo primero que deberías hacer cuando instalas Git es establecer tu nombre de usuario y dirección de correo electrónico. Esto es importante porque las confirmaciones de cambios (commits) en Git usan esta información, y es introducida de manera inmutable en los commits que envías:
 
@@ -39,7 +39,6 @@ También se recomienda configurar el siguiente parámetro:
 
     $ git config --global push.default simple
 
-### Bash Completion ###
+### Bash Completion
 
 _Bash completion_ es una utilidad que permite a bash completar órdenes y parámetros. Por defecto suele venir desactivada en Ubuntu y es necesario modificar el archivo `$HOME/.bashrc` para poder activarla. Simplemente hay que descomentar las líneas que lo activan,
-

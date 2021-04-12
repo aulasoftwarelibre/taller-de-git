@@ -11,3 +11,4 @@
 - [Curso detallado y gratuito sobre Git y github](https://www.udacity.com/course/how-to-use-git-and-github--ud775)
 - [Otra guia rápida de git](https://github.com/github/training-kit/blob/master/downloads/github-git-cheat-sheet.pdf)
 - [Guía de estilos según Udacity](http://udacity.github.io/git-styleguide/)
+- [Flujo de trabajo de Gitflow](https://www.atlassian.com/es/git/tutorials/comparing-workflows/gitflow-workflow)

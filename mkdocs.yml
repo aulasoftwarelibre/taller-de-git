@@ -6,18 +6,19 @@ site_url: "https://github.com/aulasoftwarelibre/taller-de-git.git"
 repo_name: "aulasoftwarelibre/taller-de-git"
 repo_url: "https://github.com/aulasoftwarelibre/taller-de-git.git"
 
+copyright: Copyleft - CC BY-NC 4.0 - Aula de Software Libre
+
 theme:
   favicon: "images/logoasl.png"
   features:
-    - instant
+    - navigation.instant
   icon:
     logo: material/git
   name: "material"
   language: "es"
   palette:
     - scheme: slate
-      primary: gray
-      accent: gray
+      accent: indigo
 
 plugins:
   - awesome-pages
@@ -25,7 +26,8 @@ plugins:
       type: date
   - search
 
-extra_css: [extra.css]
+extra_css:
+  - stylesheets/extra.css
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -42,14 +44,14 @@ extra:
 markdown_extensions:
   - admonition: ~
   - attr_list: ~
-  - codehilite:
-      guess_lang: false
-      linenums: true
   - def_list: ~
   - footnotes: ~
   - toc:
       permalink: true
   - pymdownx.keys: ~
+  - pymdownx.highlight: ~
+  - pymdownx.inlinehilite: ~
+  - pymdownx.superfences: ~
 
 google_analytics:
   - "UA-51754922-1"

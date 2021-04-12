@@ -1,7 +1,7 @@
 mkdocs
 mkdocs-awesome-pages-plugin
 mkdocs-git-revision-date-localized-plugin
-mkdocs-material
+mkdocs-material>=6.2,<7.0
 mkdocs-pandoc
 markdown
 pymdown-extensions

@@ -57,7 +57,8 @@ Aunque la fuente original de la extensión es del mismo autor del artículo, el 
 
 Para cambiar a las ramas master y develop, seguiremos usando `git checkout`, pero para trabajar con las ramas antes indicadas gitflow nos facilita las siguientes órdenes:
 
-- `git flow init`: Inicializa el espacio de trabajo. De forma automática, crea las ramas que necesitamos y permite configurar el nombre de las mismas.
+#### `git flow init`: Inicializa el espacio de trabajo. De forma automática, crea las ramas que necesitamos y permite configurar el nombre de las mismas.
+
 ```bash
 $ git flow init
 Initialized empty Git repository in ~/project/.git/
@@ -77,9 +78,10 @@ $ git branch
 * develop
  master
  ```
+
 Podemos ver que por defecto (usando intro en vez de escribir nada) pone nombres por defecto a cada rama. Con `git branch` comprobamos que ramas existen y en cual nos encontramos.
 
-- `git flow feature`: Permite crear y trabajar con ramas de funcionalidades.
+#### `git flow feature`: Permite crear y trabajar con ramas de funcionalidades.
 
 ```bash
 $ git flow feature start feature_branch
@@ -96,26 +98,33 @@ $ git flow feature stop feature_branch
 
 Esto finaliza nuestra rama y la integra automáticamente a la rama develop. Si queremos seguir cambiando nuestro repositorio abriremos una nueva rama feature.
 
-- `git flow release`: Permite crear y trabajar con ramas de versiones.
+#### `git flow release`: Permite crear y trabajar con ramas de versiones.
 Cuando entendemos que despues de todas las funcionalidades (features, cambios en nuestro repositorio) nuestro trabajo esta listo para ser publicado, abriremos una rama release, que nacera de nuestra rama develop. 
+
 ```bash
 $ git flow release start 0.1.0
 Switched to a new branch 'release/0.1.0'
 ```
+
 Usaremos un tag para identificar de que release se trata.
 
 Ahora podemos hacer los cambios que estimemos oportuno para integrar todas las features que el repositorio ha sufrido hasta el momento. Tras hacer commit a todo el proceso, podemos cerrar la rama release.
+
 ```bash
 $git flow release finish '0.1.0'
 ```
+
 Esto la integrará de forma automática con master (con esto finalizamos el proceso de 'subir a producción' nuestro codigo) y con la rama develop, para que las futuras features estén al día.
 
 
-- `git flow hotfix`: Permite crear y trabajar con ramas de parches. Esto lo usaremos para hacer cambios rapidos que no puedan esperar a la proxima integracion de una release.
+#### `git flow hotfix`: Permite crear y trabajar con ramas de parches. Esto lo usaremos para hacer cambios rapidos que no puedan esperar a la proxima integracion de una release.
+
 ```bash
 $ git flow hotfix start hotfix_branch
 ```
+
 Tras hacer commit finalizamos la rama hotfix. Esta se fusionará con nuestra rama master y con nuestra rama develop para que esta también esté al día de los últimos cambios.
+
 ```bash
 $ git flow hotfix finish hotfix_branch
 ```

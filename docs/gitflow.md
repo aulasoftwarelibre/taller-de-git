@@ -58,7 +58,7 @@ Aunque la fuente original de la extensión es del mismo autor del artículo, el 
 Para cambiar a las ramas master y develop, seguiremos usando `git checkout`, pero para trabajar con las ramas antes indicadas gitflow nos facilita las siguientes órdenes:
 
 
-#### `git flow init:` Inicializa el espacio de trabajo. De forma automática, crea las ramas que necesitamos y permite configurar el nombre de las mismas.
+#### git flow init: Inicializa el espacio de trabajo. De forma automática, crea las ramas que necesitamos y permite configurar el nombre de las mismas.
 
 ```bash
 $ git flow init
@@ -84,7 +84,7 @@ Podemos ver que por defecto (usando intro en vez de escribir nada) pone nombres 
 
 
 
-#### `git flow feature:` Permite crear y trabajar con ramas de funcionalidades.
+#### git flow feature: Permite crear y trabajar con ramas de funcionalidades.
 
 ```
 $ git flow feature start feature_branch
@@ -104,7 +104,7 @@ Esto finaliza nuestra rama y la integra automáticamente a la rama develop. Si q
 
 
 
-#### `git flow release:` Permite crear y trabajar con ramas de versiones.
+#### git flow release: Permite crear y trabajar con ramas de versiones.
 Cuando entendemos que despues de todas las funcionalidades (features, cambios en nuestro repositorio) nuestro trabajo esta listo para ser publicado, abriremos una rama release, que nacera de nuestra rama develop. 
 
 ```
@@ -124,7 +124,7 @@ Esto la integrará de forma automática con master (con esto finalizamos el proc
 
 
 
-#### `git flow hotfix:` Permite crear y trabajar con ramas de parches. Esto lo usaremos para hacer cambios rapidos que no puedan esperar a la proxima integracion de una release.
+#### git flow hotfix: Permite crear y trabajar con ramas de parches. Esto lo usaremos para hacer cambios rapidos que no puedan esperar a la proxima integracion de una release.
 
 ```
 $ git flow hotfix start hotfix_branch

@@ -61,7 +61,7 @@ Para cambiar a las ramas master y develop, seguiremos usando `git checkout`, per
 #### - git flow init: 
 Inicializa el espacio de trabajo. De forma automática, crea las ramas que necesitamos y permite configurar el nombre de las mismas.
 
-```bash
+```
 $ git flow init
 Initialized empty Git repository in ~/project/.git/
 No branches exist yet. Base branches must be created now.

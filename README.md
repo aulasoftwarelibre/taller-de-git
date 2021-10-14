@@ -39,6 +39,7 @@ Este curso ha sido impartido por las siguientes personas:
 - [Javier de Santiago](https://github.com/jdes01)
 - [José Márquez](https://github.com/IronSenior)
 - [Sergio Gómez](https://github.com/sgomez)
+- [Alba Palomino](https://github.com/Albapj01)
 
 ## Licencia
 

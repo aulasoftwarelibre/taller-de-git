@@ -16,7 +16,6 @@ mkdocs-material = {extras = ["imaging"], version = "^9.5.4"}
 mkdocs-material-extensions = "^1.2"
 mkdocs-pandoc = "^0.2.6"
 pymdown-extensions = "^10.3"
-mkdocs-awesome-pages-plugin = "^2.9.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

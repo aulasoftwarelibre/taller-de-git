@@ -65,7 +65,6 @@ extra_css:
   - stylesheets/extra.css
 
 plugins:
-  - awesome-pages
   - search
   - social
   - git-revision-date-localized:

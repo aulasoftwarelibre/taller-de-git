@@ -1,5 +1,11 @@
 # Flujo de trabajo con Git (git flow)
 
+!!! warning
+
+    Esta sección se mantiene por motivos históricos y de documentación. En general, ya se considera
+    una mala práctica seguir este flujo de trabajo. Aunque hay muchos equipos que aun lo utilizan,
+    por lo que viene bien conocerla, no deberías aplicarla en proyectos nuevos.
+
 ## La importancia de la organización del flujo de trabajo
 
 En la introducción vimos los diferentes esquemas de organización externa de los repositorios (es decir, en lo relativo a los usuarios que componen el equipo de trabajo). 
@@ -14,10 +20,10 @@ En los ejemplos hemos visto que usabamos una rama máster y creábamos ramas par
 
 En este esquema hay dos ramas principales con un tiempo de vida indefinido:
 
-- master (_origin/master_): el código apuntado por _HEAD_ siempre contiene un estado listo para producción.
+- main (_origin/main_): el código apuntado por _HEAD_ siempre contiene un estado listo para producción.
 - develop (_origin/develop_): el código apuntado por _HEAD_ siempre contiene los últimos cambios desarrollados para la próxima versión del software. También se le puede llamar _rama de integración_. No es necesariamente estable.
 
-Cuando el código de la rama de desarrollo es lo suficientemente estable, se integra con la rama master y una nueva versión es lanzada.
+Cuando el código de la rama de desarrollo es lo suficientemente estable, se integra con la rama main y una nueva versión es lanzada.
 
 ### Las ramas auxiliares
 
@@ -36,13 +42,13 @@ Para labores concretas, pueden usarse otro tipo de ramas, las cuales tienen un t
 #### Release branches
 
 - Pueden partir de: develop
-- Deben fusionarse con: develop y master
+- Deben fusionarse con: develop y main
 - Convenición de nombres: release-\*
 
 #### Hotfix branches
 
-- Pueden partir de: master
-- Deben fusionarse con: develop y master
+- Pueden partir de: main
+- Deben fusionarse con: develop y main
 - Convenición de nombres: hotfix-\*
 
 ## La extensión flow de Git
@@ -55,7 +61,7 @@ Aunque la fuente original de la extensión es del mismo autor del artículo, el 
 
 ### Uso
 
-Para cambiar a las ramas master y develop, seguiremos usando `git checkout`, pero para trabajar con las ramas antes indicadas gitflow nos facilita las siguientes órdenes:
+Para cambiar a las ramas main y develop, seguiremos usando `git checkout`, pero para trabajar con las ramas antes indicadas gitflow nos facilita las siguientes órdenes:
 
 
 #### - git flow init: 
@@ -65,7 +71,7 @@ Inicializa el espacio de trabajo. De forma automática, crea las ramas que neces
 $ git flow init
 Initialized empty Git repository in ~/project/.git/
 No branches exist yet. Base branches must be created now.
-Branch name for production releases: [master]
+Branch name for production releases: [main]
 Branch name for "next release" development: [develop]
 
 How to name your supporting branch prefixes?
@@ -77,7 +83,7 @@ Version tag prefix? []
 
 $ git branch
 * develop
- master
+ main
 ```
 
 Podemos ver que por defecto (usando intro en vez de escribir nada) pone nombres por defecto a cada rama. Con `git branch` comprobamos que ramas existen y en cual nos encontramos.
@@ -122,7 +128,7 @@ Ahora podemos hacer los cambios que estimemos oportuno para integrar todas las f
 $git flow release finish '0.1.0'
 ```
 
-Esto la integrará de forma automática con master (con esto finalizamos el proceso de 'subir a producción' nuestro codigo) y con la rama develop, para que las futuras features estén al día.
+Esto la integrará de forma automática con main (con esto finalizamos el proceso de 'subir a producción' nuestro codigo) y con la rama develop, para que las futuras features estén al día.
 
 
 
@@ -134,7 +140,7 @@ Permite crear y trabajar con ramas de parches. Esto lo usaremos para hacer cambi
 $ git flow hotfix start hotfix_branch
 ```
 
-Tras hacer commit finalizamos la rama hotfix. Esta se fusionará con nuestra rama master y con nuestra rama develop para que esta también esté al día de los últimos cambios.
+Tras hacer commit finalizamos la rama hotfix. Esta se fusionará con nuestra rama main y con nuestra rama develop para que esta también esté al día de los últimos cambios.
 
 ```
 $ git flow hotfix finish hotfix_branch

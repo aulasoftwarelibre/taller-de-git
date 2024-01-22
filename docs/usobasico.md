@@ -29,16 +29,21 @@ Vamos a almacenar el archivo que hemos creado en el repositorio para poder traba
 
     $ git add hola.php
     $ git commit -m "Creación del proyecto"
-    [master (root-commit) e19f2c1] Creación del proyecto
+    [main (root-commit) e19f2c1] Creación del proyecto
      1 file changed, 2 insertions(+)
      create mode 100644 hola.php
+
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+```
 
 ### Comprobar el estado del repositorio
 
 Con la orden `git status` podemos ver en qué estado se encuentran los archivos de nuestro repositorio.
 
     $ git status
-    # On branch master
+    # On branch main
     nothing to commit (working directory clean)
 
 Si modificamos el archivo `hola.php`:
@@ -51,7 +56,7 @@ Si modificamos el archivo `hola.php`:
 Y volvemos a comprobar el estado del repositorio:
 
     $ git status
-    # On branch master
+    # On branch main
     # Changes not staged for commit:
     #   (use "git add <file>..." to update what will be committed)
     #   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -66,7 +71,7 @@ Con la orden `git add` indicamos a git que prepare los cambios para que sean alm
 
     $ git add hola.php
     $ git status
-    # On branch master
+    # On branch main
     # Changes to be committed:
     #   (use "git reset HEAD <file>..." to unstage)
     #
@@ -78,11 +83,17 @@ Con la orden `git add` indicamos a git que prepare los cambios para que sean alm
 Con la orden `git commit` confirmamos los cambios definitivamente, lo que hace que se guarden permanentemente en nuestro repositorio.
 
     $ git commit -m "Parametrización del programa"
-    [master efc252e] Parametrización del programa
+    [main efc252e] Parametrización del programa
      1 file changed, 1 insertion(+), 1 deletion(-)
     $ git status
-    # On branch master
+    # On branch main
     nothing to commit (working directory clean)
+
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+```
 
 ### Diferencias entre _workdir_ y _staging_.
 
@@ -110,7 +121,7 @@ $nombre = isset($argv[1]) ? $argv[1] : "Mundo";
 Y vemos el estado en el que está el repositorio
 
     $ git status
-    # On branch master
+    # On branch main
     # Changes to be committed:
     #   (use "git reset HEAD <file>..." to unstage)
     #
@@ -135,10 +146,10 @@ que el directorio hola.php está modificado otra vez en la zona de trabajo (_wor
 Almacenamos los cambios por separado:
 
     $ git commit -m "Se añade un parámetro por defecto"
-    [master 3283e0d] Se añade un parámetro por defecto
+    [main 3283e0d] Se añade un parámetro por defecto
      1 file changed, 2 insertions(+), 1 deletion(-)
     $ git status
-    # On branch master
+    # On branch main
     # Changes not staged for commit:
     #   (use "git add <file>..." to update what will be committed)
     #   (use "git checkout -- <file>..." to discard changes in working directory)
@@ -148,16 +159,23 @@ Almacenamos los cambios por separado:
     no changes added to commit (use "git add" and/or "git commit -a")
     $ git add .
     $ git status
-    # On branch master
+    # On branch main
     # Changes to be committed:
     #   (use "git reset HEAD <file>..." to unstage)
     #
     #   modified:   hola.php
     #
     $ git commit -m "Se añade un comentario al cambio del valor por defecto"
-    [master fd4da94] Se añade un comentario al cambio del valor por defecto
+    [main fd4da94] Se añade un comentario al cambio del valor por defecto
      1 file changed, 1 insertion(+)
 
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d"
+   commit id: "fd4da94"
+```
 !!! info
 
     El valor "." despues de `git add` indica que se añadan todos los archivos de forma recursiva.
@@ -290,10 +308,10 @@ También es posible ver versiones abreviadas o limitadas, dependiendo de los par
     git log --oneline --author=sergio
     git log --oneline --all
 
-Una versión muy útil de `git log` es la siguiente, pues nos permite ver en que lugares está master y HEAD, entre otras cosas:
+Una versión muy útil de `git log` es la siguiente, pues nos permite ver en que lugares está main y HEAD, entre otras cosas:
 
     $ git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-    * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (HEAD, master) [Sergio Gómez]
+    * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (HEAD, main) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto [Sergio Gómez]
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
@@ -337,11 +355,11 @@ Cada cambio es etiquetado por un hash, para poder regresar a ese momento del est
 
 El aviso que nos sale nos indica que estamos en un estado donde no trabajamos en ninguna rama concreta. Eso significa que los cambios que hagamos podrían "perderse" porque si no son guardados en una nueva rama, en principio no podríamos volver a recuperarlos. Hay que pensar que Git es como un árbol donde un nodo tiene información de su nodo padre, no de sus nodos hijos, con lo que siempre necesitaríamos información de dónde se encuentran los nodos finales o de otra manera no podríamos acceder a ellos.
 
-### Volver a la última versión de la rama master.
+### Volver a la última versión de la rama main.
 
 Usamos `git checkout` indicando el nombre de la rama:
 
-    $ git checkout master
+    $ git checkout main
     Previous HEAD position was e19f2c1... Creación del proyecto
 
 ### Etiquetando versiones
@@ -364,11 +382,19 @@ Si ejecutamos la orden sin parámetros nos mostrará todas las etiquetas existen
 
 Y para verlas en el historial:
 
-    $ git hist master --all
-    * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1, master) [Sergio Gómez]
+    $ git hist main --all
+    * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1, main) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (HEAD, tag: v1-beta) [Sergio Gómez]
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+```
 
 ### Borrar etiquetas
 

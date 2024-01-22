@@ -124,7 +124,7 @@ GitHub permite que entre los desarrolladores se pueda abrir una discusión sobre
 
 ## Paso 4. Desplegar
 
-Una vez que hemos terminado de crear la función de la rama ya podemos incorporar los cambios a _master_. Este trabajo ya no es necesario hacerlo en local y GitHub nos proporciona 3 maneras de hacerlo:
+Una vez que hemos terminado de crear la función de la rama ya podemos incorporar los cambios a _main_. Este trabajo ya no es necesario hacerlo en local y GitHub nos proporciona 3 maneras de hacerlo:
 
 ![Cómo cerrar un Pull Request](images/github-flow-merge.png)
 
@@ -132,11 +132,11 @@ Una vez que hemos terminado de crear la función de la rama ya podemos incorpora
 
 Esta opción es el equivalente a hacer lo siguiente en nuestro repositorio:
 
-    $ git checkout master
+    $ git checkout main
     $ git merge --no-ff sgomez/feature-1/create-changelog
     $ git push
 
-Es decir, el equivalente a hacer un merge entre nuestra rama y master.
+Es decir, el equivalente a hacer un merge entre nuestra rama y main.
 
 !!! info
 GitHub siempre desactiva el _fast forward_.
@@ -145,22 +145,22 @@ GitHub siempre desactiva el _fast forward_.
 
 Esta opción es el equivalente a hacer lo siguiente en nuestro repositorio
 
-    $ git rebase master
-    $ git checkout master
+    $ git rebase main
+    $ git checkout main
     $ git merge --no-ff sgomez/feature-1/create-changelog
     $ git push
 
-Es decir, nos aseguramos de que nuestra rama está al final de _master_ haciendo _rebase_, como vimos en el capítulo de ramas, y posteriormente se hace el merge.
+Es decir, nos aseguramos de que nuestra rama está al final de _main_ haciendo _rebase_, como vimos en el capítulo de ramas, y posteriormente se hace el merge.
 
 ### Crear un squash commit y un merge
 
 Esta opción es el equivalente a hacer lo siguiente en nuestro repositorio:
 
-    $ git checkout master
+    $ git checkout main
     $ git merge --squash sgomez/feature-1/create-changelog
     $ git push
 
-Esta opción es algo especial. En vez de aplicar cada uno de los commits en la rama master, ya sea directamente (_fast forward_) o no, lo que hace es crear un solo commit con los cambios de todos los commits de la rama. El efecto final es como si en la rama solo hubiera producido un solo commit.
+Esta opción es algo especial. En vez de aplicar cada uno de los commits en la rama main, ya sea directamente (_fast forward_) o no, lo que hace es crear un solo commit con los cambios de todos los commits de la rama. El efecto final es como si en la rama solo hubiera producido un solo commit.
 
 Vamos a seleccionar este último (squash and merge) y le damos al botón para activarlo. Nos saldrá una caja para que podamos crear una descripción del commit y le damos a confirmar.
 
@@ -176,16 +176,16 @@ Las consecuencias de esta acción son las siguientes:
 
 ## Paso 5. Sincronizar
 
-Hemos cambiado el repositorio en GitHub, pero nuestra rama master no contiene los mismos cambios que el de origin. Así que nos toca sincronizar y borrar la rama obsoleta:
+Hemos cambiado el repositorio en GitHub, pero nuestra rama main no contiene los mismos cambios que el de origin. Así que nos toca sincronizar y borrar la rama obsoleta:
 
-    $ git checkout master
+    $ git checkout main
     $ git pull --rebase --autostash
     $ git branch -D sgomez/feature-1/create-changelog
 
 !!! info
 
     ¿Por qué _squash and merge_ y no un _merge_ o _rebase_? De nuevo
-    depende de los gustos de cada equipo de desarrollo. Las cracterísticas de _squash_ es que elimina (relativamente) rastros de errores intermedios mientras se implementaba la rama, deja menos commits en la rama _master_ y nos enlace al PR donde se implementaron los cambios.
+    depende de los gustos de cada equipo de desarrollo. Las cracterísticas de _squash_ es que elimina (relativamente) rastros de errores intermedios mientras se implementaba la rama, deja menos commits en la rama _main_ y nos enlace al PR donde se implementaron los cambios.
 
     Para algunas personas estas características son unas ventajas, para otras no. Lo mejor es experimentar cada opción y cada uno decida
     como quiere trabajar.

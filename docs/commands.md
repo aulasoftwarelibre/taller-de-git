@@ -22,8 +22,8 @@ El parámetro `-u` permite que se almacen también los ficheros sin seguimiento 
 Permite mostrar la pila del stash.
 
     $ git stash list
-    stash@{0}: On master: Stash con mensaje
-    stash@{1}: WIP on master: 4ab21df First commit
+    stash@{0}: On main: Stash con mensaje
+    stash@{1}: WIP on main: 4ab21df First commit
 
 ### git stash apply
 
@@ -80,17 +80,17 @@ Con `git worktree` podemos crear un directorio de trabajo que contenga otra rama
 
 Esta función es la que crea el espacio de trabajo temporal. Imaginemos que estamos en una rama llamada `develop`:
 
-    $ git worktree add ../project-master master
-    $ git worktree add -b fix ../project-fix master
+    $ git worktree add ../project-main main
+    $ git worktree add -b fix ../project-fix main
 
-La primera orden crea un directorio llamado project-master que contiene el estado de master. La segunda, que contiene el parámetro `-b` equivale a crear una nueva rama llamada fix, que se crea desde master (suponemos que no existe fix).
+La primera orden crea un directorio llamado project-main que contiene el estado de main. La segunda, que contiene el parámetro `-b` equivale a crear una nueva rama llamada fix, que se crea desde main (suponemos que no existe fix).
 
 ### git worktree list
 
 Muestra el listado de directorios y espacios de trabajo.
 
     $git worktree list
-    /home/sergio/taller-de-git  3b63b4b [master]
+    /home/sergio/taller-de-git  3b63b4b [main]
     /home/sergio/fix           3b63b4b [fix]
 
 ### git worktree remove
@@ -103,7 +103,7 @@ Borrar un espacio de trabajo. Hay que indicar el nombre entre corchetes que apar
 
 Una cuestión importante, es que las ramas que estén desplegadas en otro espacio de trabajo, se encuentran bloqueadas y no se pueden desbloquear en otro distinto.
 
-Esto significa que si estamos trabajando en la rama developer, creamos otro worktree en otro directorio de la rama master, no podemos hacer pasar a master. No es posible tener la misma rama en varios espacios de trabajo.
+Esto significa que si estamos trabajando en la rama developer, creamos otro worktree en otro directorio de la rama main, no podemos hacer pasar a main. No es posible tener la misma rama en varios espacios de trabajo.
 
 Si se ha borrado el directorio a mano (en vez de usando remove), eso no implica que el bloqueo desparezca. Con esta orden podemos hacer que git compruebe que los espacios de trabajo secundario se comprueben de nuevo para ver si siguen existiendo y se elimine el bloqueo.
 

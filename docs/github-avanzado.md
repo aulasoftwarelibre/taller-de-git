@@ -50,14 +50,14 @@ Cuando clonamos un repositorio de otro usuario hacemos una copia del original. P
       Push  URL: git@github.com:miusuario/miniblog.git
       HEAD branch (remote HEAD is ambiguous, may be one of the following):
         develop
-        master
+        main
       Remote branches:
         develop tracked
-        master  tracked
+        main  tracked
       Local branch configured for 'git pull':
-        master merges with remote master
+        main merges with remote main
       Local ref configured for 'git push':
-        master pushes to master (up to date)
+        main pushes to main (up to date)
 
 También por convenio, la rama remota que hace referencia al repositorio original se llama _upstream_ y se crea de la siguiente manera:
 
@@ -66,19 +66,19 @@ También por convenio, la rama remota que hace referencia al repositorio origina
     * remote upstream
       Fetch URL: git@github.com:sgomez/miniblog.git
       Push  URL: git@github.com:sgomez/miniblog.git
-      HEAD branch: master
+      HEAD branch: main
       Remote branches:
         develop new (next fetch will store in remotes/upstream)
-        master  new (next fetch will store in remotes/upstream)
+        main  new (next fetch will store in remotes/upstream)
       Local ref configured for 'git push':
-        master pushes to master (local out of date)
+        main pushes to main (local out of date)
 
 En este caso, la URI debe ser siempre la del proyecto original. Y ahora para incorporar actualizaciones, usaremos el merge en dos pasos:
 
     $ git fetch upstream
-    $ git merge upstream/master
+    $ git merge upstream/main
 
-Recordemos que _fetch_ solo trae los cambios que existan en el repositorio remoto sin hacer ningún cambio en nuestro repositorio. Es la orden _merge_ la que se encarga de que todo esté sincronizado. En este caso decimos que queremos fusionar con la rama _master_ que está en el repositorio _upstream_.
+Recordemos que _fetch_ solo trae los cambios que existan en el repositorio remoto sin hacer ningún cambio en nuestro repositorio. Es la orden _merge_ la que se encarga de que todo esté sincronizado. En este caso decimos que queremos fusionar con la rama _main_ que está en el repositorio _upstream_.
 
 ### Creando nuevas funcionalidades
 
@@ -90,9 +90,9 @@ Vamos a crear una nueva funcionalidad: vamos a añadir una licencia de uso. Para
     $ git add LICESE
     $ git commit -m "Archivo de licencia de uso"
 
-En principio habría que probar que todo funciona bien y entonces integraremos en la rama _master_ de nuestro repositorio y enviamos los cambios a Github:
+En principio habría que probar que todo funciona bien y entonces integraremos en la rama _main_ de nuestro repositorio y enviamos los cambios a Github:
 
-    $ git checkout master
+    $ git checkout main
     $ git merge add-license --no-ff
     $ git branch -d add-license
     # Borramos la rama que ya no nos sirve para nada
@@ -123,7 +123,7 @@ Ahora sí, el administrador puede aprobar la fusión y borrar la rama del reposi
 
 Una vez que se han aceptado los cambios, podemos borrar la rama y actualizar nuestro repositorio con los datos del remoto como hicimos antes. ¿Por qué actualizar desde el remoto y no desde nuetra rama _add-license_? Pues porque usualmente el administrador puede haber modificado los cambios que le hemos propuesto, o incluso una tercera persona. Recordemos el cariz colaborativo que tiene Github.
 
-    $ git checkout master
+    $ git checkout main
     $ git branch -d add-license
     # Esto borra la rama local
     $ git push origin --delete add-license

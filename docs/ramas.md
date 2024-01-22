@@ -12,6 +12,17 @@ Vamos a crear una nueva rama:
 git branch hola
 ```
 
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+   commit id: "96a39df"
+   commit id: "8c2a509"
+   branch hola
+```
+
 !!! info
 
     Si usamos `git branch` sin ningún argumento, nos devolverá la lista de ramas
@@ -79,19 +90,32 @@ Podríamos confirmar los cambios todos de golpe, pero lo haremos de uno en uno, 
     [hola 9862f33] hola usa la clase HolaMundo
      1 file changed, 3 insertions(+), 1 deletion(-)
 
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+   commit id: "96a39df"
+   commit id: "8c2a509"
+   branch hola
+   commit id: "6932156"
+   commit id: "9862f33"
+```
+
 Y ahora con la orden `git checkout` podemos movernos entre ramas:
 
-    $ git checkout master
-    Switched to branch 'master'
+    $ git checkout main
+    Switched to branch 'main'
     $ git checkout hola
     Switched to branch 'hola'
 
-### Modificaciones en la rama master
+### Modificaciones en la rama main
 
 Podemos volver y añadir un nuevo archivo a la rama principal:
 
-    $ git checkout master
-    Switched to branch 'master'
+    $ git checkout main
+    Switched to branch 'main'
 
 Creamos un archivo llamado `README.md` en la raíz de nuestro proyecto con el siguiente contenido:
 
@@ -105,11 +129,11 @@ Y lo añadimos a nuestro repositorio en la rama en la que estamos:
 
     $ git add README.md
     $ git commit -m "Añadido README.md"
-    [master c3e65d0] Añadido README.md
+    [main c3e65d0] Añadido README.md
      1 file changed, 3 insertions(+)
      create mode 100644 README.md
     $ git hist --all
-    * c3e65d0 2013-06-16 | Añadido README.md (HEAD, master) [Sergio Gómez]
+    * c3e65d0 2013-06-16 | Añadido README.md (HEAD, main) [Sergio Gómez]
     | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
     | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
     |/
@@ -122,6 +146,21 @@ Y lo añadimos a nuestro repositorio en la rama en la que estamos:
 
 Y vemos como `git hist` muestra la bifurcación en nuestro código.
 
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+   commit id: "96a39df"
+   commit id: "8c2a509"
+   branch hola
+   commit id: "6932156"
+   commit id: "9862f33"
+   checkout main
+   commit id: "c3e65d0"
+```
+
 ## Fusión de ramas y resolución de conflictos
 
 ### Mezclar ramas
@@ -130,7 +169,7 @@ Podemos incorporar los cambios de una rama a otra con la orden `git merge`
 
     $ git checkout hola
     Switched to branch 'hola'
-    $ git merge master
+    $ git merge main
     Merge made by the 'recursive' strategy.
      README.md | 3 +++
      1 file changed, 3 insertions(+)
@@ -150,14 +189,31 @@ Podemos incorporar los cambios de una rama a otra con la orden `git merge`
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+   commit id: "96a39df"
+   commit id: "8c2a509"
+   branch hola
+   commit id: "6932156"
+   commit id: "9862f33"
+   checkout main
+   commit id: "c3e65d0"
+   checkout hola
+   merge main id: "9c6ac06"
+```
+
 De esa forma se puede trabajar en una rama secundaria incorporando los cambios de la rama principal o de otra rama.
 
 ### Resolver conflictos
 
-Un conflicto es cuando se produce una fusión que Git no es capaz de resolver. Vamos a modificar la rama master para crear uno con la rama hola.
+Un conflicto es cuando se produce una fusión que Git no es capaz de resolver. Vamos a modificar la rama main para crear uno con la rama hola.
 
-    $ git checkout master
-    Switched to branch 'master'
+    $ git checkout main
+    Switched to branch 'main'
 
 Modificamos nuestro archivo _hola.php_ de nuevo:
 
@@ -173,14 +229,14 @@ Y guardamos los cambios:
 
     $ git add lib/hola.php
     $ git commit -m "Programa interactivo"
-    [master 9c85275] Programa interactivo
+    [main 9c85275] Programa interactivo
      1 file changed, 2 insertions(+), 2 deletions(-)
     $ git hist --all
     *   9c6ac06 2013-06-16 | Merge commit 'c3e65d0' into hola (hola) [Sergio Gómez]
     |\
     * | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
     * | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
-    | | * 9c85275 2013-06-16 | Programa interactivo (HEAD, master) [Sergio Gómez]
+    | | * 9c85275 2013-06-16 | Programa interactivo (HEAD, main) [Sergio Gómez]
     | |/
     | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
     |/
@@ -191,11 +247,30 @@ Y guardamos los cambios:
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+   commit id: "96a39df"
+   commit id: "8c2a509"
+   branch hola
+   commit id: "6932156"
+   commit id: "9862f33"
+   checkout main
+   commit id: "c3e65d0"
+   checkout hola
+   merge main id: "9c6ac06"
+   checkout main
+   commit id: "9c85275"
+```
+
 Volvemos a la rama hola y fusionamos:
 
     $ git checkout hola
     Switched to branch 'hola'
-    $ git merge master
+    $ git merge main
     Auto-merging lib/hola.php
     CONFLICT (content): Merge conflict in lib/hola.php
     Automatic merge failed; fix conflicts and then commit the result.
@@ -215,7 +290,7 @@ print new HolaMundo($nombre);
 print "Introduce tu nombre:";
 $nombre = trim(fgets(STDIN));
 @print "Hola, {$nombre}\n";
->>>>>>> master
+>>>>>>> main
 ```
 
 La primera parte marca el código que estaba en la rama donde trabajábamos (HEAD) y la parte final el código de donde fusionábamos. Resolvemos el conflicto, dejando el archivo como sigue:
@@ -233,8 +308,29 @@ print new HolaMundo($nombre);
 Y resolvemos el conflicto confirmando los cambios:
 
     $ git add lib/hola.php
-    $ git commit -m "Solucionado el conflicto al fusionar con la rama master"
-    [hola a36af04] Solucionado el conflicto al fusionar con la rama master
+    $ git commit -m "Solucionado el conflicto al fusionar con la rama main"
+    [hola a36af04] Solucionado el conflicto al fusionar con la rama main
+
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+   commit id: "96a39df"
+   commit id: "8c2a509"
+   branch hola
+   commit id: "6932156"
+   commit id: "9862f33"
+   checkout main
+   commit id: "c3e65d0"
+   checkout hola
+   merge main id: "9c6ac06"
+   checkout main
+   commit id: "9c85275"
+   checkout hola
+   merge main id: "a36af04"
+```
 
 ### Rebasing vs Merging
 
@@ -245,9 +341,9 @@ Para ello podemos usar la orden `git reset` que nos permite mover HEAD donde que
     $ git checkout hola
     Switched to branch 'hola'
     $ git hist
-    *   a36af04 2013-06-16 | Solucionado el conflicto al fusionar con la rama master (HEAD, hola) [Sergio Gómez]
+    *   a36af04 2013-06-16 | Solucionado el conflicto al fusionar con la rama main (HEAD, hola) [Sergio Gómez]
     |\
-    | * 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+    | * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
     * |   9c6ac06 2013-06-16 | Merge commit 'c3e65d0' into hola [Sergio Gómez]
     |\ \
     | |/
@@ -269,7 +365,7 @@ Y nuestro estado será:
     $ git hist --all
     * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD, hola) [Sergio Gómez]
     * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
-    | * 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+    | * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
     | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
     |/
     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
@@ -279,9 +375,25 @@ Y nuestro estado será:
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+   commit id: "96a39df"
+   commit id: "8c2a509"
+   branch hola
+   commit id: "6932156"
+   commit id: "9862f33"
+   checkout main
+   commit id: "c3e65d0"
+   commit id: "9c85275"
+```
+
 Hemos desecho todos los _merge_ y nuestro árbol está _"limpio"_. Vamos a probar ahora a hacer un rebase. Continuamos en la rama `hola` y ejecutamos lo siguiente:
 
-    $ git rebase master
+    $ git rebase main
     First, rewinding head to replay your work on top of it...
     Applying: Añadida la clase HolaMundo
     Applying: hola usa la clase HolaMundo
@@ -330,7 +442,7 @@ Y ahora vemos que nuestro árbol tiene un aspecto distinto, mucho más limpio:
     $ git hist --all
     * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -> hola) [Sergio Gómez]
     * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
-    * 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+    * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
     * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
@@ -339,14 +451,30 @@ Y ahora vemos que nuestro árbol tiene un aspecto distinto, mucho más limpio:
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+   commit id: "96a39df"
+   commit id: "8c2a509"
+   commit id: "c3e65d0"
+   commit id: "9c85275"
+   branch hola
+   commit id: "6932156"
+   commit id: "9862f33"
+```
+
+
 Lo que hace rebase es volver a aplicar todos los cambios a la rama máster, desde su nodo más reciente. Eso significa que se modifica el orden o la historia de creación de los cambios. Por eso rebase no debe usarse si el orden es importante o si la rama es compartida.
 
-## Mezclando con la rama master
+## Mezclando con la rama main
 
 Ya hemos terminado de implementar los cambios en nuestra rama secundaria y es hora de llevar los cambios a la rama principal. Usamos `git merge` para hacer una fusión normal:
 
-    $ git checkout master
-    Switched to branch 'master'
+    $ git checkout main
+    Switched to branch 'main'
     $ git merge hola
     Updating c3e65d0..491f1d2
     Fast-forward
@@ -355,7 +483,7 @@ Ya hemos terminado de implementar los cambios en nuestra rama secundaria y es ho
      2 files changed, 19 insertions(+), 1 deletion(-)
      create mode 100644 lib/HolaMundo.php
      $ git hist --all
-     * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -> master, hola) [Sergio Gómez]
+     * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -> main, hola) [Sergio Gómez]
      * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
      * 9c85275 2013-06-16 | Programa interactivo [Sergio Gómez]
      * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
@@ -366,15 +494,16 @@ Ya hemos terminado de implementar los cambios en nuestra rama secundaria y es ho
      * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
      * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
+
 Vemos que indica que el tipo de fusión es _fast-forward_. Este tipo de fusión tiene el problema que no deja rastro de la fusión, por eso suele ser recomendable usar el parámetro `--no-ff` para que quede constancia siempre de que se ha fusionado una rama con otra.
 
-Vamos a volver a probar ahora sin hacer _fast-forward_. Reseteamos _master_ al estado _"Programa interactivo"_.
+Vamos a volver a probar ahora sin hacer _fast-forward_. Reseteamos _main_ al estado _"Programa interactivo"_.
 
     $ git reset --hard 9c85275
     $ git hist --all
     * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -> hola) [Sergio Gómez]
     * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
-    * 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+    * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
     * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
@@ -392,12 +521,12 @@ Vemos que estamos como en el final de la sección anterior, así que ahora mezcl
      2 files changed, 19 insertions(+), 1 deletion(-)
      create mode 100644 lib/HolaMundo.php
     $ git hist --all
-    *   2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (HEAD -> master) [Sergio Gomez]
+    *   2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (HEAD -> main) [Sergio Gomez]
     *\
     | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
     | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
     |/
-    * 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+    * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
     * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
@@ -405,6 +534,24 @@ Vemos que estamos como en el final de la sección anterior, así que ahora mezcl
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+
+```mermaid
+gitGraph:
+   commit id: "e19f2c1"
+   commit id: "efc252e"
+   commit id: "3283e0d" tag: "v1-beta"
+   commit id: "fd4da94" tag: "v1"
+   commit id: "96a39df"
+   commit id: "8c2a509"
+   commit id: "c3e65d0"
+   commit id: "9c85275"
+   branch hola
+   commit id: "6932156"
+   commit id: "9862f33"
+   checkout main
+   merge hola id: "2eab8ca"
+```
+
 
 En la siguiente imagen se puede ver la diferencia:
 

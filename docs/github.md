@@ -70,7 +70,7 @@ Básicamente podemos partir de tres situaciones:
 Nuestra situación es la segunda, así que nos aseguramos de que hemos elegido SSH como protocolo. A continuación pulsamos el icono del portapapeles y ejecutamos las dos ordenes que nos indica la web en nuestro terminal.
 
     $ git remote add origin git@github.com:sgomez/taller-de-git.git
-    $ git push -u origin master
+    $ git push -u origin main
     Counting objects: 33, done.
     Delta compression using up to 4 threads.
     Compressing objects: 100% (24/24), done.
@@ -78,12 +78,32 @@ Nuestra situación es la segunda, así que nos aseguramos de que hemos elegido S
     Total 33 (delta 2), reused 0 (delta 0)
     remote: Resolving deltas: 100% (2/2), done.
     To github.com:sgomez/taller-de-git.git
-     * [new branch]      master -> master
-    Branch master set up to track remote branch master from origin by rebasing.
+     * [new branch]      main -> main
+    Branch main set up to track remote branch main from origin by rebasing.
 
 Si recargamos la página veremos que ya aparece nuestro proyecto.
 
 ![Github: código](images/github-code.png)
+
+## Crear una clave SSH
+
+Muchos servidores Git utilizan la autentificación a través de claves públicas SSH. Y, para ello, cada usuario del sistema ha de generarse una, si es que no la tiene ya. El proceso para hacerlo es similar en casi cualquier sistema operativo. Ante todo, asegurarte que no tengas ya una clave. (comprueba que el directorio `$HOME/usuario/.ssh` no tiene un archivo id_dsa.pub o id_rsa.pub).
+
+Para crear una nueva clave usamos la siguiente orden:
+
+```bash
+ssh-keygen -t ed25519 -C "Mi ordenador personal"
+```
+
+!!! warning
+    Ejecuta la orden anterior solo si no tenias ya una clave creada.
+
+    Tu clave RSA te identifica contra los repositorios remotos, asegúrate de
+    no compartir la clave privada con nadie. Por defecto la clave se crea como
+    _solo lectura_.
+
+    En la web de [Github tienes una documetación más detallada](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys).
+
 
 ## Clonar un repositorio
 
@@ -93,10 +113,6 @@ en él. Esta acción se denomina clonar y para ello usaremos la orden `git clone
 
 En la página principal de nuestro proyecto podemos ver un botón que indica `Clone or download`.
 Si la pulsamos nos da, de nuevo, la opción de elegir entre clonar con _ssh_ o _https_.
-Recordad que si estáis en otro equipo y queréis seguir utilizando ssh deberéis
-generar otra para de claves privada/pública como hicimos en la sección de
-_[Aspectos básicos de Git](curso-de-git/git/#tu-clave-publicaprivada)_ y instalarla
-en nuestro perfil de Github, como vimos anteriormente.
 
 Para clonar nuestro repositorio y poder trabajar con él todo lo que debemos hacer es
 lo siguiente:
@@ -110,12 +126,12 @@ Si ahora vemos el estado de nuestro proyecto veremos algo similar a esto:
 
 ```
 $ git hist --all
-* 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (HEAD -> master, origin/master) [Sergio Gomez]
+* 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (HEAD -> main, origin/main) [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
-* 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+* 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
 * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
@@ -125,7 +141,7 @@ $ git hist --all
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 ```
 
-Aparece que hay una nueva rama llamada `origin/master`. Esta rama indica el estado de sincronización
+Aparece que hay una nueva rama llamada `origin/main`. Esta rama indica el estado de sincronización
 de nuestro repositorio con un repositorio remoto llamado _origin_. En este caso el de _Github_.
 
 !!! info
@@ -139,11 +155,11 @@ Podemos ver la configuración de este repositorio remoto con la orden `git remot
     * remote origin
       Fetch URL: git@github.com:sgomez/taller-de-git.git
       Push  URL: git@github.com:sgomez/taller-de-git.git
-      HEAD branch: master
+      HEAD branch: main
       Remote branch:
-        master tracked
+        main tracked
       Local ref configured for 'git push':
-        master pushes to master (up to date)
+        main pushes to main (up to date)
 
 De la respuesta tenemos que fijarnos en las líneas que indican _fetch_ y _push_
 puesto que son las acciones de sincronización de nuestro repositorio con el remoto.
@@ -183,17 +199,17 @@ Y añadidos y confirmamos los cambios:
 ```
 $ git add LICENSE
 $ git commit -m "Añadida licencia"
-[master 3f5cb1c] Añadida licencia
+[main 3f5cb1c] Añadida licencia
  1 file changed, 21 insertions(+)
  create mode 100644 LICENSE
 $ git hist --all
-* 3f5cb1c 2013-06-16 | Añadida licencia (HEAD -> master) [Sergio Gómez]
-* 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (origin/master) [Sergio Gomez]
+* 3f5cb1c 2013-06-16 | Añadida licencia (HEAD -> main) [Sergio Gómez]
+* 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (origin/main) [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
-* 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+* 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
 * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
@@ -203,32 +219,32 @@ $ git hist --all
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 ```
 
-Viendo la historia podemos ver como nuestro master no está en el mismo punto que
-`origin/master`. Si vamos a la web de _Github_ veremos que `LICENSE` no aparece aún.
+Viendo la historia podemos ver como nuestro main no está en el mismo punto que
+`origin/main`. Si vamos a la web de _Github_ veremos que `LICENSE` no aparece aún.
 Así que vamos a enviar los cambios con la primera de las acciones que vimos `git push`:
 
-    $ git push -u origin master
+    $ git push -u origin main
     Counting objects: 3, done.
     Delta compression using up to 4 threads.
     Compressing objects: 100% (3/3), done.
     Writing objects: 100% (3/3), 941 bytes | 0 bytes/s, done.
     Total 3 (delta 0), reused 0 (delta 0)
     To git@github.com:sgomez/taller-de-git.git
-       2eab8ca..3f5cb1c  master -> master
-    Branch master set up to track remote branch master from origin.
+       2eab8ca..3f5cb1c  main -> main
+    Branch main set up to track remote branch main from origin.
 
 !!! info
 
     La orden `git push` necesita dos parámetros para funcionar: el repositorio
     y la rama destino. Así que realmente lo que teníamos que haber escrito es:
 
-        $ git push origin master
+        $ git push origin main
 
     Para ahorrar tiempo escribiendo _git_ nos deja vincular nuestra rama local
     con una rama remota, de tal manera que no tengamos que estar siempre indicándolo.
     Eso es posible con el parámetro `--set-upstream` o `-u` en forma abreviada.
 
-        $ git push -u origin master
+        $ git push -u origin main
 
     Si repasas las órdenes que te indicó Github que ejecutaras verás que el parámetro
     `-u` estaba presente y por eso no ha sido necesario indicar ningún parámetro
@@ -271,14 +287,14 @@ traer la información desde el servidor remoto. La orden asociada es `git fetch`
 ```
 $ git fetch
 $ git hist --all
-* cbaf831 2013-06-16 | Actualizado README.md (origin/master) [Sergio Gómez]
-* 3f5cb1c 2013-06-16 | Añadida licencia (HEAD -> master) [Sergio Gómez]
+* cbaf831 2013-06-16 | Actualizado README.md (origin/main) [Sergio Gómez]
+* 3f5cb1c 2013-06-16 | Añadida licencia (HEAD -> main) [Sergio Gómez]
 * 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
-* 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+* 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
 * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
@@ -288,29 +304,29 @@ $ git hist --all
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 ```
 
-Ahora vemos el caso contrario, tenemos que `origin/master` está por delante que `HEAD` y
-que la rama `master` local.
+Ahora vemos el caso contrario, tenemos que `origin/main` está por delante que `HEAD` y
+que la rama `main` local.
 
 Ahora necesitamos incorporar los cambios de la rama remota en la local. La forma de hacerlo
-lo vimos en el [capítulo anterior](/ramas/#mezclar-ramas) usando `git merge` o `git rebase`.
+lo vimos en el [capítulo anterior](ramas.md#mezclar-ramas) usando `git merge` o `git rebase`.
 
 Habitualmente se usa `git merge`:
 
 ```
-$ git merge origin/master
+$ git merge origin/main
 Updating 3f5cb1c..cbaf831
 Fast-forward
  README.md | 2 ++
  1 file changed, 2 insertions(+)
 $ git hist --all
-* cbaf831 2013-06-16 | Actualizado README.md (HEAD -> master, origin/master) [Sergio Gómez]
+* cbaf831 2013-06-16 | Actualizado README.md (HEAD -> main, origin/main) [Sergio Gómez]
 * 3f5cb1c 2013-06-16 | Añadida licencia [Sergio Gómez]
 * 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
-* 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+* 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
 * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
@@ -345,11 +361,11 @@ remote: Compressing objects: 100% (3/3), done.
 remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (3/3), done.
 From github.com:sgomez/taller-de-git
-   cbaf831..d8922e4  master     -> origin/master
+   cbaf831..d8922e4  main     -> origin/main
 First, rewinding head to replay your work on top of it...
-Fast-forwarded master to d8922e4ffa4f87553b03e77df6196b7e496bfec4.
+Fast-forwarded main to d8922e4ffa4f87553b03e77df6196b7e496bfec4.
 $ git hist --all
-* d8922e4 2013-06-16 | Indicado que se realiza en el ASL (HEAD -> master, origin/master) [Sergio Gómez]
+* d8922e4 2013-06-16 | Indicado que se realiza en el ASL (HEAD -> main, origin/main) [Sergio Gómez]
 * cbaf831 2013-06-16 | Actualizado README.md [Sergio Gómez]
 * 3f5cb1c 2013-06-16 | Añadida licencia [Sergio Gómez]
 * 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola [Sergio Gomez]
@@ -357,7 +373,7 @@ $ git hist --all
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
-* 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+* 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
 * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
@@ -367,7 +383,7 @@ $ git hist --all
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 ```
 
-Vemos que los cambios se han incorporado y que las ramas remota y local de _master_ están
+Vemos que los cambios se han incorporado y que las ramas remota y local de _main_ están
 sincronizadas.
 
 ## Problemas de sincronización
@@ -380,7 +396,7 @@ Al intentar subir cambios nos podemos encontrar un mensaje como este:
 $ git push
 git push
 To git@github.com:sgomez/taller-de-git.git
- ! [rejected]        master -> master (fetch first)
+ ! [rejected]        main -> main (fetch first)
 error: failed to push some refs to 'git@github.com:sgomez/taller-de-git.git'
 hint: Updates were rejected because the remote contains work that you do
 hint: not have locally. This is usually caused by another repository pushing
@@ -414,7 +430,7 @@ En local vamos a cambiar el título para que aparezca de la siguiente manera.
     Añadimos el fichero actualizado:
 
         $ git commit -am "Añadido el mes al README"
-        [master 1e8c0b7] Añadido el mes al README
+        [main 1e8c0b7] Añadido el mes al README
         1 file changed, 1 insertion(+), 1 deletion(-)
 
 La forma de proceder en este caso es hacer un `git fetch` y un `git rebase`. Si
@@ -463,18 +479,18 @@ Evidentemente hay un conflicto porque hemos tocado el mismo archivo. Se deja com
 
 !!! warning
 
-    ¿Por qué hemos hecho rebase en master si a lo largo del curso hemos dicho que no se debe cambiar
+    ¿Por qué hemos hecho rebase en main si a lo largo del curso hemos dicho que no se debe cambiar
     la linea principal?
 
     Básicamente hemos dicho que lo que no debemos hacer es modificar la línea temporal **compartida**.
-    En este caso nuestros cambios en _master_ solo estaban en nuestro repositorio, porque al fallar
+    En este caso nuestros cambios en _main_ solo estaban en nuestro repositorio, porque al fallar
     el envío nadie más ha visto nuestras actualizaciones. Al hacer _rebase_ estamos deshaciendo nuestros
-    cambios, bajarnos la última actualización compartida de _master_ y volviéndolos a aplicar. Con lo que
+    cambios, bajarnos la última actualización compartida de _main_ y volviéndolos a aplicar. Con lo que
     realmente la historia compartida no se ha modificado.
 
 Este es un problema que debemos evitar en la medida de lo posible. La menor cantidad
-de gente posible debe tener acceso de escritura en master y las actualizaciones de dicha rama deben
-hacerse a través de ramas secundarias y haciendo merge en master como hemos visto en el capítulo de ramas.
+de gente posible debe tener acceso de escritura en main y las actualizaciones de dicha rama deben
+hacerse a través de ramas secundarias y haciendo merge en main como hemos visto en el capítulo de ramas.
 
 ### No puedo hacer pull
 

@@ -44,5 +44,3 @@ Este curso ha sido impartido por las siguientes personas:
 ## Licencia
 
 El material está publicado con licencia [Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/deed.es)
-
-saludos desde el taller de git

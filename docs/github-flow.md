@@ -14,7 +14,7 @@ de cerrar la incidencia.
 
 ![Nueva Issue](images/github-issues-new.png)
 
-Una vez creado, al mismo se le asignará un número.ç
+Una vez creado, al mismo se le asignará un número.
 
 !!! example
 

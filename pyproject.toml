@@ -1,23 +1,23 @@
-[tool.poetry]
-name = "plantilla-talleres"
+[project]
+name = "taller-de-git"
 version = "1.0.0"
-description = "Plantilla de talleres"
-authors = ["Aula de Software Libre <aulasoftwarelibre@uco.es>"]
+description = "Taller de Git"
+authors = [
+  {name = "Aula de Software Libre", email = "aulasoftwarelibre@uco.es"},
+]
 license = "CC BY-NC 4.0"
-package-mode = false
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
 
-[tool.poetry.dependencies]
-python = "^3.9"
 
-[tool.poetry.group.dev.dependencies]
-Markdown = "^3.3.6"
-mkdocs = "^1.2.3"
-mkdocs-git-revision-date-localized-plugin = "^1.2.0"
-mkdocs-material = {extras = ["imaging"], version = "^9.5.4"}
-mkdocs-material-extensions = "^1.2"
-mkdocs-pandoc = "^0.2.6"
-pymdown-extensions = "^10.3"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "Markdown>=3.3.6,<4.0.0",
+    "mkdocs>=1.2.3,<2.0.0",
+    "mkdocs-git-revision-date-localized-plugin>=1.2.0,<2.0.0",
+    "mkdocs-material[imaging]>=9.5.4,<10.0.0",
+    "mkdocs-material-extensions>=1.2,<2.0.0",
+    "mkdocs-pandoc>=0.2.6,<0.3.0",
+    "pymdown-extensions>=10.3,<11.0.0",
+]

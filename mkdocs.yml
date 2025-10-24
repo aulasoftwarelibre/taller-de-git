@@ -66,6 +66,7 @@ extra_css:
 
 plugins:
   - search
+  - social
   - git-revision-date-localized:
       type: date
 

@@ -61,7 +61,7 @@ Aunque la fuente original de la extensión es del mismo autor del artículo, el 
 
 ### Uso
 
-Para cambiar a las ramas main y develop, seguiremos usando `git checkout`, pero para trabajar con las ramas antes indicadas gitflow nos facilita las siguientes órdenes:
+Para cambiar a las ramas main y develop, seguiremos usando `git switch`, pero para trabajar con las ramas antes indicadas gitflow nos facilita las siguientes órdenes:
 
 
 #### - git flow init: 

@@ -126,14 +126,14 @@ Si ahora vemos el estado de nuestro proyecto veremos algo similar a esto:
 
 ```
 $ git hist --all
-* 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (HEAD -> main, origin/main) [Sergio Gomez]
+* 2eab8ca 2013-06-16 | Merge branch 'hola' (HEAD -> main, origin/main) [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
 * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -204,14 +204,14 @@ $ git commit -m "Añadida licencia"
  create mode 100644 LICENSE
 $ git hist --all
 * 3f5cb1c 2013-06-16 | Añadida licencia (HEAD -> main) [Sergio Gómez]
-* 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (origin/main) [Sergio Gomez]
+* 2eab8ca 2013-06-16 | Merge branch 'hola' (origin/main) [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
 * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -289,14 +289,14 @@ $ git fetch
 $ git hist --all
 * cbaf831 2013-06-16 | Actualizado README.md (origin/main) [Sergio Gómez]
 * 3f5cb1c 2013-06-16 | Añadida licencia (HEAD -> main) [Sergio Gómez]
-* 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola [Sergio Gomez]
+* 2eab8ca 2013-06-16 | Merge branch 'hola' [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
 * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -321,14 +321,14 @@ Fast-forward
 $ git hist --all
 * cbaf831 2013-06-16 | Actualizado README.md (HEAD -> main, origin/main) [Sergio Gómez]
 * 3f5cb1c 2013-06-16 | Añadida licencia [Sergio Gómez]
-* 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola [Sergio Gomez]
+* 2eab8ca 2013-06-16 | Merge branch 'hola' [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
 * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -368,14 +368,14 @@ $ git hist --all
 * d8922e4 2013-06-16 | Indicado que se realiza en el ASL (HEAD -> main, origin/main) [Sergio Gómez]
 * cbaf831 2013-06-16 | Actualizado README.md [Sergio Gómez]
 * 3f5cb1c 2013-06-16 | Añadida licencia [Sergio Gómez]
-* 2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola [Sergio Gomez]
+* 2eab8ca 2013-06-16 | Merge branch 'hola' [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
 * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]

@@ -4,6 +4,17 @@
 
 ### Crear un programa "Hola Mundo"
 
+!!! note
+
+    Este tutorial indica muchas ordenes de git de esta forma:
+
+        $ git init
+
+    El símbolo `$` lo que representa es el _prompt_ del _shell_ sistema operativo. Es un símbolo universal para
+    indicar que `git init` debe ser escrito en tu terminal. Por tanto, no escribas el `$` solo lo que esté a la derecha.
+
+    Eso también te ayudará a distinguir entre lo que es el comando que debes ejecutar y la salida del programa.
+
 Creamos un directorio donde colocar el código
 
     $ mkdir curso-de-git
@@ -12,8 +23,19 @@ Creamos un directorio donde colocar el código
 Creamos un fichero `hola.py` que muestre Hola Mundo.
 
 ```python
-print("Hola, Mundo.");
+print("Hola, Mundo.")
 ```
+
+!!! info
+    Los ejemplos están en lenguaje python, que viene de serie instalado tanto
+    en sistemas GNU/Linux como en otros sistemas propietarios.
+
+    No es necesario que lo tengas instalado, pero si quieres ejecutar el código y
+    ver lo que hace puede ser interesante.
+
+    Para ver lo que hace este programa ejecuta en una terminal:
+
+        python hola.py
 
 ### Crear el repositorio
 
@@ -24,31 +46,62 @@ $ git init
 Initialized empty Git repository in /home/cc0gobas/git/curso-de-git/.git/
 ```
 
-### Añadir la aplicación
+Enhorabuena, has aprendido tu primer comando de git. Lo usarás solo cuando quieras crear uno desde cero.
 
-Vamos a almacenar el archivo que hemos creado en el repositorio para poder trabajar, después explicaremos para qué sirve cada orden.
+### Estado del repositorio
+
+Otro comando muy útil, es el que nos permite saber el estado en el que está nuestro repositorio, el area de trabajo (donde están nuestros archivos) y el área de _staging_ (donde git guarda cambios antes de almacenarlos en el repositorio). Si no te suena lo que es, repasa el lo que son los [tres estados](./introduccion.md#los-tres-estados) en el capitulo de introducción.
+
+```shell
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        hola.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+Aquí podemos ver que estamos en la rama main (o master si no has configurado el nombre de la rama por defecto). Que aún no hemos hecho ningún commit, y que tenemos un fichero sin registrar (untracked). Para git un fichero _untracked_ es aquel que es nuevo y que aún no le hemos dicho que debe incorporarlo a su base de datos de cambios.
+
+Por el último nos sugiere lo que podemos hacer.
+
+!!! info
+
+    Cuando no sepas en qué estado se encuentra tu repositorio o qué tienes que hacer
+    ejecuta siempre `git status`. Git te dará información sobre cómo se encuentra
+    tu estado de trabajo y qué acciones puedes realizar.
+
+### Crear nuestro primer commit.
+
+Vamos a almacenar el archivo que hemos creado en el repositorio para poder trabajar. Vamos a hacer todo de golpe y después explicaremos para qué sirve cada orden.
 
 ```shell
 $ git add hola.py
 $ git commit -m "Creación del proyecto"
 [main (root-commit) e19f2c1] Creación del proyecto
-    1 file changed, 2 insertions(+)
+    1 file changed, 1 insertion(+)
     create mode 100644 hola.py
 ```
 
-!!! example "Estado del repositorio"
+!!! example "Grafo del repositorio"
 
     Acabamos de iniciar nuestra rama de cambios y ya tenemos nuestro primer nodo. El siguiente gráfico es una representación visual del estado
-    del repositorio. Ahora mismo no entenderás mucho pero poco a poco lo irás haciendo.
+    del repositorio. Podemos ver una linea que es la rama _main_ y un commit representado por su hash.
 
     ```mermaid
     gitGraph:
     commit id: "e19f2c1"
     ```
 
-### Comprobar el estado del repositorio
+    Ahora mismo no entenderás mucho pero poco a poco lo irás haciendo.
 
-Con la orden `git status` podemos ver en qué estado se encuentran los archivos de nuestro repositorio.
+### Actualizar ficheros
+
+Ejecutamos `git status` como vimos antes:
 
 ```shell
 $ git status
@@ -111,13 +164,13 @@ Con la orden `git commit` confirmamos los cambios definitivamente.
 ```shell
 $ git commit -m "Parametrización del programa"
 [main efc252e] Parametrización del programa
-    1 file changed, 5 insertion(+), 2 deletion(-)
+    1 file changed, 6 insertion(+), 1 deletion(-)
 $ git status
 On branch main
 nothing to commit, working directory clean
 ```
 
-!!! example "Estado del repositorio"
+!!! example "Grafo del repositorio"
 
     Así esta el estado de nuestro repositorio. No te preocupes si no obtienes exactamente la misma salida, es completamente normal.
     Lo importante es que el estado del repositorio sea el mismo (con o sin ficheros para confirmar)
@@ -181,21 +234,22 @@ para ser confirmado y está almacenado en la zona de _staging_. El segundo indic
 que el directorio hola.py está modificado otra vez en la zona de trabajo (_workdir_).
 
 La zona de trabajo es donde tú trabajas, y la zona de _stagging_ es donde trabaja _git_.
-Los ficheros que no vayan a la zona de staggig no se guardarán en el repositorio. Cuando un fichero
+Los cambios que no se hayan confirmado en la zona de staggig no se guardarán en el repositorio. Cuando un fichero
 es distinto en ambas zonas, nos lo indicará para que sepamos que si guardamos los cambios, solo
 se guardarán los que confirmamos la primera vez.
 
 !!! warning
 
     Si volvieramos a hacer un `git add hola.py` sobreescribiríamos los cambios previos
-    que había en la zona de _staging_.
+    que había en la zona de _staging_. No lo hagas, sigue el tutorial.
 
 Almacenamos los cambios por separado:
 
 ```shell
 $ git commit -m "Se añade un parámetro por defecto"
 [main 3283e0d] Se añade un parámetro por defecto
-    1 file changed, 2 insertions(+), 1 deletion(-)
+    1 file changed, 2 insertions(+), 4 deletions(-)
+
 $ git status
 On branch main
 Changes not staged for commit:
@@ -204,7 +258,9 @@ Changes not staged for commit:
         modified:   hola.py
 
 no changes added to commit (use "git add" and/or "git commit -a")
-$ git add .
+
+$ git add hola.py
+
 $ git status
 On branch main
 Changes to be committed:
@@ -214,19 +270,13 @@ Changes to be committed:
 $ git commit -m "Se añade un comentario al cambio del valor por defecto"
 [main fd4da94] Se añade un comentario al cambio del valor por defecto
     1 file changed, 1 insertion(+)
+
 $ git status
 On branch main
 nothing to commit, working tree clean
 ```
 
-!!! tip
-
-    El valor "." despues de `git add` indica que se añadan todos los archivos del directorio actual de forma recursiva. Eso nos evita
-    tener que añadir uno a uno cuando tenemos muchos archivos. También puedes hacer `git add directorio/subdirectorio` para confirmar solo
-    los cambios de cierta carpeta.
-    Cuidado cuando lo uses, asegúrate de que no estás añadiendo archivos que no quieres añadir.
-
-!!! example "Estado del repositorio"
+!!! example "Grafo del repositorio"
 
     ```mermaid
     gitGraph:
@@ -238,6 +288,18 @@ nothing to commit, working tree clean
 
 
 ### Ignorando archivos
+
+Hasta ahora hemos añadido los archivos indicando siempre el nombre, pero si hemos cambiado muchos ficheros o están en subdirectorios, no es muy cómodo.
+
+Si en vez de indicar el nombre de un fichero indicamos `git add .` le estaremos diciendo a git que añada todos los ficheros que se encuentre tanto en el directorio actual como en cualquier subdirectorio. Eso incluye tanto a los ficheros nuevos como a los modificados.
+
+También podemos indicarle un directorio y solo buscará recursivamenet en el que le indimos, así como hacer una mezcla de ficheros y directorios. Por ejemplo:
+
+```shell
+git add directorio
+git add directorio/subdir
+git add docs/agenda fichero.txt practicas/1/main.c
+```
 
 La orden `git add .` o `git add nombre_directorio` es muy cómoda, ya que nos permite añadir todos los archivos del proyecto o todos los contenidos en un directorio y sus subdirectorios. Es mucho más rápido que tener que ir añadiéndolos uno por uno. El problema es que, si no se tiene cuidado, se puede terminar por añadir archivos innecesarios o con información sensible.
 
@@ -354,7 +416,7 @@ También es posible ver versiones abreviadas o limitadas, dependiendo de los par
 
 ```shell
 $ git log --oneline
-fd4da94 Se añade un comentario al cambio del valor por defecto
+fd4da94 (HEAD -> main) Se añade un comentario al cambio del valor por defecto
 3283e0d Se añade un parámetro por defecto
 efc252e Parametrización del programa
 e19f2c1 Creación del proyecto
@@ -364,6 +426,12 @@ git log --oneline --until='5 minutes ago'
 git log --oneline --author=sergio
 git log --oneline --all
 ```
+
+!!! info
+
+    Si quieres ver todas las opciones `git log` ejecuta: 
+
+        $ git log --help
 
 Una versión muy útil de `git log` es la siguiente, pues nos permite ver en que lugares está main y HEAD, entre otras cosas:
 
@@ -383,17 +451,9 @@ Como estas órdenes son demasiado largas, Git nos permite crear alias para crear
 git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 ```
 
-!!! example
+!!! note
 
-    Puedes configurar incluso alias para abreviar comandos. Algunos ejemplos de alias útiles:
-
-        git config --global alias.br branch
-        git config --global alias.co checkout
-        git config --global alias.ci commit
-        git config --global alias.st "status -u"
-        git config --global alias.cane "commit --amend --no-edit"
-
-    Si usas zsh y su plugin, ya tendrás muchos de estos alias.
+    En este tutorial solo vamos a usar el alias `hist`. Pero puedes crear tus propios alias si quieres.
 
 ### Recuperando versiones anteriores
 
@@ -423,7 +483,23 @@ $ cat hola.py
 print("Hola Mundo");
 ```
 
-El aviso que nos sale nos indica que estamos en un estado donde no trabajamos en ninguna rama concreta. Eso significa que los cambios que hagamos podrían "perderse" porque si no son guardados en una nueva rama, en principio no podríamos volver a recuperarlos. Hay que pensar que Git es como un árbol donde un nodo tiene información de su nodo padre, no de sus nodos hijos, con lo que siempre necesitaríamos información de dónde se encuentran los nodos finales o de otra manera no podríamos acceder a ellos.
+Como vemos nuestro fichero esta como la primera vez que lo escribimos. Lo que hemos hecho es desplazar nuestro espacio de
+trabajo al primer commit
+
+```mermaid
+gitGraph:
+    commit id: "e19f2c1" type: HIGHLIGHT
+    commit id: "efc252e"
+    commit id: "3283e0d"
+    commit id: "fd4da94"
+```
+
+Pero una rama de git siempre tiene una referencia al ultimo commit de cada rama, y esa referencia para que no tengamos que
+aprendernos el hash, se llama como la rama. 
+
+El aviso que nos está dando _git_ es que estamos en una posición que no está enlazada como la última posición de ninguna rama,
+si hicieramos algún cambio estaríamos creando una bifurcación sin nombre de rama. Podríamos perderlos salvo que anotemos esos
+hash en un papel o creemos una nueva rama desde esta posición. Por el momento no nos vamos a preocupar más y esto lo veremos en el capítulo de ramas con mayor profundidad.  
 
 ### Volver a la última versión de la rama main.
 
@@ -434,6 +510,16 @@ $ git switch main
 Previous HEAD position was e19f2c1 Creación del proyecto
 Switched to branch 'main'
 ```
+
+!!! info
+
+    Hemos visto dos comandos nuevos: `checkout` y `switch` que aparentemente hacen lo mismo.
+    En realidad `git checkout` hace muchas más cosas, desde cambiar de ramas, hasta recuperar ficheros, o deshacer cambios.
+    Debido a que tenía tantas opciones, el proyecto git dividió `checkout` en dos comandos distintos: `switch` y `restore`.
+    En este tutorial se usará sobre todo `switch` y `restore` porque son más simples de usar y recordad. Además son los que sugiere
+    usar `git status`.
+
+    ¿Cuándo se usa entonces `git checkout`? Pues dado que `git switch` solo funciona con ramas, lo usaremos cuando queremos mover nuestro espacio de trabajo a algo que nosea una rama, como fue el caso anterior con un hash de un commit, o como veremos a continuación con los tags. 
 
 ### Etiquetando versiones
 
@@ -451,6 +537,13 @@ $ git checkout v1~1
 $ git tag v1-beta
 ```
 
+!!! note
+    Los modificadores `^` y `~` permiten movernos hacia atrás en la historia de commits partiendo de una referencia.  
+    - `^` indica el **commit padre** inmediato.  
+    - `~n` indica el **ancestro n** de la referencia.  
+    Por ejemplo, `v1^` y `v1~1` apuntan al commit anterior a `v1`, mientras que `v1~3` saltaría tres commits atrás desde `v1`.
+
+
 Si ejecutamos la orden sin parámetros nos mostrará todas las etiquetas existentes.
 
 ```shell
@@ -459,17 +552,8 @@ v1
 v1-beta
 ```
 
-Y para verlas en el historial:
 
-```shell
-$ git hist main --all
-* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1, main) [Sergio Gómez]
-* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (HEAD, tag: v1-beta) [Sergio Gómez]
-* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
-* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
-```
-
-!!! example "Estado del repositorio"
+!!! example "Grafo del repositorio"
 
     ```mermaid
     gitGraph:
@@ -477,7 +561,29 @@ $ git hist main --all
         commit id: "efc252e"
         commit id: "3283e0d" tag: "v1-beta"
         commit id: "fd4da94" tag: "v1"
-    ```
+    ``
+
+Y para verlas en el historial:
+
+```shell
+$ git hist --all
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1, main) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (HEAD, tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+```
+
+El parámetro `--all` le indica a `git log` que nos muestra todas las ramas, ya que por defecto solo muestra desde la posición
+de nuestro espacio de trabajo. Si te fijas, verás un `HEAD` en la posición en la que estamos ahora. Ese `HEAD` simboliza en
+qué commit estamos y en qué rama actualmente. Si quitamos `--all` ya no veremos el inicio de la rama main
+
+```shell
+$ git hist
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (HEAD, tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+```
+
 
 ### Borrar etiquetas
 
@@ -489,7 +595,7 @@ git tag -d nombre_etiqueta
 
 ### Visualizar cambios
 
-Para ver los cambios que se han realizado en el código usamos la orden `git diff`. La orden sin especificar nada más, mostrará los cambios que no han sido añadidos aún, es decir, todos los cambios que se han hecho antes de usar la orden `git add`. Después se puede indicar un parámetro y dará los cambios entre la versión indicada y el estado actual. O para comparar dos versiones entre sí, se indica la más antigua y la más nueva. Ejemplo:
+Para ver los cambios que se han realizado en el código usamos la orden `git diff`. La orden sin especificar nada más, mostrará los cambios que no han sido añadidos aún, es decir, todos los cambios que se han hecho antes de usar la orden `git add`. Después se puede indicar un parámetro y dará los cambios entre la versión indicada y el estado actual. O para comparar dos versiones entre sí, se indica la más antigua y la más nueva. Por ejemplo si queremos ver la diferencia entre los dos commits que hemos etiquetado:
 
 ```shell
 $ git diff v1-beta v1

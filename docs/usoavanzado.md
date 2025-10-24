@@ -74,19 +74,30 @@ Y lo añadimos al _staging_:
 De nuevo, Git nos indica qué debemos hacer para deshacer el cambio:
 
     $ git restore --staged hola.py
+
     $ git status
     On branch main
     Changes not staged for commit:
       (use "git add <file>..." to update what will be committed)
       (use "git restore <file>..." to discard changes in working directory)
     
-      modified:   hola.php
+      modified:   hola.py
     
     no changes added to commit (use "git add" and/or "git commit -a")
+
     $ git restore hola.py
 
-Y ya tenemos nuestro repositorio limpio otra vez. Como vemos hay que hacerlo en dos pasos:
-uno para borrar los datos del _staging_ y otro para restaurar la copia de trabajo.
+En este caso, hemos tenido que hacer dos recuperaciones distintas. Uno para deshacer la confirmación
+(`git restore --staged`) y otro para deshacer el cambio en el espacio de trabajo (`git restore`). Dependiendo
+de lo que queramos hacer usaremos una opción u otra.
+
+!!! tip
+
+    Si quieres recuperar completamente un archivo en un solo paso puedes ejecutar lo siguiente:
+
+        $ git restore --staged --worktree hola.py
+
+
 
 ### Deshaciendo commits no deseados
 
@@ -105,7 +116,7 @@ Pero ahora sí hacemos commit:
     $ git add hola.py
     $ git commit -m "Ups... este commit está mal."
     [main 5a5d067] Ups... este commit está mal
-     1 file changed, 1 insertion(+), 3 deletion(-)
+     1 file changed, 2 insertions(+), 3 deletions(-)
 
 Bien, una vez confirmado el cambio, vamos a deshacer el cambio con la orden `git revert`:
 
@@ -120,7 +131,7 @@ Bien, una vez confirmado el cambio, vamos a deshacer el cambio con la orden `git
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-!!! example
+!!! example  "Grafo del repositorio"
     ```mermaid
     gitGraph:
         commit id: "e19f2c1"
@@ -143,17 +154,22 @@ El anterior apartado revierte un commit, pero deja huella en el historial de cam
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-!!! example
+!!! example  "Grafo del repositorio"
     ```mermaid
     gitGraph:
         commit id: "e19f2c1"
         commit id: "efc252e"
         commit id: "3283e0d" tag: "v1-beta"
         commit id: "fd4da94" tag: "v1"
+        branch detached
+        commit id: "5a5d067"
+        commit id: "817407b"
+
     ```
 
+El resto de cambios no se han borrado (aún), simplemente no están accesibles porque git no sabe como referenciarlos. Si sabemos su hash podemos acceder aún a ellos. Pasado un tiempo, eventualmente Git tiene un recolector de basura que los borrará.
 
-El resto de cambios no se han borrado (aún), simplemente no están accesibles porque git no sabe como referenciarlos. Si sabemos su hash podemos acceder aún a ellos. Pasado un tiempo, eventualmente Git tiene un recolector de basura que los borrará. Se puede evitar etiquetando el estado final.
+Lo que hace `git reset` es modificar HEAD (recuerda, la posición de nuestro espacio de trabajo) al commit que le indiquemos. El parámetro `--hard` además le dice que mueva también el índice de la rama, es decir, lo que entiende git que es el último commit y desde donde debe continuar añadiendo.
 
 !!! danger
 
@@ -163,11 +179,12 @@ El resto de cambios no se han borrado (aún), simplemente no están accesibles p
 
 ### Modificar un commit
 
-Esto se usa cuando hemos olvidado añadir un cambio a un commit que acabamos de realizar. Tenemos
+Esto se usa cuando hemos olvidado añadir un cambio a un commit que acabamos de realizar. Vamos a modificar
 nuestro archivo _hola.py_ de la siguiente manera:
 
 ```python
 import sys
+
 # Autor: Sergio Gómez
 # El nombre por defecto es Mundo
 nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
@@ -180,7 +197,7 @@ Y lo confirmamos:
     [main cf405c1] Añadido el autor del programa
      1 file changed, 1 insertion(+)
 
-!!! example
+!!! example  "Grafo del repositorio"
 
     ```mermaid
     gitGraph:
@@ -200,6 +217,7 @@ Ahora nos percatamos que se nos ha olvidado poner el correo electrónico. Así q
 
 ```python
 import sys
+
 # Autor: Sergio Gómez <sergio@uco.es>
 # El nombre por defecto es Mundo
 nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
@@ -220,7 +238,7 @@ Y en esta ocasión usamos `commit --amend` que nos permite modificar el último 
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-!!! example
+!!! example  "Grafo del repositorio"
     ```mermaid
     gitGraph:
         commit id: "e19f2c1"
@@ -234,7 +252,10 @@ Y en esta ocasión usamos `commit --amend` que nos permite modificar el último 
 
     Nunca modifiques un _commit_ que ya hayas sincronizado con otro repositorio o
     que hayas recibido de él. Estarías alterando la historia de cambios y provocarías
-    problemas de sincronización.
+    problemas de sincronización. Solo debes hacerlo en local y mientras no hayas compartido
+    aún esos cambios con nadie. Lo veremos en el capítulo de Github.
+
+
 ## Moviendo y borrando archivos
 
 ### Mover un archivo a otro directorio con git
@@ -255,9 +276,9 @@ Para mover archivos usaremos la orden `git mv`:
     Podíamos haber hecho el paso anterior con la órden del sistema _mv_ y el resultado hubiera sido el mismo. Lo siguiente es a modo de ejemplo y no es necesario que lo ejecutes:
 
         $ mkdir lib
-        $ mv hola.php lib
-        $ git add lib/hola.php
-        $ git rm hola.php
+        $ mv hola.py lib
+        $ git add lib/hola.py
+        $ git rm hola.py
 
 Y, ahora sí, ya podemos guardar los cambios:
 
@@ -266,7 +287,7 @@ Y, ahora sí, ya podemos guardar los cambios:
      1 file changed, 0 insertions(+), 0 deletions(-)
      rename hola.py => lib/hola.py (100%)
 
-!!! example
+!!! example  "Grafo del repositorio"
     ```mermaid
     gitGraph:
         commit id: "e19f2c1"

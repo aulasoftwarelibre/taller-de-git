@@ -12,7 +12,7 @@ Vamos a crear una nueva rama:
 git branch hola
 ```
 
-!!! example
+!!! example "Grafo del repositorio"
     ```mermaid
     gitGraph:
        commit id: "e19f2c1"
@@ -46,7 +46,7 @@ debemos usar _switch_:
 
 ### Modificaciones en la rama secundaria
 
-Añadimos un nuevo archivo en el directorio `lib` llamado `HolaMundo.py`:
+Añadimos un nuevo archivo en el directorio `lib` llamado `hola_mundo.py`:
 
 ```python
 class HolaMundo:
@@ -61,6 +61,7 @@ Y modificamos `hola.py`:
 
 ```python
 import sys
+
 # Autor: Sergio Gómez <sergio@uco.es>
 # El nombre por defecto es Mundo
 from HolaMundo import HolaMundo
@@ -71,17 +72,20 @@ print(HolaMundo(nombre))
 
 Podríamos confirmar los cambios todos de golpe, pero lo haremos de uno en uno, con su comentario.
 
-    $ git add lib/HolaMundo.py
+    $ git add lib/hola_mundo.py
+
     $ git commit -m "Añadida la clase HolaMundo"
     [hola 6932156] Añadida la clase HolaMundo
-     1 file changed, 16 insertions(+)
-     create mode 100644 lib/HolaMundo.py
+     1 file changed, 6 insertions(+)
+     create mode 100644 lib/hola_mundo.py
+
     $ git add lib/hola.py
+
     $ git commit -m "hola usa la clase HolaMundo"
     [hola 9862f33] hola usa la clase HolaMundo
      1 file changed, 3 insertions(+), 1 deletion(-)
 
-!!! example
+!!! example "Grafo del repositorio"
     ```mermaid
     gitGraph:
        commit id: "e19f2c1"
@@ -99,8 +103,11 @@ Y ahora con la orden `git switch` podemos movernos entre ramas:
 
     $ git switch main
     Switched to branch 'main'
+
     $ git switch hola
     Switched to branch 'hola'
+
+Comprueba como los ficheros cambian cuando cambiamos de rama.
 
 ### Modificaciones en la rama main
 
@@ -119,11 +126,14 @@ Este proyecto contiene el curso de introducción a GIT
 
 Y lo añadimos a nuestro repositorio en la rama en la que estamos:
 
+
     $ git add README.md
+
     $ git commit -m "Añadido README.md"
     [main c3e65d0] Añadido README.md
      1 file changed, 3 insertions(+)
      create mode 100644 README.md
+
     $ git hist --all
     * c3e65d0 2013-06-16 | Añadido README.md (HEAD, main) [Sergio Gómez]
     | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
@@ -138,7 +148,7 @@ Y lo añadimos a nuestro repositorio en la rama en la que estamos:
 
 Y vemos como `git hist` muestra la bifurcación en nuestro código.
 
-!!! example
+!!! example "Grafo del repositorio"
     ```mermaid
     gitGraph:
        commit id: "e19f2c1"
@@ -158,15 +168,21 @@ Y vemos como `git hist` muestra la bifurcación en nuestro código.
 
 ### Mezclar ramas
 
-Podemos incorporar los cambios de una rama a otra con la orden `git merge`
+Nuestras dos ramas tienen commits distintos, pero las dos parten de un nodo común. El mergeado de ramas
+consiste en incoporar los cambios que una rama no posee a otra.
+
+Vamos a hacer una prueba. Nos vamos a ir a la rama _hola_ y nos traeremos el commit que le falta, en el que hemos añadido el `README.md`:
+
 
     $ git switch hola
     Switched to branch 'hola'
-    $ git merge main
-    Merge made by the 'recursive' strategy.
+
+    $ git merge --no-edit main
+    Merge made by the 'ort' strategy.
      README.md | 3 +++
      1 file changed, 3 insertions(+)
      create mode 100644 README.md
+
     $ git hist --all
     *   9c6ac06 2013-06-16 | Merge commit 'c3e65d0' into hola (HEAD, hola) [Sergio Gómez]
     |\
@@ -182,7 +198,10 @@ Podemos incorporar los cambios de una rama a otra con la orden `git merge`
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-!!! example
+El parámetro `--no-edit` de merge lo usamos para evitar que nos pida un mensaje para el commit y use el mensaje
+estándar para los merges. Si no lo pones, te abrirá el editor que tengas configurado (vi, nano, etc) para que lo escribas.
+
+!!! example "Grafo del repositorio"
     ```mermaid
     gitGraph:
        commit id: "e19f2c1"
@@ -200,7 +219,9 @@ Podemos incorporar los cambios de una rama a otra con la orden `git merge`
        merge main id: "9c6ac06"
     ```
 
-De esa forma se puede trabajar en una rama secundaria incorporando los cambios de la rama principal o de otra rama.
+Ahora puedes comprobar que el fichero `README.md` también está en la rama _hola_. Pero al revés no, los cambios de _hola_ no 
+están en _main_.
+
 
 ### Resolver conflictos
 
@@ -221,9 +242,11 @@ print(f"Hola, {nombre}")
 Y guardamos los cambios:
 
     $ git add lib/hola.py
+
     $ git commit -m "Programa interactivo"
     [main 9c85275] Programa interactivo
      1 file changed, 2 insertions(+), 2 deletions(-)
+
     $ git hist --all
     *   9c6ac06 2013-06-16 | Merge commit 'c3e65d0' into hola (hola) [Sergio Gómez]
     |\
@@ -240,7 +263,7 @@ Y guardamos los cambios:
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-!!! example
+!!! example "Grafo del repositorio"
     ```mermaid
     gitGraph:
        commit id: "e19f2c1"
@@ -262,12 +285,21 @@ Y guardamos los cambios:
 
 Volvemos a la rama hola y fusionamos:
 
-    $ git switch hola
+    $ git switch -
     Switched to branch 'hola'
-    $ git merge main
+    $ git merge --no-edit main
     Auto-merging lib/hola.py
     CONFLICT (content): Merge conflict in lib/hola.py
     Automatic merge failed; fix conflicts and then commit the result.
+
+!!! tip
+
+    Si estamos continuamente cambiando entre dos ramas podemos usar `-` como nombre de rama. Eso le indica a git
+    que nos devuelve a la última rama que hemos estado.
+
+    ```
+    git switch -
+    ```
 
 Si editamos nuestro archivo `lib/hola.py` obtendremos algo similar a esto:
 
@@ -304,7 +336,7 @@ Y resolvemos el conflicto confirmando los cambios:
     $ git commit -m "Solucionado el conflicto al fusionar con la rama main"
     [hola a36af04] Solucionado el conflicto al fusionar con la rama main
 
-!!! example
+!!! example "Grafo del repositorio"
     ```mermaid
     gitGraph:
        commit id: "e19f2c1"
@@ -326,33 +358,39 @@ Y resolvemos el conflicto confirmando los cambios:
        merge main id: "a36af04"
     ```
 
+Por tanto, para resolver un conflicto de cambios, obligatoriamente tenemos que hacer un nuevo commit para integrar los cambios entre ambas ramas. 
+
 ### Rebasing vs Merging
 
 Rebasing es otra técnica para fusionar distinta a merge y usa la orden `git rebase`. Vamos a dejar nuestro proyecto como estaba antes del fusionado. Para ello necesitamos anotar el hash anterior al de la acción de _merge_. El que tiene la anotación _"hola usa la clase HolaMundo"_.
 
 Para ello podemos usar la orden `git reset` que nos permite mover HEAD donde queramos.
 
-    $ git switch hola
-    Switched to branch 'hola'
-    $ git hist
-    *   a36af04 2013-06-16 | Solucionado el conflicto al fusionar con la rama main (HEAD, hola) [Sergio Gómez]
-    |\
-    | * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
-    * |   9c6ac06 2013-06-16 | Merge commit 'c3e65d0' into hola [Sergio Gómez]
-    |\ \
-    | |/
-    | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-    * | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
-    * | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
-    |/
-    * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
-    * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
-    * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
-    * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
-    * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
-    * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
-    $ git reset --hard 9862f33
-    HEAD is now at 9862f33 hola usa la clase HolaMundo
+```shell hl_lines="12"
+$ git switch hola
+Switched to branch 'hola'
+
+$ git hist
+*   a36af04 2013-06-16 | Solucionado el conflicto al fusionar con la rama main (HEAD, hola) [Sergio Gómez]
+|\
+| * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
+* |   9c6ac06 2013-06-16 | Merge commit 'c3e65d0' into hola [Sergio Gómez]
+|\ \
+| |/
+| * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
+* | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
+* | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+|/
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
+* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+
+$ git reset --hard 9862f33
+HEAD is now at 9862f33 hola usa la clase HolaMundo
+```
 
 Y nuestro estado será:
 
@@ -369,7 +407,7 @@ Y nuestro estado será:
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-!!! example
+!!! example "Grafo del repositorio"
     ```mermaid
     gitGraph:
        commit id: "e19f2c1"
@@ -389,21 +427,15 @@ Y nuestro estado será:
 Hemos desecho todos los _merge_ y nuestro árbol está _"limpio"_. Vamos a probar ahora a hacer un rebase. Continuamos en la rama `hola` y ejecutamos lo siguiente:
 
     $ git rebase main
-    First, rewinding head to replay your work on top of it...
-    Applying: Añadida la clase HolaMundo
-    Applying: hola usa la clase HolaMundo
-    Using index info to reconstruct a base tree...
-    M	lib/hola.py
-    Falling back to patching base and 3-way merge...
     Auto-merging lib/hola.py
     CONFLICT (content): Merge conflict in lib/hola.py
-    error: Failed to merge in the changes.
-    Patch failed at 0002 hola usa la clase HolaMundo
-    The copy of the patch that failed is found in: .git/rebase-apply/patch
-
-    When you have resolved this problem, run "git rebase --continue".
-    If you prefer to skip this patch, run "git rebase --skip" instead.
-    To check out the original branch and stop rebasing, run "git rebase --abort".
+    error: could not apply 9862f33... hola usa la clase HolaMundo
+    hint: Resolve all conflicts manually, mark them as resolved with
+    hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+    hint: You can instead skip this commit: run "git rebase --skip".
+    hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+    hint: Disable this message with "git config set advice.mergeConflict false"
+    Could not apply 9862f33... # hola usa la clase HolaMundo
 
 El conflicto, por supuesto, se sigue dando. Resolvemos guardando el archivo `hola.py` como en los casos anteriores:
 
@@ -419,17 +451,28 @@ print(HolaMundo(nombre))
 Añadimos los cambios en _staging_ y en esta ocasión, y tal como nos indicaba en el mensaje anterior, no tenemos que hacer `git commit` sino continuar con el _rebase_:
 
     $ git add lib/hola.py
+
     $ git status
-    rebase in progress; onto 269eaca
+    interactive rebase in progress; onto 269eaca
+    Last commands done (2 commands done):
+    pick 6932156 # Añadida la clase HolaMundo
+    pick 9862f33 # hola usa la clase HolaMundo
+    No commands remaining.
     You are currently rebasing branch 'hola' on '269eaca'.
-      (all conflicts fixed: run "git rebase --continue")
+    (all conflicts fixed: run "git rebase --continue")
 
     Changes to be committed:
-      (use "git reset HEAD <file>..." to unstage)
+    (use "git restore --staged <file>..." to unstage)
+            modified:   lib/hola.py
 
-    	modified:   lib/hola.py
-    $ git rebase --continue
+    $ git rebase --no-edit --continue
     Applying: hola usa la clase HolaMundo
+
+!!! note
+
+    Cuando ejecutemos `git rebase --continue` se abrirá el editor para que 
+    editemos el mensaje del commit que estamos modificando. Podemos dejarlo
+    como está o aprovechara para actualizarlo.
 
 Y ahora vemos que nuestro árbol tiene un aspecto distinto, mucho más limpio:
 
@@ -445,7 +488,7 @@ Y ahora vemos que nuestro árbol tiene un aspecto distinto, mucho más limpio:
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-!!! example
+!!! example "Grafo del repositorio"
     ```mermaid
     gitGraph:
        commit id: "e19f2c1"
@@ -461,7 +504,13 @@ Y ahora vemos que nuestro árbol tiene un aspecto distinto, mucho más limpio:
        commit id: "9862f33"
     ```
 
-Lo que hace rebase es volver a aplicar todos los cambios a la rama máster, desde su nodo más reciente. Eso significa que se modifica el orden o la historia de creación de los cambios. Por eso rebase no debe usarse si el orden es importante o si la rama es compartida.
+¿Por qué se ve distinto? Porque la fusión lo que hace es crear un commit nuevo para reconciliar los cambios. Pero rebase lo que hace es deshacer en orden inverso cada commit de la rama en la que estamos (_hola_) y los guarda en una pila (LIFO), hasta que llegemos al commit que es la unión de las dos ramas.
+
+Ahora que estamos en el punto en común, git mueve el índice de _hola_ al final de _main_ e intenta aplicar cada commit que guardó por orden. Cada vez que no pueda porque haya conflictos nos dirá que lo arreglemos.
+
+Es como si siempre hubieramos hecho los cambios en el código después del `README.md`.
+
+Eso significa que se modifica el orden o la historia de creación de los cambios. Por eso rebase no debe usarse si el orden es importante o si la rama es compartida con otras personas (al menos que les avises).
 
 ## Mezclando con la rama main
 
@@ -469,13 +518,15 @@ Ya hemos terminado de implementar los cambios en nuestra rama secundaria y es ho
 
     $ git switch main
     Switched to branch 'main'
+
     $ git merge hola
     Updating c3e65d0..491f1d2
     Fast-forward
-     lib/HolaMundo.py | 16 ++++++++++++++++
+     lib/hola_mundo.py | 16 ++++++++++++++++
      lib/hola.py      |  4 +++-
      2 files changed, 19 insertions(+), 1 deletion(-)
-     create mode 100644 lib/HolaMundo.py
+     create mode 100644 lib/hola_mundo.py
+
      $ git hist --all
      * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -> main, hola) [Sergio Gómez]
      * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
@@ -491,7 +542,7 @@ Ya hemos terminado de implementar los cambios en nuestra rama secundaria y es ho
 
 Vemos que indica que el tipo de fusión es _fast-forward_. Este tipo de fusión tiene el problema que no deja rastro de la fusión, por eso suele ser recomendable usar el parámetro `--no-ff` para que quede constancia siempre de que se ha fusionado una rama con otra.
 
-Vamos a volver a probar ahora sin hacer _fast-forward_. Reseteamos _main_ al estado _"Programa interactivo"_.
+Vamos a volver a probar ahora sin hacer _fast-forward_. Reseteamos _main_ al estado _"Programa interactivo"_. Busca el hash de ese commit en tu historia y úsalo.
 
     $ git reset --hard 9c85275
     $ git hist --all
@@ -508,14 +559,15 @@ Vamos a volver a probar ahora sin hacer _fast-forward_. Reseteamos _main_ al est
 
 Vemos que estamos como en el final de la sección anterior, así que ahora mezclamos:
 
-    $ git merge -m "Aplicando los cambios de la rama hola" --no-ff hola
-    Merge made by the 'recursive' strategy.
-     lib/HolaMundo.py | 16 ++++++++++++++++
-     lib/hola.py      |  4 +++-
-     2 files changed, 19 insertions(+), 1 deletion(-)
-     create mode 100644 lib/HolaMundo.py
+    $ git merge --no-edit --no-ff hola
+    Merge made by the 'ort' strategy.
+    lib/HolaMundo.py | 6 ++++++
+    lib/hola.py      | 4 +++-
+    2 files changed, 9 insertions(+), 1 deletion(-)
+    create mode 100644 lib/HolaMundo.py
+
     $ git hist --all
-    *   2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (HEAD -> main) [Sergio Gomez]
+    *   2eab8ca 2013-06-16 | Merge branch 'hola' (HEAD -> main) [Sergio Gomez]
     *\
     | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
     | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
@@ -529,7 +581,7 @@ Vemos que estamos como en el final de la sección anterior, así que ahora mezcl
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-!!! example
+!!! example "Grafo del repositorio"
     ```mermaid
     gitGraph:
        commit id: "e19f2c1"

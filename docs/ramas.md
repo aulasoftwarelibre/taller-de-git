@@ -2,9 +2,9 @@
 
 ## Administración de ramas
 
-### Crear una nueva rama
+### Crear una nueva rama
 
-Cuando vamos a trabajar en una nueva funcionalidad, es conveniente hacerlo en una nueva rama, para no modificar la rama principal y dejarla inestable. Aunque la orden para manejar ramas es `git branch` podemos usar también `git checkout`.
+Cuando vamos a trabajar en una nueva funcionalidad, es conveniente hacerlo en una nueva rama, para no modificar la rama principal y dejarla inestable. Aunque la orden para manejar ramas es `git branch` podemos usar también `git switch`.
 
 Vamos a crear una nueva rama:
 
@@ -12,16 +12,17 @@ Vamos a crear una nueva rama:
 git branch hola
 ```
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-   branch hola
-```
+!!! example
+    ```mermaid
+    gitGraph:
+       commit id: "e19f2c1"
+       commit id: "efc252e"
+       commit id: "3283e0d" tag: "v1-beta"
+       commit id: "fd4da94" tag: "v1"
+       commit id: "96a39df"
+       commit id: "8c2a509"
+       branch hola
+    ```
 
 !!! info
 
@@ -29,92 +30,83 @@ gitGraph:
     disponibles.
 
 La orden anterior no devuelve ningún resultado y tampoco nos cambia de rama, para eso
-debemos usar _checkout_:
+debemos usar _switch_:
 
-    $ git checkout hola
+    $ git switch hola
     Switched to branch 'hola'
 
 !!! tip
 
     Hay una forma más rapida de hacer ambas acciones en un solo paso. Con el parámetro
-    `-b` de `git checkout` podemos cambiarnos a una rama que, si no existe, se crea
+    `-c` de `git switch` podemos cambiarnos a una rama que, si no existe, se crea
     instantáneamente.
 
-        $ git checkout -b hola
+        $ git switch -c hola
         Switched to a new branch 'hola'
 
 ### Modificaciones en la rama secundaria
 
-Añadimos un nuevo archivo en el directorio `lib` llamado `HolaMundo.php`:
+Añadimos un nuevo archivo en el directorio `lib` llamado `HolaMundo.py`:
 
-```php
-<?php
+```python
+class HolaMundo:
+    def __init__(self, nombre):
+        self.nombre = nombre
 
-class HolaMundo
-{
-   private $nombre;
-
-   function __construct($nombre)
-   {
-      $this->nombre = $nombre;
-   }
-
-   function __toString()
-   {
-      return sprintf ("Hola, %s.\n", $this->nombre);
-   }
-}
+    def __str__(self):
+        return f"Hola, {self.nombre}."
 ```
 
-Y modificamos `hola.php`:
+Y modificamos `hola.py`:
 
-```php
-<?php
-// Autor: Sergio Gómez <sergio@uco.es>
-// El nombre por defecto es Mundo
-require('HolaMundo.php');
+```python
+import sys
+# Autor: Sergio Gómez <sergio@uco.es>
+# El nombre por defecto es Mundo
+from HolaMundo import HolaMundo
 
-$nombre = isset($argv[1]) ? $argv[1] : "Mundo";
-print new HolaMundo($nombre);
+nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
+print(HolaMundo(nombre))
 ```
 
 Podríamos confirmar los cambios todos de golpe, pero lo haremos de uno en uno, con su comentario.
 
-    $ git add lib/HolaMundo.php
+    $ git add lib/HolaMundo.py
     $ git commit -m "Añadida la clase HolaMundo"
     [hola 6932156] Añadida la clase HolaMundo
      1 file changed, 16 insertions(+)
-     create mode 100644 lib/HolaMundo.php
-    $ git add lib/hola.php
+     create mode 100644 lib/HolaMundo.py
+    $ git add lib/hola.py
     $ git commit -m "hola usa la clase HolaMundo"
     [hola 9862f33] hola usa la clase HolaMundo
      1 file changed, 3 insertions(+), 1 deletion(-)
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-   branch hola
-   commit id: "6932156"
-   commit id: "9862f33"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+       commit id: "e19f2c1"
+       commit id: "efc252e"
+       commit id: "3283e0d" tag: "v1-beta"
+       commit id: "fd4da94" tag: "v1"
+       commit id: "96a39df"
+       commit id: "8c2a509"
+       branch hola
+       commit id: "6932156"
+       commit id: "9862f33"
+    ```
 
-Y ahora con la orden `git checkout` podemos movernos entre ramas:
+Y ahora con la orden `git switch` podemos movernos entre ramas:
 
-    $ git checkout main
+    $ git switch main
     Switched to branch 'main'
-    $ git checkout hola
+    $ git switch hola
     Switched to branch 'hola'
 
 ### Modificaciones en la rama main
 
 Podemos volver y añadir un nuevo archivo a la rama principal:
 
-    $ git checkout main
+    $ git switch main
     Switched to branch 'main'
 
 Creamos un archivo llamado `README.md` en la raíz de nuestro proyecto con el siguiente contenido:
@@ -137,7 +129,7 @@ Y lo añadimos a nuestro repositorio en la rama en la que estamos:
     | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
     | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
     |/
-    * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+    * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -146,20 +138,21 @@ Y lo añadimos a nuestro repositorio en la rama en la que estamos:
 
 Y vemos como `git hist` muestra la bifurcación en nuestro código.
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-   branch hola
-   commit id: "6932156"
-   commit id: "9862f33"
-   checkout main
-   commit id: "c3e65d0"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+       commit id: "e19f2c1"
+       commit id: "efc252e"
+       commit id: "3283e0d" tag: "v1-beta"
+       commit id: "fd4da94" tag: "v1"
+       commit id: "96a39df"
+       commit id: "8c2a509"
+       branch hola
+       commit id: "6932156"
+       commit id: "9862f33"
+       checkout main
+       commit id: "c3e65d0"
+    ```
 
 ## Fusión de ramas y resolución de conflictos
 
@@ -167,7 +160,7 @@ gitGraph:
 
 Podemos incorporar los cambios de una rama a otra con la orden `git merge`
 
-    $ git checkout hola
+    $ git switch hola
     Switched to branch 'hola'
     $ git merge main
     Merge made by the 'recursive' strategy.
@@ -182,29 +175,30 @@ Podemos incorporar los cambios de una rama a otra con la orden `git merge`
     | |
     | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
     |/
-    * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+    * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-   branch hola
-   commit id: "6932156"
-   commit id: "9862f33"
-   checkout main
-   commit id: "c3e65d0"
-   checkout hola
-   merge main id: "9c6ac06"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+       commit id: "e19f2c1"
+       commit id: "efc252e"
+       commit id: "3283e0d" tag: "v1-beta"
+       commit id: "fd4da94" tag: "v1"
+       commit id: "96a39df"
+       commit id: "8c2a509"
+       branch hola
+       commit id: "6932156"
+       commit id: "9862f33"
+       checkout main
+       commit id: "c3e65d0"
+       checkout hola
+       merge main id: "9c6ac06"
+    ```
 
 De esa forma se puede trabajar en una rama secundaria incorporando los cambios de la rama principal o de otra rama.
 
@@ -212,22 +206,21 @@ De esa forma se puede trabajar en una rama secundaria incorporando los cambios d
 
 Un conflicto es cuando se produce una fusión que Git no es capaz de resolver. Vamos a modificar la rama main para crear uno con la rama hola.
 
-    $ git checkout main
+    $ git switch main
     Switched to branch 'main'
 
-Modificamos nuestro archivo _hola.php_ de nuevo:
+Modificamos nuestro archivo _hola.py_ de nuevo:
 
-```php
-<?php
-// Autor: Sergio Gómez <sergio@uco.es>
-print "Introduce tu nombre:";
-$nombre = trim(fgets(STDIN));
-@print "Hola, {$nombre}\n";
+```python
+# Autor: Sergio Gómez <sergio@uco.es>
+print("Introduce tu nombre:")
+nombre = input().strip()
+print(f"Hola, {nombre}")
 ```
 
 Y guardamos los cambios:
 
-    $ git add lib/hola.php
+    $ git add lib/hola.py
     $ git commit -m "Programa interactivo"
     [main 9c85275] Programa interactivo
      1 file changed, 2 insertions(+), 2 deletions(-)
@@ -240,97 +233,98 @@ Y guardamos los cambios:
     | |/
     | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
     |/
-    * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+    * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-   branch hola
-   commit id: "6932156"
-   commit id: "9862f33"
-   checkout main
-   commit id: "c3e65d0"
-   checkout hola
-   merge main id: "9c6ac06"
-   checkout main
-   commit id: "9c85275"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+       commit id: "e19f2c1"
+       commit id: "efc252e"
+       commit id: "3283e0d" tag: "v1-beta"
+       commit id: "fd4da94" tag: "v1"
+       commit id: "96a39df"
+       commit id: "8c2a509"
+       branch hola
+       commit id: "6932156"
+       commit id: "9862f33"
+       checkout main
+       commit id: "c3e65d0"
+       checkout hola
+       merge main id: "9c6ac06"
+       checkout main
+       commit id: "9c85275"
+    ```
 
 Volvemos a la rama hola y fusionamos:
 
-    $ git checkout hola
+    $ git switch hola
     Switched to branch 'hola'
     $ git merge main
-    Auto-merging lib/hola.php
-    CONFLICT (content): Merge conflict in lib/hola.php
+    Auto-merging lib/hola.py
+    CONFLICT (content): Merge conflict in lib/hola.py
     Automatic merge failed; fix conflicts and then commit the result.
 
-Si editamos nuestro archivo `lib/hola.php` obtendremos algo similar a esto:
+Si editamos nuestro archivo `lib/hola.py` obtendremos algo similar a esto:
 
-```php
-<?php
-// Autor: Sergio Gómez <sergio@uco.es>
+```python
+# Autor: Sergio Gómez <sergio@uco.es>
 <<<<<<< HEAD
-// El nombre por defecto es Mundo
-require('HolaMundo.php');
+# El nombre por defecto es Mundo
+from HolaMundo import HolaMundo
 
-$nombre = isset($argv[1]) ? $argv[1] : "Mundo";
-print new HolaMundo($nombre);
+import sys
+nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
+print(HolaMundo(nombre))
 =======
-print "Introduce tu nombre:";
-$nombre = trim(fgets(STDIN));
-@print "Hola, {$nombre}\n";
+print("Introduce tu nombre:")
+nombre = input().strip()
+print(f"Hola, {nombre}")
 >>>>>>> main
 ```
 
 La primera parte marca el código que estaba en la rama donde trabajábamos (HEAD) y la parte final el código de donde fusionábamos. Resolvemos el conflicto, dejando el archivo como sigue:
 
-```php
-<?php
-// Autor: Sergio Gómez <sergio@uco.es>
-require('HolaMundo.php');
+```python
+# Autor: Sergio Gómez <sergio@uco.es>
+from HolaMundo import HolaMundo
 
-print "Introduce tu nombre:";
-$nombre = trim(fgets(STDIN));
-print new HolaMundo($nombre);
+print("Introduce tu nombre:")
+nombre = input().strip()
+print(HolaMundo(nombre))
 ```
 
 Y resolvemos el conflicto confirmando los cambios:
 
-    $ git add lib/hola.php
+    $ git add lib/hola.py
     $ git commit -m "Solucionado el conflicto al fusionar con la rama main"
     [hola a36af04] Solucionado el conflicto al fusionar con la rama main
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-   branch hola
-   commit id: "6932156"
-   commit id: "9862f33"
-   checkout main
-   commit id: "c3e65d0"
-   checkout hola
-   merge main id: "9c6ac06"
-   checkout main
-   commit id: "9c85275"
-   checkout hola
-   merge main id: "a36af04"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+       commit id: "e19f2c1"
+       commit id: "efc252e"
+       commit id: "3283e0d" tag: "v1-beta"
+       commit id: "fd4da94" tag: "v1"
+       commit id: "96a39df"
+       commit id: "8c2a509"
+       branch hola
+       commit id: "6932156"
+       commit id: "9862f33"
+       checkout main
+       commit id: "c3e65d0"
+       checkout hola
+       merge main id: "9c6ac06"
+       checkout main
+       commit id: "9c85275"
+       checkout hola
+       merge main id: "a36af04"
+    ```
 
 ### Rebasing vs Merging
 
@@ -338,7 +332,7 @@ Rebasing es otra técnica para fusionar distinta a merge y usa la orden `git reb
 
 Para ello podemos usar la orden `git reset` que nos permite mover HEAD donde queramos.
 
-    $ git checkout hola
+    $ git switch hola
     Switched to branch 'hola'
     $ git hist
     *   a36af04 2013-06-16 | Solucionado el conflicto al fusionar con la rama main (HEAD, hola) [Sergio Gómez]
@@ -351,7 +345,7 @@ Para ello podemos usar la orden `git reset` que nos permite mover HEAD donde que
     * | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
     * | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
     |/
-    * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+    * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -368,28 +362,29 @@ Y nuestro estado será:
     | * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
     | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
     |/
-    * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+    * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-   branch hola
-   commit id: "6932156"
-   commit id: "9862f33"
-   checkout main
-   commit id: "c3e65d0"
-   commit id: "9c85275"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+       commit id: "e19f2c1"
+       commit id: "efc252e"
+       commit id: "3283e0d" tag: "v1-beta"
+       commit id: "fd4da94" tag: "v1"
+       commit id: "96a39df"
+       commit id: "8c2a509"
+       branch hola
+       commit id: "6932156"
+       commit id: "9862f33"
+       checkout main
+       commit id: "c3e65d0"
+       commit id: "9c85275"
+    ```
 
 Hemos desecho todos los _merge_ y nuestro árbol está _"limpio"_. Vamos a probar ahora a hacer un rebase. Continuamos en la rama `hola` y ejecutamos lo siguiente:
 
@@ -398,10 +393,10 @@ Hemos desecho todos los _merge_ y nuestro árbol está _"limpio"_. Vamos a proba
     Applying: Añadida la clase HolaMundo
     Applying: hola usa la clase HolaMundo
     Using index info to reconstruct a base tree...
-    M	lib/hola.php
+    M	lib/hola.py
     Falling back to patching base and 3-way merge...
-    Auto-merging lib/hola.php
-    CONFLICT (content): Merge conflict in lib/hola.php
+    Auto-merging lib/hola.py
+    CONFLICT (content): Merge conflict in lib/hola.py
     error: Failed to merge in the changes.
     Patch failed at 0002 hola usa la clase HolaMundo
     The copy of the patch that failed is found in: .git/rebase-apply/patch
@@ -410,21 +405,20 @@ Hemos desecho todos los _merge_ y nuestro árbol está _"limpio"_. Vamos a proba
     If you prefer to skip this patch, run "git rebase --skip" instead.
     To check out the original branch and stop rebasing, run "git rebase --abort".
 
-El conflicto, por supuesto, se sigue dando. Resolvemos guardando el archivo `hola.php` como en los casos anteriores:
+El conflicto, por supuesto, se sigue dando. Resolvemos guardando el archivo `hola.py` como en los casos anteriores:
 
-```php
-<?php
-// Autor: Sergio Gómez <sergio@uco.es>
-require('HolaMundo.php');
+```python
+# Autor: Sergio Gómez <sergio@uco.es>
+from HolaMundo import HolaMundo
 
-print "Introduce tu nombre:";
-$nombre = trim(fgets(STDIN));
-print new HolaMundo($nombre);
+print("Introduce tu nombre:")
+nombre = input().strip()
+print(HolaMundo(nombre))
 ```
 
 Añadimos los cambios en _staging_ y en esta ocasión, y tal como nos indicaba en el mensaje anterior, no tenemos que hacer `git commit` sino continuar con el _rebase_:
 
-    $ git add lib/hola.php
+    $ git add lib/hola.py
     $ git status
     rebase in progress; onto 269eaca
     You are currently rebasing branch 'hola' on '269eaca'.
@@ -433,7 +427,7 @@ Añadimos los cambios en _staging_ y en esta ocasión, y tal como nos indicaba e
     Changes to be committed:
       (use "git reset HEAD <file>..." to unstage)
 
-    	modified:   lib/hola.php
+    	modified:   lib/hola.py
     $ git rebase --continue
     Applying: hola usa la clase HolaMundo
 
@@ -444,50 +438,50 @@ Y ahora vemos que nuestro árbol tiene un aspecto distinto, mucho más limpio:
     * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
     * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
     * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-    * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+    * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-   commit id: "c3e65d0"
-   commit id: "9c85275"
-   branch hola
-   commit id: "6932156"
-   commit id: "9862f33"
-```
-
+!!! example
+    ```mermaid
+    gitGraph:
+       commit id: "e19f2c1"
+       commit id: "efc252e"
+       commit id: "3283e0d" tag: "v1-beta"
+       commit id: "fd4da94" tag: "v1"
+       commit id: "96a39df"
+       commit id: "8c2a509"
+       commit id: "c3e65d0"
+       commit id: "9c85275"
+       branch hola
+       commit id: "6932156"
+       commit id: "9862f33"
+    ```
 
 Lo que hace rebase es volver a aplicar todos los cambios a la rama máster, desde su nodo más reciente. Eso significa que se modifica el orden o la historia de creación de los cambios. Por eso rebase no debe usarse si el orden es importante o si la rama es compartida.
 
-## Mezclando con la rama main
+## Mezclando con la rama main
 
 Ya hemos terminado de implementar los cambios en nuestra rama secundaria y es hora de llevar los cambios a la rama principal. Usamos `git merge` para hacer una fusión normal:
 
-    $ git checkout main
+    $ git switch main
     Switched to branch 'main'
     $ git merge hola
     Updating c3e65d0..491f1d2
     Fast-forward
-     lib/HolaMundo.php | 16 ++++++++++++++++
-     lib/hola.php      |  4 +++-
+     lib/HolaMundo.py | 16 ++++++++++++++++
+     lib/hola.py      |  4 +++-
      2 files changed, 19 insertions(+), 1 deletion(-)
-     create mode 100644 lib/HolaMundo.php
+     create mode 100644 lib/HolaMundo.py
      $ git hist --all
      * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -> main, hola) [Sergio Gómez]
      * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
      * 9c85275 2013-06-16 | Programa interactivo [Sergio Gómez]
      * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-     * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+     * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
      * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
      * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
      * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -505,7 +499,7 @@ Vamos a volver a probar ahora sin hacer _fast-forward_. Reseteamos _main_ al est
     * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
     * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
     * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-    * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+    * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -516,10 +510,10 @@ Vemos que estamos como en el final de la sección anterior, así que ahora mezcl
 
     $ git merge -m "Aplicando los cambios de la rama hola" --no-ff hola
     Merge made by the 'recursive' strategy.
-     lib/HolaMundo.php | 16 ++++++++++++++++
-     lib/hola.php      |  4 +++-
+     lib/HolaMundo.py | 16 ++++++++++++++++
+     lib/hola.py      |  4 +++-
      2 files changed, 19 insertions(+), 1 deletion(-)
-     create mode 100644 lib/HolaMundo.php
+     create mode 100644 lib/HolaMundo.py
     $ git hist --all
     *   2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (HEAD -> main) [Sergio Gomez]
     *\
@@ -528,29 +522,30 @@ Vemos que estamos como en el final de la sección anterior, así que ahora mezcl
     |/
     * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
     * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-    * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+    * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-   commit id: "c3e65d0"
-   commit id: "9c85275"
-   branch hola
-   commit id: "6932156"
-   commit id: "9862f33"
-   checkout main
-   merge hola id: "2eab8ca"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+       commit id: "e19f2c1"
+       commit id: "efc252e"
+       commit id: "3283e0d" tag: "v1-beta"
+       commit id: "fd4da94" tag: "v1"
+       commit id: "96a39df"
+       commit id: "8c2a509"
+       commit id: "c3e65d0"
+       commit id: "9c85275"
+       branch hola
+       commit id: "6932156"
+       commit id: "9862f33"
+       checkout main
+       merge hola id: "2eab8ca"
+    ```
 
 
 En la siguiente imagen se puede ver la diferencia:

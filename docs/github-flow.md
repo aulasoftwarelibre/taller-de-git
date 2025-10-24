@@ -38,20 +38,20 @@ trabajamos en equipo.
 Un método puede ser el siguiente:
 
     $ # tipo-número/descripción
-    $ git checkout -b feature-1/create-changelog
-    $ git checkout -b hotfix-2/updated-database
+    $ git switch -c feature-1/create-changelog
+    $ git switch -c hotfix-2/updated-database
 
 En entornos de trabajo multiusuario se puede usar el siguiente:
 
     $ # usuario/tipo-número/descripción
-    $ git checkout -b sgomez/feature-1/create-changelog
-    $ git checkout -b sgomez/hotfix-2/updated-database
+    $ git switch -c sgomez/feature-1/create-changelog
+    $ git switch -c sgomez/hotfix-2/updated-database
 
 De esa manera, podemos seguir fácilmente quién abrió la rama, en qué consiste y a qué _issues_ está conectada. Pero como decimos es más un convenio que una imposición, pudiéndole poner el nombre que queramos.
 
 Vamos a crear la rama y los commits correspondientes y subir la rama con push al servidor.
 
-    $ git checkout -b sgomez/feature-1/create-changelog
+    $ git switch -c sgomez/feature-1/create-changelog
     $ git add AUTHORS.md
     $ git commit -m "Añadido fichero de autores"
 
@@ -132,7 +132,7 @@ Una vez que hemos terminado de crear la función de la rama ya podemos incorpora
 
 Esta opción es el equivalente a hacer lo siguiente en nuestro repositorio:
 
-    $ git checkout main
+    $ git switch main
     $ git merge --no-ff sgomez/feature-1/create-changelog
     $ git push
 
@@ -146,7 +146,7 @@ GitHub siempre desactiva el _fast forward_.
 Esta opción es el equivalente a hacer lo siguiente en nuestro repositorio
 
     $ git rebase main
-    $ git checkout main
+    $ git switch main
     $ git merge --no-ff sgomez/feature-1/create-changelog
     $ git push
 
@@ -156,7 +156,7 @@ Es decir, nos aseguramos de que nuestra rama está al final de _main_ haciendo _
 
 Esta opción es el equivalente a hacer lo siguiente en nuestro repositorio:
 
-    $ git checkout main
+    $ git switch main
     $ git merge --squash sgomez/feature-1/create-changelog
     $ git push
 
@@ -178,7 +178,7 @@ Las consecuencias de esta acción son las siguientes:
 
 Hemos cambiado el repositorio en GitHub, pero nuestra rama main no contiene los mismos cambios que el de origin. Así que nos toca sincronizar y borrar la rama obsoleta:
 
-    $ git checkout main
+    $ git switch main
     $ git pull --rebase --autostash
     $ git branch -D sgomez/feature-1/create-changelog
 

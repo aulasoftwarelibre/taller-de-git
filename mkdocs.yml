@@ -1,6 +1,6 @@
 # Project information
 site_name: Taller de Git
-site_url: "https://github.com/aulasoftwarelibre/taller-de-git.git"
+site_url: "https://aulasoftwarelibre.github.io/taller-de-git"
 site_author: "Aula de Software Libre <aulasoftwarelibre@uco.es>"
 site_description: "Curso básico de git"
 
@@ -130,3 +130,4 @@ nav:
   - Comandos de git: commands.md
   - Flujo de trabajo con Git: gitflow.md
   - Referencias: referencias.md
+

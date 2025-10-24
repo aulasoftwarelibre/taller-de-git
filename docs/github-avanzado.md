@@ -84,7 +84,7 @@ Recordemos que _fetch_ solo trae los cambios que existan en el repositorio remot
 
 Vamos a crear una nueva funcionalidad: vamos a añadir una licencia de uso. Para ello preferentemente crearemos una nueva rama.
 
-    $ git checkout -b add-license
+    $ git switch -c add-license
     $ echo "LICENCIA MIT" > LICESE
     # el error es intencionado
     $ git add LICESE
@@ -92,7 +92,7 @@ Vamos a crear una nueva funcionalidad: vamos a añadir una licencia de uso. Para
 
 En principio habría que probar que todo funciona bien y entonces integraremos en la rama _main_ de nuestro repositorio y enviamos los cambios a Github:
 
-    $ git checkout main
+    $ git switch main
     $ git merge add-license --no-ff
     $ git branch -d add-license
     # Borramos la rama que ya no nos sirve para nada
@@ -123,7 +123,7 @@ Ahora sí, el administrador puede aprobar la fusión y borrar la rama del reposi
 
 Una vez que se han aceptado los cambios, podemos borrar la rama y actualizar nuestro repositorio con los datos del remoto como hicimos antes. ¿Por qué actualizar desde el remoto y no desde nuetra rama _add-license_? Pues porque usualmente el administrador puede haber modificado los cambios que le hemos propuesto, o incluso una tercera persona. Recordemos el cariz colaborativo que tiene Github.
 
-    $ git checkout main
+    $ git switch main
     $ git branch -d add-license
     # Esto borra la rama local
     $ git push origin --delete add-license
@@ -131,7 +131,7 @@ Una vez que se han aceptado los cambios, podemos borrar la rama y actualizar nue
 
 ### Todo esto es algo complicado...
 
-Sí, lo es, al menos al principio. Git tiene una parte muy sencilla que es el uso del repositorio local (órdenes tales como add, rm, mv y commit). El siguiente nivel de complejidad lo componen las órdenes para trabajar con ramas y fusionarlas (checkout, branch, merge, rebase) y por último, las que trabajan con repositorios remotos (pull, push, fetch, remote). Además hay otra serie de órdenes para tener información (diff, log, status) o hacer operaciones de mantenimiento (fsck, gc). Lo importante para no perderse en Git, es seguir la siguiente máxima:
+Sí, lo es, al menos al principio. Git tiene una parte muy sencilla que es el uso del repositorio local (órdenes tales como add, rm, mv y commit). El siguiente nivel de complejidad lo componen las órdenes para trabajar con ramas y fusionarlas (switch, restore, branch, merge, rebase) y por último, las que trabajan con repositorios remotos (pull, push, fetch, remote). Además hay otra serie de órdenes para tener información (diff, log, status) o hacer operaciones de mantenimiento (fsck, gc). Lo importante para no perderse en Git, es seguir la siguiente máxima:
 
 > No avanzar al siguiente nivel de complejidad, hasta no haber entendido completamente el anterior.
 

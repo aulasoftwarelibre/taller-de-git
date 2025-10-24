@@ -485,9 +485,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bash-completion" class="md-nav__link">
+  <a href="#shell-completion" class="md-nav__link">
     <span class="md-ellipsis">
-      Bash Completion
+      Shell Completion
     </span>
   </a>
   
@@ -814,9 +814,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bash-completion" class="md-nav__link">
+  <a href="#shell-completion" class="md-nav__link">
     <span class="md-ellipsis">
-      Bash Completion
+      Shell Completion
     </span>
   </a>
   
@@ -863,7 +863,7 @@
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
 <h3 id="instalando-en-linux">Instalando en Linux<a class="headerlink" href="#instalando-en-linux" title="Permanent link">&para;</a></h3>
 <p>Si quieres instalar Git en Linux a través de un instalador binario, en general puedes hacerlo a través de la herramienta básica de gestión de paquetes que trae tu distribución. Si estás en Fedora, puedes usar yum:</p>
-<div class="language-text highlight"><pre><span></span><code>$ yum install git-core
+<div class="language-text highlight"><pre><span></span><code>$ sudo dnf install git-core
 </code></pre></div>
 <p>O si estás en una distribución basada en Debian como Ubuntu, prueba con apt-get:</p>
 <div class="language-text highlight"><pre><span></span><code>$ apt-get install git
@@ -885,8 +885,12 @@ $ git config --global user.email johndoe@example.com
 <p>También se recomienda configurar el siguiente parámetro:</p>
 <div class="language-text highlight"><pre><span></span><code>$ git config --global push.default simple
 </code></pre></div>
-<h3 id="bash-completion">Bash Completion<a class="headerlink" href="#bash-completion" title="Permanent link">&para;</a></h3>
-<p><em>Bash completion</em> es una utilidad que permite a bash completar órdenes y parámetros. Por defecto suele venir desactivada en Ubuntu y es necesario modificar el archivo <code>$HOME/.bashrc</code> para poder activarla. Simplemente hay que descomentar las líneas que lo activan,</p>
+<p>Otra opción muy habitual es usar <code>main</code> en vez de <code>master</code> para la rama principal. Si quieres usarla para todos tus nuevos proyectos puedes configurarla así:</p>
+<div class="language-text highlight"><pre><span></span><code>$ git config --global init.defaultBranch main
+</code></pre></div>
+<h3 id="shell-completion">Shell Completion<a class="headerlink" href="#shell-completion" title="Permanent link">&para;</a></h3>
+<p><em>Bash completion</em> es una utilidad que permite a <em>bash</em> completar órdenes y parámetros. Por defecto suele venir desactivada en Ubuntu y es necesario modificar el archivo <code>$HOME/.bashrc</code> para poder activarla. Simplemente hay que descomentar las líneas que lo activan.</p>
+<p>Si usas <em>zsh</em> puedes consultar la documentación para activar los plugins de autocompletado y alias con git. Son bastante útiles y mejorarán tu productividad.</p>
 
 
 
@@ -907,7 +911,7 @@ $ git config --global user.email johndoe@example.com
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="15 de octubre de 2020 21:47:26 UTC">15 de octubre de 2020</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="24 de octubre de 2025 12:57:35 UTC">24 de octubre de 2025</span>
   </span>
 
     

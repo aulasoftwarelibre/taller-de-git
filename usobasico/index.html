@@ -474,27 +474,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#anadir-la-aplicacion" class="md-nav__link">
+  <a href="#estado-del-repositorio" class="md-nav__link">
     <span class="md-ellipsis">
-      Añadir la aplicación
+      Estado del repositorio
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#comprobar-el-estado-del-repositorio" class="md-nav__link">
+  <a href="#crear-nuestro-primer-commit" class="md-nav__link">
     <span class="md-ellipsis">
-      Comprobar el estado del repositorio
+      Crear nuestro primer commit.
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#anadir-cambios" class="md-nav__link">
+  <a href="#actualizar-ficheros" class="md-nav__link">
     <span class="md-ellipsis">
-      Añadir cambios
+      Actualizar ficheros
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparar-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparar archivos
     </span>
   </a>
   
@@ -880,27 +889,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#anadir-la-aplicacion" class="md-nav__link">
+  <a href="#estado-del-repositorio" class="md-nav__link">
     <span class="md-ellipsis">
-      Añadir la aplicación
+      Estado del repositorio
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#comprobar-el-estado-del-repositorio" class="md-nav__link">
+  <a href="#crear-nuestro-primer-commit" class="md-nav__link">
     <span class="md-ellipsis">
-      Comprobar el estado del repositorio
+      Crear nuestro primer commit.
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#anadir-cambios" class="md-nav__link">
+  <a href="#actualizar-ficheros" class="md-nav__link">
     <span class="md-ellipsis">
-      Añadir cambios
+      Actualizar ficheros
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparar-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparar archivos
     </span>
   </a>
   
@@ -1060,343 +1078,466 @@
 <h1 id="uso-basico-de-git">Uso básico de Git<a class="headerlink" href="#uso-basico-de-git" title="Permanent link">&para;</a></h1>
 <h2 id="crear-un-proyecto">Crear un proyecto<a class="headerlink" href="#crear-un-proyecto" title="Permanent link">&para;</a></h2>
 <h3 id="crear-un-programa-hola-mundo">Crear un programa "Hola Mundo"<a class="headerlink" href="#crear-un-programa-hola-mundo" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Este tutorial indica muchas ordenes de git de esta forma:</p>
+<div class="language-text highlight"><pre><span></span><code>$ git init
+</code></pre></div>
+<p>El símbolo <code>$</code> lo que representa es el <em>prompt</em> del <em>shell</em> sistema operativo. Es un símbolo universal para
+indicar que <code>git init</code> debe ser escrito en tu terminal. Por tanto, no escribas el <code>$</code> solo lo que esté a la derecha.</p>
+<p>Eso también te ayudará a distinguir entre lo que es el comando que debes ejecutar y la salida del programa.</p>
+</div>
 <p>Creamos un directorio donde colocar el código</p>
 <div class="language-text highlight"><pre><span></span><code>$ mkdir curso-de-git
 $ cd curso-de-git
 </code></pre></div>
-<p>Creamos un fichero <code>hola.php</code> que muestre Hola Mundo.</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">echo</span> <span class="s2">&quot;Hola Mundo</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<p>Creamos un fichero <code>hola.py</code> que muestre Hola Mundo.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hola, Mundo.&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="crear-el-repositorio">Crear el repositorio<a class="headerlink" href="#crear-el-repositorio" title="Permanent link">&para;</a></h3>
-<p>Para crear un nuevo repositorio se usa la orden <code>git init</code></p>
-<div class="language-text highlight"><pre><span></span><code>$ git init
-Initialized empty Git repository in /home/cc0gobas/git/curso-de-git/.git/
-</code></pre></div>
-<h3 id="anadir-la-aplicacion">Añadir la aplicación<a class="headerlink" href="#anadir-la-aplicacion" title="Permanent link">&para;</a></h3>
-<p>Vamos a almacenar el archivo que hemos creado en el repositorio para poder trabajar, después explicaremos para qué sirve cada orden.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git add hola.php
-$ git commit -m &quot;Creación del proyecto&quot;
-[main (root-commit) e19f2c1] Creación del proyecto
- 1 file changed, 2 insertions(+)
- create mode 100644 hola.php
-</code></pre></div>
-<pre class="mermaid"><code>gitGraph:
-   commit id: "e19f2c1"</code></pre>
-<h3 id="comprobar-el-estado-del-repositorio">Comprobar el estado del repositorio<a class="headerlink" href="#comprobar-el-estado-del-repositorio" title="Permanent link">&para;</a></h3>
-<p>Con la orden <code>git status</code> podemos ver en qué estado se encuentran los archivos de nuestro repositorio.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git status
-# On branch main
-nothing to commit (working directory clean)
-</code></pre></div>
-<p>Si modificamos el archivo <code>hola.php</code>:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola </span><span class="si">{</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span></code></pre></div>
-<p>Y volvemos a comprobar el estado del repositorio:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git status
-# On branch main
-# Changes not staged for commit:
-#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-#
-#   modified:   hola.php
-#
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
-</code></pre></div>
-<h3 id="anadir-cambios">Añadir cambios<a class="headerlink" href="#anadir-cambios" title="Permanent link">&para;</a></h3>
-<p>Con la orden <code>git add</code> indicamos a git que prepare los cambios para que sean almacenados.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git add hola.php
-$ git status
-# On branch main
-# Changes to be committed:
-#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
-#
-#   modified:   hola.php
-#
-</code></pre></div>
-<h3 id="confirmar-los-cambios">Confirmar los cambios<a class="headerlink" href="#confirmar-los-cambios" title="Permanent link">&para;</a></h3>
-<p>Con la orden <code>git commit</code> confirmamos los cambios definitivamente, lo que hace que se guarden permanentemente en nuestro repositorio.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git commit -m &quot;Parametrización del programa&quot;
-[main efc252e] Parametrización del programa
- 1 file changed, 1 insertion(+), 1 deletion(-)
-$ git status
-# On branch main
-nothing to commit (working directory clean)
-</code></pre></div>
-<pre class="mermaid"><code>gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"</code></pre>
-<h3 id="diferencias-entre-workdir-y-staging">Diferencias entre <em>workdir</em> y <em>staging</em>.<a class="headerlink" href="#diferencias-entre-workdir-y-staging" title="Permanent link">&para;</a></h3>
-<p>Modificamos nuestra aplicación para que soporte un parámetro por defecto y añadimos los cambios.</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">;</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola, </span><span class="si">{</span><span class="nv">$nombre</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span></code></pre></div>
-<p>Este vez añadimos los cambios a la fase de <em>staging</em> pero sin confirmarlos (<em>commit</em>).</p>
-<div class="language-text highlight"><pre><span></span><code>git add hola.php
-</code></pre></div>
-<p>Volvemos a modificar el programa para indicar con un comentario lo que hemos hecho.</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">// El nombre por defecto es Mundo</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">;</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola, </span><span class="si">{</span><span class="nv">$nombre</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span></code></pre></div>
-<p>Y vemos el estado en el que está el repositorio</p>
-<div class="language-text highlight"><pre><span></span><code>$ git status
-# On branch main
-# Changes to be committed:
-#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
-#
-#   modified:   hola.php
-#
-# Changes not staged for commit:
-#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-#
-#   modified:   hola.php
-#
-</code></pre></div>
-<p>Podemos ver como aparecen el archivo <em>hola.php</em> dos veces. El primero está preparado
-para ser confirmado y está almacenado en la zona de <em>staging</em>. El segundo indica
-que el directorio hola.php está modificado otra vez en la zona de trabajo (<em>workdir</em>).</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Si volvieramos a hacer un <code>git add hola.php</code> sobreescribiríamos los cambios previos
-que había en la zona de <em>staging</em>.</p>
-</div>
-<p>Almacenamos los cambios por separado:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git commit -m &quot;Se añade un parámetro por defecto&quot;
-[main 3283e0d] Se añade un parámetro por defecto
- 1 file changed, 2 insertions(+), 1 deletion(-)
-$ git status
-# On branch main
-# Changes not staged for commit:
-#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-#
-#   modified:   hola.php
-#
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
-$ git add .
-$ git status
-# On branch main
-# Changes to be committed:
-#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
-#
-#   modified:   hola.php
-#
-$ git commit -m &quot;Se añade un comentario al cambio del valor por defecto&quot;
-[main fd4da94] Se añade un comentario al cambio del valor por defecto
- 1 file changed, 1 insertion(+)
-</code></pre></div>
-<pre class="mermaid"><code>gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d"
-   commit id: "fd4da94"</code></pre>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>El valor "." despues de <code>git add</code> indica que se añadan todos los archivos de forma recursiva.</p>
+<p>Los ejemplos están en lenguaje python, que viene de serie instalado tanto
+en sistemas GNU/Linux como en otros sistemas propietarios.</p>
+<p>No es necesario que lo tengas instalado, pero si quieres ejecutar el código y
+ver lo que hace puede ser interesante.</p>
+<p>Para ver lo que hace este programa ejecuta en una terminal:</p>
+<div class="language-text highlight"><pre><span></span><code>python hola.py
+</code></pre></div>
 </div>
+<h3 id="crear-el-repositorio">Crear el repositorio<a class="headerlink" href="#crear-el-repositorio" title="Permanent link">&para;</a></h3>
+<p>Para crear un nuevo repositorio se usa la orden <code>git init</code></p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>git<span class="w"> </span>init
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Initialized<span class="w"> </span>empty<span class="w"> </span>Git<span class="w"> </span>repository<span class="w"> </span><span class="k">in</span><span class="w"> </span>/home/cc0gobas/git/curso-de-git/.git/
+</span></code></pre></div>
+<p>Enhorabuena, has aprendido tu primer comando de git. Lo usarás solo cuando quieras crear uno desde cero.</p>
+<h3 id="estado-del-repositorio">Estado del repositorio<a class="headerlink" href="#estado-del-repositorio" title="Permanent link">&para;</a></h3>
+<p>Otro comando muy útil, es el que nos permite saber el estado en el que está nuestro repositorio, el area de trabajo (donde están nuestros archivos) y el área de <em>staging</em> (donde git guarda cambios antes de almacenarlos en el repositorio). Si no te suena lo que es, repasa el lo que son los <a href="../introduccion/#los-tres-estados">tres estados</a> en el capitulo de introducción.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>No<span class="w"> </span>commits<span class="w"> </span>yet
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Untracked<span class="w"> </span>files:
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span>hola.py
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>nothing<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span>but<span class="w"> </span>untracked<span class="w"> </span>files<span class="w"> </span>present<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>to<span class="w"> </span>track<span class="o">)</span>
+</span></code></pre></div>
+<p>Aquí podemos ver que estamos en la rama main (o master si no has configurado el nombre de la rama por defecto). Que aún no hemos hecho ningún commit, y que tenemos un fichero sin registrar (untracked). Para git un fichero <em>untracked</em> es aquel que es nuevo y que aún no le hemos dicho que debe incorporarlo a su base de datos de cambios.</p>
+<p>Por el último nos sugiere lo que podemos hacer.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Cuando no sepas en qué estado se encuentra tu repositorio o qué tienes que hacer
+ejecuta siempre <code>git status</code>. Git te dará información sobre cómo se encuentra
+tu estado de trabajo y qué acciones puedes realizar.</p>
+</div>
+<h3 id="crear-nuestro-primer-commit">Crear nuestro primer commit.<a class="headerlink" href="#crear-nuestro-primer-commit" title="Permanent link">&para;</a></h3>
+<p>Vamos a almacenar el archivo que hemos creado en el repositorio para poder trabajar. Vamos a hacer todo de golpe y después explicaremos para qué sirve cada orden.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>hola.py
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Creación del proyecto&quot;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="o">[</span>main<span class="w"> </span><span class="o">(</span>root-commit<span class="o">)</span><span class="w"> </span>e19f2c1<span class="o">]</span><span class="w"> </span>Creación<span class="w"> </span>del<span class="w"> </span>proyecto
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>hola.py
+</span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
+<p>Acabamos de iniciar nuestra rama de cambios y ya tenemos nuestro primer nodo. El siguiente gráfico es una representación visual del estado
+del repositorio. Podemos ver una linea que es la rama <em>main</em> y un commit representado por su hash.</p>
+<pre class="mermaid"><code>gitGraph:
+commit id: "e19f2c1"</code></pre>
+<p>Ahora mismo no entenderás mucho pero poco a poco lo irás haciendo.</p>
+</div>
+<h3 id="actualizar-ficheros">Actualizar ficheros<a class="headerlink" href="#actualizar-ficheros" title="Permanent link">&para;</a></h3>
+<p>Ejecutamos <code>git status</code> como vimos antes:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>tree<span class="w"> </span>clean
+</span></code></pre></div>
+<p>Si modificamos el archivo <code>hola.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">else</span><span class="p">:</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hola.&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Y volvemos a comprobar el estado del repositorio:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Changes<span class="w"> </span>not<span class="w"> </span>staged<span class="w"> </span><span class="k">for</span><span class="w"> </span>commit:
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>update<span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>discard<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>working<span class="w"> </span>directory<span class="o">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span>modified:<span class="w">   </span>hola.py
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>and/or<span class="w"> </span><span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+</span></code></pre></div>
+<p>Git nos indica en color rojo que <code>hola.py</code> ha sido modificado y nos lo indica como <code>Changes not staged for commit</code>.
+Esto nos indica que hemos modificado el archivo original y que ahora tenemos que decidir que hacer con él,
+si queremos marcar esos cambios para guardarlos o si queremos restaurar el fichero a su estado anterior.</p>
+<h3 id="preparar-archivos">Preparar archivos<a class="headerlink" href="#preparar-archivos" title="Permanent link">&para;</a></h3>
+<p>Vamos a seguir el flujo más habitual, vamos a decirle a <em>git</em> que queremos conservar los cambios. 
+Con la orden <code>git add</code> indicamos a git que prepare los cambios para que sean almacenados.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>hola.py
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span>modified:<span class="w">   </span>hola.py
+</span></code></pre></div>
+<p>Sigue indicandonos que el fichero está modificado, pero ahora en color verde y como <code>Changes to be committed</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Esto es lo que se conoce como fase de <em>stagging</em> o preparación.</p>
+</div>
+<h3 id="confirmar-los-cambios">Confirmar los cambios<a class="headerlink" href="#confirmar-los-cambios" title="Permanent link">&para;</a></h3>
+<p>Ahora vamos a guardar definitivamente la actualización de nuestro programa en nuestro repositorio.
+Con la orden <code>git commit</code> confirmamos los cambios definitivamente.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Parametrización del programa&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">[</span>main<span class="w"> </span>efc252e<span class="o">]</span><span class="w"> </span>Parametrización<span class="w"> </span>del<span class="w"> </span>programa
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">6</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>,<span class="w"> </span><span class="m">1</span><span class="w"> </span>deletion<span class="o">(</span>-<span class="o">)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>directory<span class="w"> </span>clean
+</span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
+<p>Así esta el estado de nuestro repositorio. No te preocupes si no obtienes exactamente la misma salida, es completamente normal.
+Lo importante es que el estado del repositorio sea el mismo (con o sin ficheros para confirmar)</p>
+<pre class="mermaid"><code>gitGraph:
+    commit id: "e19f2c1"
+    commit id: "efc252e"</code></pre>
+</div>
+<h3 id="diferencias-entre-workdir-y-staging">Diferencias entre <em>workdir</em> y <em>staging</em>.<a class="headerlink" href="#diferencias-entre-workdir-y-staging" title="Permanent link">&para;</a></h3>
+<p>Modificamos nuestra aplicación para que soporte un parámetro por defecto y añadimos los cambios.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Este vez añadimos los cambios a la fase de <em>staging</em> pero sin confirmarlos (<em>commit</em>).</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git add hola.py
+</span></code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Si ejecutaras ahora <code>git status</code>. ¿Qué debería ocurrir? Ya lo hemos hecho antes.
+Imagina lo que debería pasar repasando el tutorial y comprueba si has acertado.</p>
+</div>
+<p>Volvemos a modificar el programa para indicar con un comentario lo que hemos hecho.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># El nombre por defecto es Mundo</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Y vemos el estado en el que está el repositorio</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">        </span>modified:<span class="w">   </span>hola.py
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>Changes<span class="w"> </span>not<span class="w"> </span>staged<span class="w"> </span><span class="k">for</span><span class="w"> </span>commit:
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>update<span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>discard<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>working<span class="w"> </span>directory<span class="o">)</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">        </span>modified:<span class="w">   </span>hola.py
+</span></code></pre></div>
+<p>Podemos ver como aparecen el archivo <em>hola.py</em> dos veces. El primero está preparado
+para ser confirmado y está almacenado en la zona de <em>staging</em>. El segundo indica
+que el directorio hola.py está modificado otra vez en la zona de trabajo (<em>workdir</em>).</p>
+<p>La zona de trabajo es donde tú trabajas, y la zona de <em>stagging</em> es donde trabaja <em>git</em>.
+Los cambios que no se hayan confirmado en la zona de staggig no se guardarán en el repositorio. Cuando un fichero
+es distinto en ambas zonas, nos lo indicará para que sepamos que si guardamos los cambios, solo
+se guardarán los que confirmamos la primera vez.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Cuidado cuando uses <code>git add .</code> asegúrate de que no estás añadiendo archivos que no quieres añadir.</p>
+<p>Si volvieramos a hacer un <code>git add hola.py</code> sobreescribiríamos los cambios previos
+que había en la zona de <em>staging</em>. No lo hagas, sigue el tutorial.</p>
+</div>
+<p>Almacenamos los cambios por separado:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Se añade un parámetro por defecto&quot;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="o">[</span>main<span class="w"> </span>3283e0d<span class="o">]</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>parámetro<span class="w"> </span>por<span class="w"> </span>defecto
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">2</span><span class="w"> </span>insertions<span class="o">(</span>+<span class="o">)</span>,<span class="w"> </span><span class="m">4</span><span class="w"> </span>deletions<span class="o">(</span>-<span class="o">)</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>Changes<span class="w"> </span>not<span class="w"> </span>staged<span class="w"> </span><span class="k">for</span><span class="w"> </span>commit:
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>update<span class="w"> </span>what<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>committed<span class="o">)</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>discard<span class="w"> </span>changes<span class="w"> </span><span class="k">in</span><span class="w"> </span>working<span class="w"> </span>directory<span class="o">)</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">        </span>modified:<span class="w">   </span>hola.py
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>no<span class="w"> </span>changes<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>commit<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git add&quot;</span><span class="w"> </span>and/or<span class="w"> </span><span class="s2">&quot;git commit -a&quot;</span><span class="o">)</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>$<span class="w"> </span>git<span class="w"> </span>add<span class="w"> </span>hola.py
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>Changes<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>committed:
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">  </span><span class="o">(</span>use<span class="w"> </span><span class="s2">&quot;git restore --staged &lt;file&gt;...&quot;</span><span class="w"> </span>to<span class="w"> </span>unstage<span class="o">)</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">        </span>modified:<span class="w">   </span>hola.py
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Se añade un comentario al cambio del valor por defecto&quot;</span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="o">[</span>main<span class="w"> </span>fd4da94<span class="o">]</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>comentario<span class="w"> </span>al<span class="w"> </span>cambio<span class="w"> </span>del<span class="w"> </span>valor<span class="w"> </span>por<span class="w"> </span>defecto
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="w">    </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>$<span class="w"> </span>git<span class="w"> </span>status
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>On<span class="w"> </span>branch<span class="w"> </span>main
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>nothing<span class="w"> </span>to<span class="w"> </span>commit,<span class="w"> </span>working<span class="w"> </span>tree<span class="w"> </span>clean
+</span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
+<pre class="mermaid"><code>gitGraph:
+    commit id: "e19f2c1"
+    commit id: "efc252e"
+    commit id: "3283e0d"
+    commit id: "fd4da94"</code></pre>
 </div>
 <h3 id="ignorando-archivos">Ignorando archivos<a class="headerlink" href="#ignorando-archivos" title="Permanent link">&para;</a></h3>
+<p>Hasta ahora hemos añadido los archivos indicando siempre el nombre, pero si hemos cambiado muchos ficheros o están en subdirectorios, no es muy cómodo.</p>
+<p>Si en vez de indicar el nombre de un fichero indicamos <code>git add .</code> le estaremos diciendo a git que añada todos los ficheros que se encuentre tanto en el directorio actual como en cualquier subdirectorio. Eso incluye tanto a los ficheros nuevos como a los modificados.</p>
+<p>También podemos indicarle un directorio y solo buscará recursivamenet en el que le indimos, así como hacer una mezcla de ficheros y directorios. Por ejemplo:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git<span class="w"> </span>add<span class="w"> </span>directorio
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>git<span class="w"> </span>add<span class="w"> </span>directorio/subdir
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>git<span class="w"> </span>add<span class="w"> </span>docs/agenda<span class="w"> </span>fichero.txt<span class="w"> </span>practicas/1/main.c
+</span></code></pre></div>
 <p>La orden <code>git add .</code> o <code>git add nombre_directorio</code> es muy cómoda, ya que nos permite añadir todos los archivos del proyecto o todos los contenidos en un directorio y sus subdirectorios. Es mucho más rápido que tener que ir añadiéndolos uno por uno. El problema es que, si no se tiene cuidado, se puede terminar por añadir archivos innecesarios o con información sensible.</p>
 <p>Por lo general se debe evitar añadir archivos que se hayan generado como producto de la compilación del proyecto, los que generen los entornos de desarrollo (archivos de configuración y temporales) y aquellos que contentan información sensible, como contraseñas o tokens de autenticación. Por ejemplo, en un proyecto de <code>C/C++</code>, los archivos objeto no deben incluirse, solo los que contengan código fuente y los make que los generen.</p>
 <p>Para indicarle a <em>git</em> que debe ignorar un archivo, se puede crear un fichero llamado <em>.gitignore</em>, bien en la raíz del proyecto o en los subdirectorios que queramos. Dicho fichero puede contener patrones, uno en cada línea, que especiquen qué archivos deben ignorarse. El formato es el siguiente:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a># .gitignore
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>dir1/           # ignora todo lo que contenga el directorio dir1
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>!dir1/info.txt  # El operador ! excluye del ignore a dir1/info.txt (sí se guardaría)
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>dir2/*.txt      # ignora todos los archivos txt que hay en el directorio dir2
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>dir3/**/*.txt   # ignora todos los archivos txt que hay en el dir3 y sus subdirectorios
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>*.o             # ignora todos los archivos con extensión .o en todos los directorios
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a># .gitignore
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>dir1/           # ignora todo lo que contenga el directorio dir1
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>!dir1/info.txt  # El operador ! excluye del ignore a dir1/info.txt (sí se guardaría)
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>dir2/*.txt      # ignora todos los archivos txt que hay en el directorio dir2
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>dir3/**/*.txt   # ignora todos los archivos txt que hay en el dir3 y sus subdirectorios
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>*.o             # ignora todos los archivos con extensión .o en todos los directorios
 </span></code></pre></div>
 <p>Cada tipo de proyecto genera sus ficheros temporales, así que para cada proyecto hay un <code>.gitignore</code> apropiado. Existen repositorios que ya tienen creadas plantillas. Podéis encontrar uno en <a href="https://github.com/github/gitignore">https://github.com/github/gitignore</a></p>
 <h3 id="ignorando-archivos-globalmente">Ignorando archivos globalmente<a class="headerlink" href="#ignorando-archivos-globalmente" title="Permanent link">&para;</a></h3>
 <p>Si bien, los archivos que hemos metido en <code>.gitignore</code>, deben ser aquellos ficheros temporales o de configuración que se pueden crear durante las fases de compilación o ejecución del programa, en ocasiones habrá otros ficheros que tampoco debemos introducir en el repositorio y que son recurrentes en todos los proyectos. En dicho caso, es más útil tener un <em>gitignore</em> que sea global a todos nuestros proyectos. Esta configuración sería complementaria a la que ya tenemos. Ejemplos de lo que se puede ignorar de forma global son los ficheros temporales del sistema operativo (<code>*~</code>, <code>.nfs*</code>) y los que generan los entornos de desarrollo.</p>
 <p>Para indicar a <em>git</em> que queremos tener un fichero de <em>gitignore</em> global, tenemos que configurarlo con la siguiente orden:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git config --global core.excludesfile $HOME/.gitignore_global
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>git config --global core.excludesfile $HOME/.gitignore_global
 </span></code></pre></div>
 <p>Ahora podemos crear un archivo llamado <code>.gitignore_global</code> en la raíz de nuestra cuenta con este contenido:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a># Compiled source #
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>###################
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>*.com
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>*.class
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>*.dll
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>*.exe
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>*.o
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>*.so
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a># Packages #
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>############
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a># it&#39;s better to unpack these files and commit the raw source
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a># git has its own built in compression methods
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>*.7z
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>*.dmg
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>*.gz
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>*.iso
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>*.jar
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>*.rar
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>*.tar
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>*.zip
-</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>
-</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a># Logs and databases #
-</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>######################
-</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>*.log
-</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>*.sql
-</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>*.sqlite
-</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>
-</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a># OS generated files #
-</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>######################
-</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>.DS_Store
-</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>.DS_Store?
-</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>._*
-</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>.Spotlight-V100
-</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>.Trashes
-</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>ehthumbs.db
-</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>Thumbs.db
-</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>*~
-</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>*.swp
-</span><span id="__span-6-40"><a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>
-</span><span id="__span-6-41"><a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a># IDEs               #
-</span><span id="__span-6-42"><a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>######################
-</span><span id="__span-6-43"><a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a>.idea
-</span><span id="__span-6-44"><a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>.settings/
-</span><span id="__span-6-45"><a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a>.classpath
-</span><span id="__span-6-46"><a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a>.project
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a># Compiled source #
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>###################
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>*.com
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>*.class
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>*.dll
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>*.exe
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>*.o
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>*.so
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a># Packages #
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>############
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a># it&#39;s better to unpack these files and commit the raw source
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a># git has its own built in compression methods
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>*.7z
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>*.dmg
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>*.gz
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>*.iso
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>*.jar
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>*.rar
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>*.tar
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>*.zip
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a># Logs and databases #
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>######################
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>*.log
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>*.sql
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>*.sqlite
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a># OS generated files #
+</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>######################
+</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>.DS_Store
+</span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>.DS_Store?
+</span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>._*
+</span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>.Spotlight-V100
+</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>.Trashes
+</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>ehthumbs.db
+</span><span id="__span-17-37"><a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>Thumbs.db
+</span><span id="__span-17-38"><a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>*~
+</span><span id="__span-17-39"><a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>*.swp
+</span><span id="__span-17-40"><a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>
+</span><span id="__span-17-41"><a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a># IDEs               #
+</span><span id="__span-17-42"><a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a>######################
+</span><span id="__span-17-43"><a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a>.idea
+</span><span id="__span-17-44"><a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>.settings/
+</span><span id="__span-17-45"><a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a>.classpath
+</span><span id="__span-17-46"><a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a>.project
 </span></code></pre></div>
 <h2 id="trabajando-con-el-historial">Trabajando con el historial<a class="headerlink" href="#trabajando-con-el-historial" title="Permanent link">&para;</a></h2>
 <h3 id="observando-los-cambios">Observando los cambios<a class="headerlink" href="#observando-los-cambios" title="Permanent link">&para;</a></h3>
 <p>Con la orden <code>git log</code> podemos ver todos los cambios que hemos hecho:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git log
-commit fd4da946326fbe8b24e89282ad25a71721bf40f6
-Author: Sergio Gómez &lt;sergio@uco.es&gt;
-Date:   Sun Jun 16 12:51:01 2013 +0200
-
-    Se añade un comentario al cambio del valor por defecto
-
-commit 3283e0d306c8d42d55ffcb64e456f10510df8177
-Author: Sergio Gómez &lt;sergio@uco.es&gt;
-Date:   Sun Jun 16 12:50:00 2013 +0200
-
-    Se añade un parámetro por defecto
-
-commit efc252e11939351505a426a6e1aa5bb7dc1dd7c0
-Author: Sergio Gómez &lt;sergio@uco.es&gt;
-Date:   Sun Jun 16 12:13:26 2013 +0200
-
-    Parametrización del programa
-
-commit e19f2c1701069d9d1159e9ee21acaa1bbc47d264
-Author: Sergio Gómez &lt;sergio@uco.es&gt;
-Date:   Sun Jun 16 11:55:23 2013 +0200
-
-    Creación del proyecto
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>git<span class="w"> </span>log
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>commit<span class="w"> </span>fd4da946326fbe8b24e89282ad25a71721bf40f6
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>Author:<span class="w"> </span>Sergio<span class="w"> </span>Gómez<span class="w"> </span>&lt;sergio@uco.es&gt;
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>Date:<span class="w">   </span>Sun<span class="w"> </span>Jun<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">12</span>:51:01<span class="w"> </span><span class="m">2013</span><span class="w"> </span>+0200
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>comentario<span class="w"> </span>al<span class="w"> </span>cambio<span class="w"> </span>del<span class="w"> </span>valor<span class="w"> </span>por<span class="w"> </span>defecto
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>commit<span class="w"> </span>3283e0d306c8d42d55ffcb64e456f10510df8177
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>Author:<span class="w"> </span>Sergio<span class="w"> </span>Gómez<span class="w"> </span>&lt;sergio@uco.es&gt;
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>Date:<span class="w">   </span>Sun<span class="w"> </span>Jun<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">12</span>:50:00<span class="w"> </span><span class="m">2013</span><span class="w"> </span>+0200
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">    </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>parámetro<span class="w"> </span>por<span class="w"> </span>defecto
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>commit<span class="w"> </span>efc252e11939351505a426a6e1aa5bb7dc1dd7c0
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>Author:<span class="w"> </span>Sergio<span class="w"> </span>Gómez<span class="w"> </span>&lt;sergio@uco.es&gt;
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>Date:<span class="w">   </span>Sun<span class="w"> </span>Jun<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">12</span>:13:26<span class="w"> </span><span class="m">2013</span><span class="w"> </span>+0200
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">    </span>Parametrización<span class="w"> </span>del<span class="w"> </span>programa
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>commit<span class="w"> </span>e19f2c1701069d9d1159e9ee21acaa1bbc47d264
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>Author:<span class="w"> </span>Sergio<span class="w"> </span>Gómez<span class="w"> </span>&lt;sergio@uco.es&gt;
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>Date:<span class="w">   </span>Sun<span class="w"> </span>Jun<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">11</span>:55:23<span class="w"> </span><span class="m">2013</span><span class="w"> </span>+0200
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="w">    </span>Creación<span class="w"> </span>del<span class="w"> </span>proyecto
+</span></code></pre></div>
 <p>También es posible ver versiones abreviadas o limitadas, dependiendo de los parámetros:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git log --oneline
-fd4da94 Se añade un comentario al cambio del valor por defecto
-3283e0d Se añade un parámetro por defecto
-efc252e Parametrización del programa
-e19f2c1 Creación del proyecto
-git log --oneline --max-count=2
-git log --oneline --since=&#39;5 minutes ago&#39;
-git log --oneline --until=&#39;5 minutes ago&#39;
-git log --oneline --author=sergio
-git log --oneline --all
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span>git<span class="w"> </span>log<span class="w"> </span>--oneline
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>fd4da94<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>main<span class="o">)</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>comentario<span class="w"> </span>al<span class="w"> </span>cambio<span class="w"> </span>del<span class="w"> </span>valor<span class="w"> </span>por<span class="w"> </span>defecto
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>3283e0d<span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>parámetro<span class="w"> </span>por<span class="w"> </span>defecto
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>efc252e<span class="w"> </span>Parametrización<span class="w"> </span>del<span class="w"> </span>programa
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>e19f2c1<span class="w"> </span>Creación<span class="w"> </span>del<span class="w"> </span>proyecto
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--max-count<span class="o">=</span><span class="m">2</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--since<span class="o">=</span><span class="s1">&#39;5 minutes ago&#39;</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--until<span class="o">=</span><span class="s1">&#39;5 minutes ago&#39;</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--author<span class="o">=</span>sergio
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--all
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Si quieres ver todas las opciones <code>git log</code> ejecuta: </p>
+<div class="language-text highlight"><pre><span></span><code>$ git log --help
 </code></pre></div>
+</div>
 <p>Una versión muy útil de <code>git log</code> es la siguiente, pues nos permite ver en que lugares está main y HEAD, entre otras cosas:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git log --pretty=format:&#39;%h %ad | %s%d [%an]&#39; --graph --date=short
-* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (HEAD, main) [Sergio Gómez]
-* 3283e0d 2013-06-16 | Se añade un parámetro por defecto [Sergio Gómez]
-* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
-* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$<span class="w"> </span>git<span class="w"> </span>log<span class="w"> </span>--pretty<span class="o">=</span>format:<span class="s1">&#39;%h %ad | %s%d [%an]&#39;</span><span class="w"> </span>--graph<span class="w"> </span>--date<span class="o">=</span>short
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>*<span class="w"> </span>fd4da94<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>comentario<span class="w"> </span>al<span class="w"> </span>cambio<span class="w"> </span>del<span class="w"> </span>valor<span class="w"> </span>por<span class="w"> </span>defecto<span class="w"> </span><span class="o">(</span>HEAD,<span class="w"> </span>main<span class="o">)</span><span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>*<span class="w"> </span>3283e0d<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>parámetro<span class="w"> </span>por<span class="w"> </span>defecto<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>*<span class="w"> </span>efc252e<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Parametrización<span class="w"> </span>del<span class="w"> </span>programa<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>*<span class="w"> </span>e19f2c1<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Creación<span class="w"> </span>del<span class="w"> </span>proyecto<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span></code></pre></div>
 <h3 id="crear-alias">Crear alias<a class="headerlink" href="#crear-alias" title="Permanent link">&para;</a></h3>
 <p>Como estas órdenes son demasiado largas, Git nos permite crear alias para crear nuevas órdenes parametrizadas. Para ello podemos configurar nuestro entorno con la orden <code>git config</code> de la siguiente manera:</p>
-<div class="language-text highlight"><pre><span></span><code>git config --global alias.hist &quot;log --pretty=format:&#39;%h %ad | %s%d [%an]&#39; --graph --date=short&quot;
-</code></pre></div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Puedes configurar incluso alias para abreviar comandos. Algunos ejemplos de alias útiles:</p>
-<div class="language-text highlight"><pre><span></span><code>git config --global alias.br branch
-git config --global alias.co checkout
-git config --global alias.ci commit
-git config --global alias.st &quot;status -u&quot;
-git config --global alias.cane &quot;commit --amend --no-edit&quot;
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.hist<span class="w"> </span><span class="s2">&quot;log --pretty=format:&#39;%h %ad | %s%d [%an]&#39; --graph --date=short&quot;</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>En este tutorial solo vamos a usar el alias <code>hist</code>. Pero puedes crear tus propios alias si quieres.</p>
 </div>
 <h3 id="recuperando-versiones-anteriores">Recuperando versiones anteriores<a class="headerlink" href="#recuperando-versiones-anteriores" title="Permanent link">&para;</a></h3>
 <p>Cada cambio es etiquetado por un hash, para poder regresar a ese momento del estado del proyecto se usa la orden <code>git checkout</code>.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout e19f2c1
-Note: checking out &#39;e19f2c1&#39;.
-
-You are in &#39;detached HEAD&#39; state. You can look around, make experimental
-changes and commit them, and you can discard any commits you make in this
-state without impacting any branches by performing another checkout.
-
-If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using -b with the checkout command again. Example:
-
-  git checkout -b new_branch_name
-
-HEAD is now at e19f2c1... Creación del proyecto
-$ cat hola.php
-&lt;?php
-echo &quot;Hello, World\n&quot;;
-</code></pre></div>
-<p>El aviso que nos sale nos indica que estamos en un estado donde no trabajamos en ninguna rama concreta. Eso significa que los cambios que hagamos podrían "perderse" porque si no son guardados en una nueva rama, en principio no podríamos volver a recuperarlos. Hay que pensar que Git es como un árbol donde un nodo tiene información de su nodo padre, no de sus nodos hijos, con lo que siempre necesitaríamos información de dónde se encuentran los nodos finales o de otra manera no podríamos acceder a ellos.</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>e19f2c1
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Note:<span class="w"> </span>switching<span class="w"> </span>to<span class="w"> </span><span class="s1">&#39;e19f2c1&#39;</span>.
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>You<span class="w"> </span>are<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;detached HEAD&#39;</span><span class="w"> </span>state.<span class="w"> </span>You<span class="w"> </span>can<span class="w"> </span>look<span class="w"> </span>around,<span class="w"> </span>make<span class="w"> </span>experimental
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>changes<span class="w"> </span>and<span class="w"> </span>commit<span class="w"> </span>them,<span class="w"> </span>and<span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span>discard<span class="w"> </span>any<span class="w"> </span>commits<span class="w"> </span>you<span class="w"> </span>make<span class="w"> </span><span class="k">in</span><span class="w"> </span>this
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>state<span class="w"> </span>without<span class="w"> </span>impacting<span class="w"> </span>any<span class="w"> </span>branches<span class="w"> </span>by<span class="w"> </span>switching<span class="w"> </span>back<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>branch.
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>If<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>branch<span class="w"> </span>to<span class="w"> </span>retain<span class="w"> </span>commits<span class="w"> </span>you<span class="w"> </span>create,<span class="w"> </span>you<span class="w"> </span>may
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="k">do</span><span class="w"> </span>so<span class="w"> </span><span class="o">(</span>now<span class="w"> </span>or<span class="w"> </span>later<span class="o">)</span><span class="w"> </span>by<span class="w"> </span>using<span class="w"> </span>-c<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>switch<span class="w"> </span>command.<span class="w"> </span>Example:
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">  </span>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>&lt;new-branch-name&gt;
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>Or<span class="w"> </span>undo<span class="w"> </span>this<span class="w"> </span>operation<span class="w"> </span>with:
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">  </span>git<span class="w"> </span>switch<span class="w"> </span>-
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>Turn<span class="w"> </span>off<span class="w"> </span>this<span class="w"> </span>advice<span class="w"> </span>by<span class="w"> </span>setting<span class="w"> </span>config<span class="w"> </span>variable<span class="w"> </span>advice.detachedHead<span class="w"> </span>to<span class="w"> </span><span class="nb">false</span>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>HEAD<span class="w"> </span>is<span class="w"> </span>now<span class="w"> </span>at<span class="w"> </span>e19f2c1<span class="w"> </span>Creación<span class="w"> </span>del<span class="w"> </span>proyecto
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>$<span class="w"> </span>cat<span class="w"> </span>hola.py
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>print<span class="o">(</span><span class="s2">&quot;Hola Mundo&quot;</span><span class="o">)</span><span class="p">;</span>
+</span></code></pre></div>
+<p>Como vemos nuestro fichero esta como la primera vez que lo escribimos. Lo que hemos hecho es desplazar nuestro espacio de
+trabajo al primer commit</p>
+<pre class="mermaid"><code>gitGraph:
+    commit id: "e19f2c1" type: HIGHLIGHT
+    commit id: "efc252e"
+    commit id: "3283e0d"
+    commit id: "fd4da94"</code></pre>
+<p>Pero una rama de git siempre tiene una referencia al ultimo commit de cada rama, y esa referencia para que no tengamos que
+aprendernos el hash, se llama como la rama. </p>
+<p>El aviso que nos está dando <em>git</em> es que estamos en una posición que no está enlazada como la última posición de ninguna rama,
+si hicieramos algún cambio estaríamos creando una bifurcación sin nombre de rama. Podríamos perderlos salvo que anotemos esos
+hash en un papel o creemos una nueva rama desde esta posición. Por el momento no nos vamos a preocupar más y esto lo veremos en el capítulo de ramas con mayor profundidad.  </p>
 <h3 id="volver-a-la-ultima-version-de-la-rama-main">Volver a la última versión de la rama main.<a class="headerlink" href="#volver-a-la-ultima-version-de-la-rama-main" title="Permanent link">&para;</a></h3>
-<p>Usamos <code>git checkout</code> indicando el nombre de la rama:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout main
-Previous HEAD position was e19f2c1... Creación del proyecto
-</code></pre></div>
+<p>Usamos <code>git switch</code> indicando el nombre de la rama:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>$ git switch main
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>Previous HEAD position was e19f2c1 Creación del proyecto
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>Switched to branch &#39;main&#39;
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Hemos visto dos comandos nuevos: <code>checkout</code> y <code>switch</code> que aparentemente hacen lo mismo.
+En realidad <code>git checkout</code> hace muchas más cosas, desde cambiar de ramas, hasta recuperar ficheros, o deshacer cambios.
+Debido a que tenía tantas opciones, el proyecto git dividió <code>checkout</code> en dos comandos distintos: <code>switch</code> y <code>restore</code>.
+En este tutorial se usará sobre todo <code>switch</code> y <code>restore</code> porque son más simples de usar y recordad. Además son los que sugiere
+usar <code>git status</code>.</p>
+<p>¿Cuándo se usa entonces <code>git checkout</code>? Pues dado que <code>git switch</code> solo funciona con ramas, lo usaremos cuando queremos mover nuestro espacio de trabajo a algo que nosea una rama, como fue el caso anterior con un hash de un commit, o como veremos a continuación con los tags. </p>
+</div>
 <h3 id="etiquetando-versiones">Etiquetando versiones<a class="headerlink" href="#etiquetando-versiones" title="Permanent link">&para;</a></h3>
 <p>Para poder recuperar versiones concretas en la historia del repositorio, podemos etiquetarlas, lo cual es más facil que usar un hash. Para eso usaremos la orden <code>git tag</code>.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git tag v1
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span>v1
+</span></code></pre></div>
 <p>Ahora vamos a etiquetar la versión inmediatamente anterior como v1-beta. Para ello podemos usar los modificadores <code>^</code> o <code>~</code> que nos llevarán a un ancestro determinado. Las siguientes dos órdenes son equivalentes:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout v1^
-$ git checkout v1~1
-$ git tag v1-beta
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>v1^
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>v1~1
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>$<span class="w"> </span>git<span class="w"> </span>tag<span class="w"> </span>v1-beta
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Los modificadores <code>^</code> y <code>~</code> permiten movernos hacia atrás en la historia de commits partiendo de una referencia.<br />
+- <code>^</code> indica el <strong>commit padre</strong> inmediato.<br />
+- <code>~n</code> indica el <strong>ancestro n</strong> de la referencia.<br />
+Por ejemplo, <code>v1^</code> y <code>v1~1</code> apuntan al commit anterior a <code>v1</code>, mientras que <code>v1~3</code> saltaría tres commits atrás desde <code>v1</code>.</p>
+</div>
 <p>Si ejecutamos la orden sin parámetros nos mostrará todas las etiquetas existentes.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git tag
-v1
-v1-beta
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>$<span class="w"> </span>git<span class="w"> </span>tag
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>v1
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>v1-beta
+</span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
+<p><code>`mermaid
+gitGraph:
+    commit id: "e19f2c1"
+    commit id: "efc252e"
+    commit id: "3283e0d" tag: "v1-beta"
+    commit id: "fd4da94" tag: "v1"</code></p>
+</div>
 <p>Y para verlas en el historial:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git hist main --all
-* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1, main) [Sergio Gómez]
-* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (HEAD, tag: v1-beta) [Sergio Gómez]
-* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
-* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
-</code></pre></div>
-<pre class="mermaid"><code>gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>$<span class="w"> </span>git<span class="w"> </span>hist<span class="w"> </span>--all
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>*<span class="w"> </span>fd4da94<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>comentario<span class="w"> </span>al<span class="w"> </span>cambio<span class="w"> </span>del<span class="w"> </span>valor<span class="w"> </span>por<span class="w"> </span>defecto<span class="w"> </span><span class="o">(</span>tag:<span class="w"> </span>v1,<span class="w"> </span>main<span class="o">)</span><span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>*<span class="w"> </span>3283e0d<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>parámetro<span class="w"> </span>por<span class="w"> </span>defecto<span class="w"> </span><span class="o">(</span>HEAD,<span class="w"> </span>tag:<span class="w"> </span>v1-beta<span class="o">)</span><span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>*<span class="w"> </span>efc252e<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Parametrización<span class="w"> </span>del<span class="w"> </span>programa<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>*<span class="w"> </span>e19f2c1<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Creación<span class="w"> </span>del<span class="w"> </span>proyecto<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span></code></pre></div>
+<p>El parámetro <code>--all</code> le indica a <code>git log</code> que nos muestra todas las ramas, ya que por defecto solo muestra desde la posición
+de nuestro espacio de trabajo. Si te fijas, verás un <code>HEAD</code> en la posición en la que estamos ahora. Ese <code>HEAD</code> simboliza en
+qué commit estamos y en qué rama actualmente. Si quitamos <code>--all</code> ya no veremos el inicio de la rama main</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>$<span class="w"> </span>git<span class="w"> </span>hist
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>*<span class="w"> </span>3283e0d<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>parámetro<span class="w"> </span>por<span class="w"> </span>defecto<span class="w"> </span><span class="o">(</span>HEAD,<span class="w"> </span>tag:<span class="w"> </span>v1-beta<span class="o">)</span><span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>*<span class="w"> </span>efc252e<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Parametrización<span class="w"> </span>del<span class="w"> </span>programa<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>*<span class="w"> </span>e19f2c1<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Creación<span class="w"> </span>del<span class="w"> </span>proyecto<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span></code></pre></div>
 <h3 id="borrar-etiquetas">Borrar etiquetas<a class="headerlink" href="#borrar-etiquetas" title="Permanent link">&para;</a></h3>
 <p>Para borrar etiquetas:</p>
-<div class="language-text highlight"><pre><span></span><code>git tag -d nombre_etiqueta
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>git<span class="w"> </span>tag<span class="w"> </span>-d<span class="w"> </span>nombre_etiqueta
+</span></code></pre></div>
 <h3 id="visualizar-cambios">Visualizar cambios<a class="headerlink" href="#visualizar-cambios" title="Permanent link">&para;</a></h3>
-<p>Para ver los cambios que se han realizado en el código usamos la orden <code>git diff</code>. La orden sin especificar nada más, mostrará los cambios que no han sido añadidos aún, es decir, todos los cambios que se han hecho antes de usar la orden <code>git add</code>. Después se puede indicar un parámetro y dará los cambios entre la versión indicada y el estado actual. O para comparar dos versiones entre sí, se indica la más antigua y la más nueva. Ejemplo:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git diff v1-beta v1
-diff --git a/hola.php b/hola.php
-index a31e01f..25a35c0 100644
---- a/hola.php
-+++ b/hola.php
-@@ -1,3 +1,4 @@
- &lt;?php
-+// El nombre por defecto es Mundo
- $nombre = isset($argv[1]) ? $argv[1] : &quot;Mundo&quot;;
- @print &quot;Hola, {$nombre}\n&quot;;
-</code></pre></div>
+<p>Para ver los cambios que se han realizado en el código usamos la orden <code>git diff</code>. La orden sin especificar nada más, mostrará los cambios que no han sido añadidos aún, es decir, todos los cambios que se han hecho antes de usar la orden <code>git add</code>. Después se puede indicar un parámetro y dará los cambios entre la versión indicada y el estado actual. O para comparar dos versiones entre sí, se indica la más antigua y la más nueva. Por ejemplo si queremos ver la diferencia entre los dos commits que hemos etiquetado:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>$<span class="w"> </span>git<span class="w"> </span>diff<span class="w"> </span>v1-beta<span class="w"> </span>v1
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>diff<span class="w"> </span>--git<span class="w"> </span>a/hola.py<span class="w"> </span>b/hola.py
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>index<span class="w"> </span>a31e01f..25a35c0<span class="w"> </span><span class="m">100644</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>---<span class="w"> </span>a/hola.py
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>+++<span class="w"> </span>b/hola.py
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>@@<span class="w"> </span>-1,5<span class="w"> </span>+1,4<span class="w"> </span>@@
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w"> </span>import<span class="w"> </span>sys
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>-#<span class="w"> </span>El<span class="w"> </span>nombre<span class="w"> </span>por<span class="w"> </span>defecto<span class="w"> </span>es<span class="w"> </span>Mundo
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w"> </span><span class="nv">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>sys.argv<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>len<span class="o">(</span>sys.argv<span class="o">)</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="w"> </span>print<span class="o">(</span>f<span class="s2">&quot;Hola, {nombre}&quot;</span><span class="o">)</span>
+</span></code></pre></div>
 
 
 
@@ -1417,7 +1558,7 @@ index a31e01f..25a35c0 100644
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="22 de enero de 2024 15:48:19 UTC">22 de enero de 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="24 de octubre de 2025 18:33:24 UTC">24 de octubre de 2025</span>
   </span>
 
     

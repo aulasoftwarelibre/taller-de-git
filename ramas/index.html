@@ -898,10 +898,12 @@
 <h1 id="ramas">Ramas<a class="headerlink" href="#ramas" title="Permanent link">&para;</a></h1>
 <h2 id="administracion-de-ramas">Administración de ramas<a class="headerlink" href="#administracion-de-ramas" title="Permanent link">&para;</a></h2>
 <h3 id="crear-una-nueva-rama">Crear una nueva rama<a class="headerlink" href="#crear-una-nueva-rama" title="Permanent link">&para;</a></h3>
-<p>Cuando vamos a trabajar en una nueva funcionalidad, es conveniente hacerlo en una nueva rama, para no modificar la rama principal y dejarla inestable. Aunque la orden para manejar ramas es <code>git branch</code> podemos usar también <code>git checkout</code>.</p>
+<p>Cuando vamos a trabajar en una nueva funcionalidad, es conveniente hacerlo en una nueva rama, para no modificar la rama principal y dejarla inestable. Aunque la orden para manejar ramas es <code>git branch</code> podemos usar también <code>git switch</code>.</p>
 <p>Vamos a crear una nueva rama:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git branch hola
 </span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
    commit id: "e19f2c1"
    commit id: "efc252e"
@@ -910,64 +912,61 @@
    commit id: "96a39df"
    commit id: "8c2a509"
    branch hola</code></pre>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Si usamos <code>git branch</code> sin ningún argumento, nos devolverá la lista de ramas
 disponibles.</p>
 </div>
 <p>La orden anterior no devuelve ningún resultado y tampoco nos cambia de rama, para eso
-debemos usar <em>checkout</em>:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout hola
+debemos usar <em>switch</em>:</p>
+<div class="language-text highlight"><pre><span></span><code>$ git switch hola
 Switched to branch &#39;hola&#39;
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Hay una forma más rapida de hacer ambas acciones en un solo paso. Con el parámetro
-<code>-b</code> de <code>git checkout</code> podemos cambiarnos a una rama que, si no existe, se crea
+<code>-c</code> de <code>git switch</code> podemos cambiarnos a una rama que, si no existe, se crea
 instantáneamente.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout -b hola
+<div class="language-text highlight"><pre><span></span><code>$ git switch -c hola
 Switched to a new branch &#39;hola&#39;
 </code></pre></div>
 </div>
 <h3 id="modificaciones-en-la-rama-secundaria">Modificaciones en la rama secundaria<a class="headerlink" href="#modificaciones-en-la-rama-secundaria" title="Permanent link">&para;</a></h3>
-<p>Añadimos un nuevo archivo en el directorio <code>lib</code> llamado <code>HolaMundo.php</code>:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">class</span> <span class="nc">HolaMundo</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">{</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>   <span class="k">private</span> <span class="nv">$nombre</span><span class="p">;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>   <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">)</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>   <span class="p">{</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>      <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">=</span> <span class="nv">$nombre</span><span class="p">;</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>   <span class="p">}</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>   <span class="k">function</span> <span class="fm">__toString</span><span class="p">()</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>   <span class="p">{</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>      <span class="k">return</span> <span class="nb">sprintf</span> <span class="p">(</span><span class="s2">&quot;Hola, %s.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nombre</span><span class="p">);</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>   <span class="p">}</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">}</span>
+<p>Añadimos un nuevo archivo en el directorio <code>lib</code> llamado <code>hola_mundo.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">HolaMundo</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre</span><span class="si">}</span><span class="s2">.&quot;</span>
 </span></code></pre></div>
-<p>Y modificamos <code>hola.php</code>:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">// Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">// El nombre por defecto es Mundo</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">require</span><span class="p">(</span><span class="s1">&#39;HolaMundo.php&#39;</span><span class="p">);</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">;</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">print</span> <span class="k">new</span> <span class="nx">HolaMundo</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">);</span>
+<p>Y modificamos <code>hola.py</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># El nombre por defecto es Mundo</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">HolaMundo</span><span class="w"> </span><span class="kn">import</span> <span class="n">HolaMundo</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">HolaMundo</span><span class="p">(</span><span class="n">nombre</span><span class="p">))</span>
 </span></code></pre></div>
 <p>Podríamos confirmar los cambios todos de golpe, pero lo haremos de uno en uno, con su comentario.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git add lib/HolaMundo.php
+<div class="language-text highlight"><pre><span></span><code>$ git add lib/hola_mundo.py
+
 $ git commit -m &quot;Añadida la clase HolaMundo&quot;
 [hola 6932156] Añadida la clase HolaMundo
- 1 file changed, 16 insertions(+)
- create mode 100644 lib/HolaMundo.php
-$ git add lib/hola.php
+ 1 file changed, 6 insertions(+)
+ create mode 100644 lib/hola_mundo.py
+
+$ git add lib/hola.py
+
 $ git commit -m &quot;hola usa la clase HolaMundo&quot;
 [hola 9862f33] hola usa la clase HolaMundo
  1 file changed, 3 insertions(+), 1 deletion(-)
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
    commit id: "e19f2c1"
    commit id: "efc252e"
@@ -978,15 +977,18 @@ $ git commit -m &quot;hola usa la clase HolaMundo&quot;
    branch hola
    commit id: "6932156"
    commit id: "9862f33"</code></pre>
-<p>Y ahora con la orden <code>git checkout</code> podemos movernos entre ramas:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout main
+</div>
+<p>Y ahora con la orden <code>git switch</code> podemos movernos entre ramas:</p>
+<div class="language-text highlight"><pre><span></span><code>$ git switch main
 Switched to branch &#39;main&#39;
-$ git checkout hola
+
+$ git switch hola
 Switched to branch &#39;hola&#39;
 </code></pre></div>
+<p>Comprueba como los ficheros cambian cuando cambiamos de rama.</p>
 <h3 id="modificaciones-en-la-rama-main">Modificaciones en la rama main<a class="headerlink" href="#modificaciones-en-la-rama-main" title="Permanent link">&para;</a></h3>
 <p>Podemos volver y añadir un nuevo archivo a la rama principal:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout main
+<div class="language-text highlight"><pre><span></span><code>$ git switch main
 Switched to branch &#39;main&#39;
 </code></pre></div>
 <p>Creamos un archivo llamado <code>README.md</code> en la raíz de nuestro proyecto con el siguiente contenido:</p>
@@ -996,16 +998,18 @@ Switched to branch &#39;main&#39;
 </span></code></pre></div>
 <p>Y lo añadimos a nuestro repositorio en la rama en la que estamos:</p>
 <div class="language-text highlight"><pre><span></span><code>$ git add README.md
+
 $ git commit -m &quot;Añadido README.md&quot;
 [main c3e65d0] Añadido README.md
  1 file changed, 3 insertions(+)
  create mode 100644 README.md
+
 $ git hist --all
 * c3e65d0 2013-06-16 | Añadido README.md (HEAD, main) [Sergio Gómez]
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -1013,6 +1017,8 @@ $ git hist --all
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
 <p>Y vemos como <code>git hist</code> muestra la bifurcación en nuestro código.</p>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
    commit id: "e19f2c1"
    commit id: "efc252e"
@@ -1025,16 +1031,21 @@ $ git hist --all
    commit id: "9862f33"
    checkout main
    commit id: "c3e65d0"</code></pre>
+</div>
 <h2 id="fusion-de-ramas-y-resolucion-de-conflictos">Fusión de ramas y resolución de conflictos<a class="headerlink" href="#fusion-de-ramas-y-resolucion-de-conflictos" title="Permanent link">&para;</a></h2>
 <h3 id="mezclar-ramas">Mezclar ramas<a class="headerlink" href="#mezclar-ramas" title="Permanent link">&para;</a></h3>
-<p>Podemos incorporar los cambios de una rama a otra con la orden <code>git merge</code></p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout hola
+<p>Nuestras dos ramas tienen commits distintos, pero las dos parten de un nodo común. El mergeado de ramas
+consiste en incoporar los cambios que una rama no posee a otra.</p>
+<p>Vamos a hacer una prueba. Nos vamos a ir a la rama <em>hola</em> y nos traeremos el commit que le falta, en el que hemos añadido el <code>README.md</code>:</p>
+<div class="language-text highlight"><pre><span></span><code>$ git switch hola
 Switched to branch &#39;hola&#39;
-$ git merge main
-Merge made by the &#39;recursive&#39; strategy.
+
+$ git merge --no-edit main
+Merge made by the &#39;ort&#39; strategy.
  README.md | 3 +++
  1 file changed, 3 insertions(+)
  create mode 100644 README.md
+
 $ git hist --all
 *   9c6ac06 2013-06-16 | Merge commit &#39;c3e65d0&#39; into hola (HEAD, hola) [Sergio Gómez]
 |\
@@ -1043,13 +1054,17 @@ $ git hist --all
 | |
 | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
 |/
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
 * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
+<p>El parámetro <code>--no-edit</code> de merge lo usamos para evitar que nos pida un mensaje para el commit y use el mensaje
+estándar para los merges. Si no lo pones, te abrirá el editor que tengas configurado (vi, nano, etc) para que lo escribas.</p>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
    commit id: "e19f2c1"
    commit id: "efc252e"
@@ -1064,24 +1079,27 @@ $ git hist --all
    commit id: "c3e65d0"
    checkout hola
    merge main id: "9c6ac06"</code></pre>
-<p>De esa forma se puede trabajar en una rama secundaria incorporando los cambios de la rama principal o de otra rama.</p>
+</div>
+<p>Ahora puedes comprobar que el fichero <code>README.md</code> también está en la rama <em>hola</em>. Pero al revés no, los cambios de <em>hola</em> no 
+están en <em>main</em>.</p>
 <h3 id="resolver-conflictos">Resolver conflictos<a class="headerlink" href="#resolver-conflictos" title="Permanent link">&para;</a></h3>
 <p>Un conflicto es cuando se produce una fusión que Git no es capaz de resolver. Vamos a modificar la rama main para crear uno con la rama hola.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout main
+<div class="language-text highlight"><pre><span></span><code>$ git switch main
 Switched to branch &#39;main&#39;
 </code></pre></div>
-<p>Modificamos nuestro archivo <em>hola.php</em> de nuevo:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">// Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">print</span> <span class="s2">&quot;Introduce tu nombre:&quot;</span><span class="p">;</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">fgets</span><span class="p">(</span><span class="nx">STDIN</span><span class="p">));</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola, </span><span class="si">{</span><span class="nv">$nombre</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<p>Modificamos nuestro archivo <em>hola.py</em> de nuevo:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Introduce tu nombre:&quot;</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">nombre</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>Y guardamos los cambios:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git add lib/hola.php
+<div class="language-text highlight"><pre><span></span><code>$ git add lib/hola.py
+
 $ git commit -m &quot;Programa interactivo&quot;
 [main 9c85275] Programa interactivo
  1 file changed, 2 insertions(+), 2 deletions(-)
+
 $ git hist --all
 *   9c6ac06 2013-06-16 | Merge commit &#39;c3e65d0&#39; into hola (hola) [Sergio Gómez]
 |\
@@ -1091,13 +1109,15 @@ $ git hist --all
 | |/
 | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
 |/
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
 * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
    commit id: "e19f2c1"
    commit id: "efc252e"
@@ -1114,43 +1134,52 @@ $ git hist --all
    merge main id: "9c6ac06"
    checkout main
    commit id: "9c85275"</code></pre>
+</div>
 <p>Volvemos a la rama hola y fusionamos:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout hola
+<div class="language-text highlight"><pre><span></span><code>$ git switch -
 Switched to branch &#39;hola&#39;
-$ git merge main
-Auto-merging lib/hola.php
-CONFLICT (content): Merge conflict in lib/hola.php
+$ git merge --no-edit main
+Auto-merging lib/hola.py
+CONFLICT (content): Merge conflict in lib/hola.py
 Automatic merge failed; fix conflicts and then commit the result.
 </code></pre></div>
-<p>Si editamos nuestro archivo <code>lib/hola.php</code> obtendremos algo similar a esto:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1">// Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="nx">HEAD</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">// El nombre por defecto es Mundo</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">require</span><span class="p">(</span><span class="s1">&#39;HolaMundo.php&#39;</span><span class="p">);</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">;</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">print</span> <span class="k">new</span> <span class="nx">HolaMundo</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">);</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="o">=======</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">print</span> <span class="s2">&quot;Introduce tu nombre:&quot;</span><span class="p">;</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">fgets</span><span class="p">(</span><span class="nx">STDIN</span><span class="p">));</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola, </span><span class="si">{</span><span class="nv">$nombre</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="nx">main</span>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Si estamos continuamente cambiando entre dos ramas podemos usar <code>-</code> como nombre de rama. Eso le indica a git
+que nos devuelve a la última rama que hemos estado.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git switch -
+</span></code></pre></div>
+</div>
+<p>Si editamos nuestro archivo <code>lib/hola.py</code> obtendremos algo similar a esto:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="n">HEAD</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># El nombre por defecto es Mundo</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">HolaMundo</span><span class="w"> </span><span class="kn">import</span> <span class="n">HolaMundo</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">HolaMundo</span><span class="p">(</span><span class="n">nombre</span><span class="p">))</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="o">=======</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Introduce tu nombre:&quot;</span><span class="p">)</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">nombre</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="n">main</span>
 </span></code></pre></div>
 <p>La primera parte marca el código que estaba en la rama donde trabajábamos (HEAD) y la parte final el código de donde fusionábamos. Resolvemos el conflicto, dejando el archivo como sigue:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1">// Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">require</span><span class="p">(</span><span class="s1">&#39;HolaMundo.php&#39;</span><span class="p">);</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">print</span> <span class="s2">&quot;Introduce tu nombre:&quot;</span><span class="p">;</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">fgets</span><span class="p">(</span><span class="nx">STDIN</span><span class="p">));</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">print</span> <span class="k">new</span> <span class="nx">HolaMundo</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">);</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">HolaMundo</span><span class="w"> </span><span class="kn">import</span> <span class="n">HolaMundo</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Introduce tu nombre:&quot;</span><span class="p">)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">nombre</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">HolaMundo</span><span class="p">(</span><span class="n">nombre</span><span class="p">))</span>
 </span></code></pre></div>
 <p>Y resolvemos el conflicto confirmando los cambios:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git add lib/hola.php
+<div class="language-text highlight"><pre><span></span><code>$ git add lib/hola.py
 $ git commit -m &quot;Solucionado el conflicto al fusionar con la rama main&quot;
 [hola a36af04] Solucionado el conflicto al fusionar con la rama main
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
    commit id: "e19f2c1"
    commit id: "efc252e"
@@ -1169,31 +1198,35 @@ $ git commit -m &quot;Solucionado el conflicto al fusionar con la rama main&quot
    commit id: "9c85275"
    checkout hola
    merge main id: "a36af04"</code></pre>
+</div>
+<p>Por tanto, para resolver un conflicto de cambios, obligatoriamente tenemos que hacer un nuevo commit para integrar los cambios entre ambas ramas. </p>
 <h3 id="rebasing-vs-merging">Rebasing vs Merging<a class="headerlink" href="#rebasing-vs-merging" title="Permanent link">&para;</a></h3>
 <p>Rebasing es otra técnica para fusionar distinta a merge y usa la orden <code>git rebase</code>. Vamos a dejar nuestro proyecto como estaba antes del fusionado. Para ello necesitamos anotar el hash anterior al de la acción de <em>merge</em>. El que tiene la anotación <em>"hola usa la clase HolaMundo"</em>.</p>
 <p>Para ello podemos usar la orden <code>git reset</code> que nos permite mover HEAD donde queramos.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout hola
-Switched to branch &#39;hola&#39;
-$ git hist
-*   a36af04 2013-06-16 | Solucionado el conflicto al fusionar con la rama main (HEAD, hola) [Sergio Gómez]
-|\
-| * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
-* |   9c6ac06 2013-06-16 | Merge commit &#39;c3e65d0&#39; into hola [Sergio Gómez]
-|\ \
-| |/
-| * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-* | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
-* | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
-|/
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
-* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
-* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
-* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
-* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
-* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
-$ git reset --hard 9862f33
-HEAD is now at 9862f33 hola usa la clase HolaMundo
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>hola
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;hola&#39;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>$<span class="w"> </span>git<span class="w"> </span>hist
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>*<span class="w">   </span>a36af04<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Solucionado<span class="w"> </span>el<span class="w"> </span>conflicto<span class="w"> </span>al<span class="w"> </span>fusionar<span class="w"> </span>con<span class="w"> </span>la<span class="w"> </span>rama<span class="w"> </span>main<span class="w"> </span><span class="o">(</span>HEAD,<span class="w"> </span>hola<span class="o">)</span><span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">|</span><span class="se">\</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">|</span><span class="w"> </span>*<span class="w"> </span>9c85275<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Programa<span class="w"> </span>interactivo<span class="w"> </span><span class="o">(</span>main<span class="o">)</span><span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>*<span class="w"> </span><span class="p">|</span><span class="w">   </span>9c6ac06<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Merge<span class="w"> </span>commit<span class="w"> </span><span class="s1">&#39;c3e65d0&#39;</span><span class="w"> </span>into<span class="w"> </span>hola<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">|</span><span class="se">\ \</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">|</span><span class="w"> </span><span class="p">|</span>/
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="p">|</span><span class="w"> </span>*<span class="w"> </span>c3e65d0<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Añadido<span class="w"> </span>README.md<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="hll">*<span class="w"> </span><span class="p">|</span><span class="w"> </span>9862f33<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>hola<span class="w"> </span>usa<span class="w"> </span>la<span class="w"> </span>clase<span class="w"> </span>HolaMundo<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span></span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>*<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">6932156</span><span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Añadida<span class="w"> </span>la<span class="w"> </span>clase<span class="w"> </span>HolaMundo<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="p">|</span>/
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>*<span class="w"> </span>81c6e93<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Movido<span class="w"> </span>hola.py<span class="w"> </span>a<span class="w"> </span>lib<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>*<span class="w"> </span>96a39df<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Añadido<span class="w"> </span>el<span class="w"> </span>autor<span class="w"> </span>del<span class="w"> </span>programa<span class="w"> </span>y<span class="w"> </span>su<span class="w"> </span>email<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>*<span class="w"> </span>fd4da94<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>comentario<span class="w"> </span>al<span class="w"> </span>cambio<span class="w"> </span>del<span class="w"> </span>valor<span class="w"> </span>por<span class="w"> </span>defecto<span class="w"> </span><span class="o">(</span>tag:<span class="w"> </span>v1<span class="o">)</span><span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>*<span class="w"> </span>3283e0d<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Se<span class="w"> </span>añade<span class="w"> </span>un<span class="w"> </span>parámetro<span class="w"> </span>por<span class="w"> </span>defecto<span class="w"> </span><span class="o">(</span>tag:<span class="w"> </span>v1-beta<span class="o">)</span><span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>*<span class="w"> </span>efc252e<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Parametrización<span class="w"> </span>del<span class="w"> </span>programa<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>*<span class="w"> </span>e19f2c1<span class="w"> </span><span class="m">2013</span>-06-16<span class="w"> </span><span class="p">|</span><span class="w"> </span>Creación<span class="w"> </span>del<span class="w"> </span>proyecto<span class="w"> </span><span class="o">[</span>Sergio<span class="w"> </span>Gómez<span class="o">]</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>$<span class="w"> </span>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>9862f33
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>HEAD<span class="w"> </span>is<span class="w"> </span>now<span class="w"> </span>at<span class="w"> </span>9862f33<span class="w"> </span>hola<span class="w"> </span>usa<span class="w"> </span>la<span class="w"> </span>clase<span class="w"> </span>HolaMundo
+</span></code></pre></div>
 <p>Y nuestro estado será:</p>
 <div class="language-text highlight"><pre><span></span><code>$ git hist --all
 * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD, hola) [Sergio Gómez]
@@ -1201,13 +1234,15 @@ HEAD is now at 9862f33 hola usa la clase HolaMundo
 | * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 | * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
 |/
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
 * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
    commit id: "e19f2c1"
    commit id: "efc252e"
@@ -1221,60 +1256,67 @@ HEAD is now at 9862f33 hola usa la clase HolaMundo
    checkout main
    commit id: "c3e65d0"
    commit id: "9c85275"</code></pre>
+</div>
 <p>Hemos desecho todos los <em>merge</em> y nuestro árbol está <em>"limpio"</em>. Vamos a probar ahora a hacer un rebase. Continuamos en la rama <code>hola</code> y ejecutamos lo siguiente:</p>
 <div class="language-text highlight"><pre><span></span><code>$ git rebase main
-First, rewinding head to replay your work on top of it...
-Applying: Añadida la clase HolaMundo
-Applying: hola usa la clase HolaMundo
-Using index info to reconstruct a base tree...
-M   lib/hola.php
-Falling back to patching base and 3-way merge...
-Auto-merging lib/hola.php
-CONFLICT (content): Merge conflict in lib/hola.php
-error: Failed to merge in the changes.
-Patch failed at 0002 hola usa la clase HolaMundo
-The copy of the patch that failed is found in: .git/rebase-apply/patch
-
-When you have resolved this problem, run &quot;git rebase --continue&quot;.
-If you prefer to skip this patch, run &quot;git rebase --skip&quot; instead.
-To check out the original branch and stop rebasing, run &quot;git rebase --abort&quot;.
+Auto-merging lib/hola.py
+CONFLICT (content): Merge conflict in lib/hola.py
+error: could not apply 9862f33... hola usa la clase HolaMundo
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: &quot;git add/rm &lt;conflicted_files&gt;&quot;, then run &quot;git rebase --continue&quot;.
+hint: You can instead skip this commit: run &quot;git rebase --skip&quot;.
+hint: To abort and get back to the state before &quot;git rebase&quot;, run &quot;git rebase --abort&quot;.
+hint: Disable this message with &quot;git config set advice.mergeConflict false&quot;
+Could not apply 9862f33... # hola usa la clase HolaMundo
 </code></pre></div>
-<p>El conflicto, por supuesto, se sigue dando. Resolvemos guardando el archivo <code>hola.php</code> como en los casos anteriores:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1">// Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">require</span><span class="p">(</span><span class="s1">&#39;HolaMundo.php&#39;</span><span class="p">);</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">print</span> <span class="s2">&quot;Introduce tu nombre:&quot;</span><span class="p">;</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">fgets</span><span class="p">(</span><span class="nx">STDIN</span><span class="p">));</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">print</span> <span class="k">new</span> <span class="nx">HolaMundo</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">);</span>
+<p>El conflicto, por supuesto, se sigue dando. Resolvemos guardando el archivo <code>hola.py</code> como en los casos anteriores:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">HolaMundo</span><span class="w"> </span><span class="kn">import</span> <span class="n">HolaMundo</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Introduce tu nombre:&quot;</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">nombre</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">HolaMundo</span><span class="p">(</span><span class="n">nombre</span><span class="p">))</span>
 </span></code></pre></div>
 <p>Añadimos los cambios en <em>staging</em> y en esta ocasión, y tal como nos indicaba en el mensaje anterior, no tenemos que hacer <code>git commit</code> sino continuar con el <em>rebase</em>:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git add lib/hola.php
+<div class="language-text highlight"><pre><span></span><code>$ git add lib/hola.py
+
 $ git status
-rebase in progress; onto 269eaca
+interactive rebase in progress; onto 269eaca
+Last commands done (2 commands done):
+pick 6932156 # Añadida la clase HolaMundo
+pick 9862f33 # hola usa la clase HolaMundo
+No commands remaining.
 You are currently rebasing branch &#39;hola&#39; on &#39;269eaca&#39;.
-  (all conflicts fixed: run &quot;git rebase --continue&quot;)
+(all conflicts fixed: run &quot;git rebase --continue&quot;)
 
 Changes to be committed:
-  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+(use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+        modified:   lib/hola.py
 
-    modified:   lib/hola.php
-$ git rebase --continue
+$ git rebase --no-edit --continue
 Applying: hola usa la clase HolaMundo
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cuando ejecutemos <code>git rebase --continue</code> se abrirá el editor para que 
+editemos el mensaje del commit que estamos modificando. Podemos dejarlo
+como está o aprovechara para actualizarlo.</p>
+</div>
 <p>Y ahora vemos que nuestro árbol tiene un aspecto distinto, mucho más limpio:</p>
 <div class="language-text highlight"><pre><span></span><code>$ git hist --all
 * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -&gt; hola) [Sergio Gómez]
 * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
 * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
    commit id: "e19f2c1"
    commit id: "efc252e"
@@ -1287,24 +1329,30 @@ Applying: hola usa la clase HolaMundo
    branch hola
    commit id: "6932156"
    commit id: "9862f33"</code></pre>
-<p>Lo que hace rebase es volver a aplicar todos los cambios a la rama máster, desde su nodo más reciente. Eso significa que se modifica el orden o la historia de creación de los cambios. Por eso rebase no debe usarse si el orden es importante o si la rama es compartida.</p>
+</div>
+<p>¿Por qué se ve distinto? Porque la fusión lo que hace es crear un commit nuevo para reconciliar los cambios. Pero rebase lo que hace es deshacer en orden inverso cada commit de la rama en la que estamos (<em>hola</em>) y los guarda en una pila (LIFO), hasta que llegemos al commit que es la unión de las dos ramas.</p>
+<p>Ahora que estamos en el punto en común, git mueve el índice de <em>hola</em> al final de <em>main</em> e intenta aplicar cada commit que guardó por orden. Cada vez que no pueda porque haya conflictos nos dirá que lo arreglemos.</p>
+<p>Es como si siempre hubieramos hecho los cambios en el código después del <code>README.md</code>.</p>
+<p>Eso significa que se modifica el orden o la historia de creación de los cambios. Por eso rebase no debe usarse si el orden es importante o si la rama es compartida con otras personas (al menos que les avises).</p>
 <h2 id="mezclando-con-la-rama-main">Mezclando con la rama main<a class="headerlink" href="#mezclando-con-la-rama-main" title="Permanent link">&para;</a></h2>
 <p>Ya hemos terminado de implementar los cambios en nuestra rama secundaria y es hora de llevar los cambios a la rama principal. Usamos <code>git merge</code> para hacer una fusión normal:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout main
+<div class="language-text highlight"><pre><span></span><code>$ git switch main
 Switched to branch &#39;main&#39;
+
 $ git merge hola
 Updating c3e65d0..491f1d2
 Fast-forward
- lib/HolaMundo.php | 16 ++++++++++++++++
- lib/hola.php      |  4 +++-
+ lib/hola_mundo.py | 16 ++++++++++++++++
+ lib/hola.py      |  4 +++-
  2 files changed, 19 insertions(+), 1 deletion(-)
- create mode 100644 lib/HolaMundo.php
+ create mode 100644 lib/hola_mundo.py
+
  $ git hist --all
  * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -&gt; main, hola) [Sergio Gómez]
  * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
  * 9c85275 2013-06-16 | Programa interactivo [Sergio Gómez]
  * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
- * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+ * 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
  * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
  * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
  * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -1312,14 +1360,14 @@ Fast-forward
  * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
 <p>Vemos que indica que el tipo de fusión es <em>fast-forward</em>. Este tipo de fusión tiene el problema que no deja rastro de la fusión, por eso suele ser recomendable usar el parámetro <code>--no-ff</code> para que quede constancia siempre de que se ha fusionado una rama con otra.</p>
-<p>Vamos a volver a probar ahora sin hacer <em>fast-forward</em>. Reseteamos <em>main</em> al estado <em>"Programa interactivo"</em>.</p>
+<p>Vamos a volver a probar ahora sin hacer <em>fast-forward</em>. Reseteamos <em>main</em> al estado <em>"Programa interactivo"</em>. Busca el hash de ese commit en tu historia y úsalo.</p>
 <div class="language-text highlight"><pre><span></span><code>$ git reset --hard 9c85275
 $ git hist --all
 * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -&gt; hola) [Sergio Gómez]
 * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
@@ -1327,27 +1375,30 @@ $ git hist --all
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
 <p>Vemos que estamos como en el final de la sección anterior, así que ahora mezclamos:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git merge -m &quot;Aplicando los cambios de la rama hola&quot; --no-ff hola
-Merge made by the &#39;recursive&#39; strategy.
- lib/HolaMundo.php | 16 ++++++++++++++++
- lib/hola.php      |  4 +++-
- 2 files changed, 19 insertions(+), 1 deletion(-)
- create mode 100644 lib/HolaMundo.php
+<div class="language-text highlight"><pre><span></span><code>$ git merge --no-edit --no-ff hola
+Merge made by the &#39;ort&#39; strategy.
+lib/HolaMundo.py | 6 ++++++
+lib/hola.py      | 4 +++-
+2 files changed, 9 insertions(+), 1 deletion(-)
+create mode 100644 lib/HolaMundo.py
+
 $ git hist --all
-*   2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (HEAD -&gt; main) [Sergio Gomez]
+*   2eab8ca 2013-06-16 | Merge branch &#39;hola&#39; (HEAD -&gt; main) [Sergio Gomez]
 *\
 | * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
 | * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
 |/
 * 9c85275 2013-06-16 | Programa interactivo (main) [Sergio Gómez]
 * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
-* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.py a lib [Sergio Gómez]
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
 * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
    commit id: "e19f2c1"
    commit id: "efc252e"
@@ -1362,6 +1413,7 @@ $ git hist --all
    commit id: "9862f33"
    checkout main
    merge hola id: "2eab8ca"</code></pre>
+</div>
 <p>En la siguiente imagen se puede ver la diferencia:</p>
 <p><img alt="Diferencias entre tipos de fusión" src="../images/gitlab-merge-ff.png" /></p>
 
@@ -1384,7 +1436,7 @@ $ git hist --all
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="22 de enero de 2024 15:48:19 UTC">22 de enero de 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="24 de octubre de 2025 18:33:24 UTC">24 de octubre de 2025</span>
   </span>
 
     

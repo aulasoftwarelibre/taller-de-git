@@ -912,14 +912,14 @@ $ git merge upstream/main
 <p>Recordemos que <em>fetch</em> solo trae los cambios que existan en el repositorio remoto sin hacer ningún cambio en nuestro repositorio. Es la orden <em>merge</em> la que se encarga de que todo esté sincronizado. En este caso decimos que queremos fusionar con la rama <em>main</em> que está en el repositorio <em>upstream</em>.</p>
 <h3 id="creando-nuevas-funcionalidades">Creando nuevas funcionalidades<a class="headerlink" href="#creando-nuevas-funcionalidades" title="Permanent link">&para;</a></h3>
 <p>Vamos a crear una nueva funcionalidad: vamos a añadir una licencia de uso. Para ello preferentemente crearemos una nueva rama.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout -b add-license
+<div class="language-text highlight"><pre><span></span><code>$ git switch -c add-license
 $ echo &quot;LICENCIA MIT&quot; &gt; LICESE
 # el error es intencionado
 $ git add LICESE
 $ git commit -m &quot;Archivo de licencia de uso&quot;
 </code></pre></div>
 <p>En principio habría que probar que todo funciona bien y entonces integraremos en la rama <em>main</em> de nuestro repositorio y enviamos los cambios a Github:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout main
+<div class="language-text highlight"><pre><span></span><code>$ git switch main
 $ git merge add-license --no-ff
 $ git branch -d add-license
 # Borramos la rama que ya no nos sirve para nada
@@ -940,14 +940,14 @@ $ git push
 <p>Ahora sí, el administrador puede aprobar la fusión y borrar la rama del repositorio. El panel de Github permite aceptar los cambios directamente o informa de como hacer una copia de la rama ofrecida por el usuario para hacer cambios, como puede verse en la siguiente imagen.</p>
 <p><img alt="Conversación en un _Pull Request_" src="../images/github-pullconversation.png" /></p>
 <p>Una vez que se han aceptado los cambios, podemos borrar la rama y actualizar nuestro repositorio con los datos del remoto como hicimos antes. ¿Por qué actualizar desde el remoto y no desde nuetra rama <em>add-license</em>? Pues porque usualmente el administrador puede haber modificado los cambios que le hemos propuesto, o incluso una tercera persona. Recordemos el cariz colaborativo que tiene Github.</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout main
+<div class="language-text highlight"><pre><span></span><code>$ git switch main
 $ git branch -d add-license
 # Esto borra la rama local
 $ git push origin --delete add-license
 # Esto borra la rama remota. También puede hacerse desde la web.
 </code></pre></div>
 <h3 id="todo-esto-es-algo-complicado">Todo esto es algo complicado...<a class="headerlink" href="#todo-esto-es-algo-complicado" title="Permanent link">&para;</a></h3>
-<p>Sí, lo es, al menos al principio. Git tiene una parte muy sencilla que es el uso del repositorio local (órdenes tales como add, rm, mv y commit). El siguiente nivel de complejidad lo componen las órdenes para trabajar con ramas y fusionarlas (checkout, branch, merge, rebase) y por último, las que trabajan con repositorios remotos (pull, push, fetch, remote). Además hay otra serie de órdenes para tener información (diff, log, status) o hacer operaciones de mantenimiento (fsck, gc). Lo importante para no perderse en Git, es seguir la siguiente máxima:</p>
+<p>Sí, lo es, al menos al principio. Git tiene una parte muy sencilla que es el uso del repositorio local (órdenes tales como add, rm, mv y commit). El siguiente nivel de complejidad lo componen las órdenes para trabajar con ramas y fusionarlas (switch, restore, branch, merge, rebase) y por último, las que trabajan con repositorios remotos (pull, push, fetch, remote). Además hay otra serie de órdenes para tener información (diff, log, status) o hacer operaciones de mantenimiento (fsck, gc). Lo importante para no perderse en Git, es seguir la siguiente máxima:</p>
 <blockquote>
 <p>No avanzar al siguiente nivel de complejidad, hasta no haber entendido completamente el anterior.</p>
 </blockquote>
@@ -983,7 +983,7 @@ $ git push origin --delete add-license
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="22 de enero de 2024 15:48:19 UTC">22 de enero de 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="24 de octubre de 2025 16:18:59 UTC">24 de octubre de 2025</span>
   </span>
 
     

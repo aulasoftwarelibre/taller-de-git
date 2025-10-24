@@ -498,7 +498,7 @@
           <li class="md-nav__item">
   <a href="#deshaciendo-commits-no-deseados" class="md-nav__link">
     <span class="md-ellipsis">
-      Deshaciendo commits no deseados.
+      Deshaciendo commits no deseados
     </span>
   </a>
   
@@ -541,15 +541,6 @@
   <a href="#mover-un-archivo-a-otro-directorio-con-git" class="md-nav__link">
     <span class="md-ellipsis">
       Mover un archivo a otro directorio con git
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mover-y-borrar-archivos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mover y borrar archivos.
     </span>
   </a>
   
@@ -801,7 +792,7 @@
           <li class="md-nav__item">
   <a href="#deshaciendo-commits-no-deseados" class="md-nav__link">
     <span class="md-ellipsis">
-      Deshaciendo commits no deseados.
+      Deshaciendo commits no deseados
     </span>
   </a>
   
@@ -849,15 +840,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#mover-y-borrar-archivos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mover y borrar archivos.
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -899,91 +881,100 @@
 <h2 id="deshacer-cambios">Deshacer cambios<a class="headerlink" href="#deshacer-cambios" title="Permanent link">&para;</a></h2>
 <h3 id="deshaciendo-cambios-antes-de-la-fase-de-staging">Deshaciendo cambios antes de la fase de staging.<a class="headerlink" href="#deshaciendo-cambios-antes-de-la-fase-de-staging" title="Permanent link">&para;</a></h3>
 <p>Volvemos a la rama máster y vamos a modificar el comentario que pusimos:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout main
+<div class="language-text highlight"><pre><span></span><code>$ git switch main
 Previous HEAD position was 3283e0d... Se añade un parámetro por defecto
 Switched to branch &#39;main&#39;
 </code></pre></div>
-<p>Modificamos <em>hola.php</em> de la siguiente manera:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// Este comentario está mal y hay que borrarlo</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola, </span><span class="si">{</span><span class="nv">$nombre</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<p>Modificamos <em>hola.py</em> de la siguiente manera:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">//</span> <span class="n">Este</span> <span class="n">comentario</span> <span class="n">está</span> <span class="n">mal</span> <span class="n">y</span> <span class="n">hay</span> <span class="n">que</span> <span class="n">borrarlo</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>Y comprobamos:</p>
 <div class="language-text highlight"><pre><span></span><code>$ git status
-# On branch main
-# Changes not staged for commit:
-#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-#
-#   modified:   hola.php
-#
+On branch main
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+
+  modified:   hola.py
+
 no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
 </code></pre></div>
 <p>El mismo Git nos indica que debemos hacer para añadir los cambios o para deshacerlos:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git checkout hola.php
+<div class="language-text highlight"><pre><span></span><code>$ git restore hola.py
 $ git status
-# On branch main
+On branch main
 nothing to commit, working directory clean
-$ cat hola.php
-&lt;?php
-// El nombre por defecto es Mundo
-$nombre = isset($argv[1]) ? $argv[1] : &quot;Mundo&quot;;
-@print &quot;Hola, {$nombre}\n&quot;;
+</code></pre></div>
+<p>Y comprobamos que el archivo ha vuelto a su estado original.</p>
+<div class="language-text highlight"><pre><span></span><code>$ cat hola.py
+
+import sys
+# El nombre por defecto es Mundo
+nombre = sys.argv[1] if len(sys.argv) &gt; 1 else &quot;Mundo&quot;
+print(f&quot;Hola, {nombre}&quot;)
 </code></pre></div>
 <h3 id="deshaciendo-cambios-antes-del-commit">Deshaciendo cambios antes del commit<a class="headerlink" href="#deshaciendo-cambios-antes-del-commit" title="Permanent link">&para;</a></h3>
 <p>Vamos a hacer lo mismo que la vez anterior, pero esta vez sí añadiremos el cambio al <em>staging</em> (sin hacer <em>commit</em>).
-Así que volvemos a modificar <em>hola.php</em> igual que la anterior ocasión:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// Este comentario está mal y hay que borrarlo</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola, </span><span class="si">{</span><span class="nv">$nombre</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+Así que volvemos a modificar <em>hola.py</em> igual que la anterior ocasión:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="o">//</span> <span class="n">Este</span> <span class="n">comentario</span> <span class="n">está</span> <span class="n">mal</span> <span class="n">y</span> <span class="n">hay</span> <span class="n">que</span> <span class="n">borrarlo</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<p>Y lo añadimos al <em>staging</em></p>
-<div class="language-text highlight"><pre><span></span><code>$ git add hola.php
+<p>Y lo añadimos al <em>staging</em>:</p>
+<div class="language-text highlight"><pre><span></span><code>$ git add hola.py
 $ git status
-# On branch main
-# Changes to be committed:
-#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
-#
-#   modified:   hola.php
-#
+On branch main
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+
+  modified:   hola.py
 </code></pre></div>
 <p>De nuevo, Git nos indica qué debemos hacer para deshacer el cambio:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git reset HEAD hola.php
-Unstaged changes after reset:
-M   hola.php
+<div class="language-text highlight"><pre><span></span><code>$ git restore --staged hola.py
+
 $ git status
-# On branch main
-# Changes not staged for commit:
-#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
-#
-#   modified:   hola.php
-#
+On branch main
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)
+
+  modified:   hola.py
+
 no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
-$ git checkout hola.php
+
+$ git restore hola.py
 </code></pre></div>
-<p>Y ya tenemos nuestro repositorio limpio otra vez. Como vemos hay que hacerlo en dos pasos:
-uno para borrar los datos del <em>staging</em> y otro para restaurar la copia de trabajo.</p>
-<h3 id="deshaciendo-commits-no-deseados">Deshaciendo commits no deseados.<a class="headerlink" href="#deshaciendo-commits-no-deseados" title="Permanent link">&para;</a></h3>
+<p>En este caso, hemos tenido que hacer dos recuperaciones distintas. Uno para deshacer la confirmación
+(<code>git restore --staged</code>) y otro para deshacer el cambio en el espacio de trabajo (<code>git restore</code>). Dependiendo
+de lo que queramos hacer usaremos una opción u otra.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Si quieres recuperar completamente un archivo en un solo paso puedes ejecutar lo siguiente:</p>
+<div class="language-text highlight"><pre><span></span><code>$ git restore --staged --worktree hola.py
+</code></pre></div>
+</div>
+<h3 id="deshaciendo-commits-no-deseados">Deshaciendo commits no deseados<a class="headerlink" href="#deshaciendo-commits-no-deseados" title="Permanent link">&para;</a></h3>
 <p>Si a pesar de todo hemos hecho un commit y nos hemos equivocado, podemos deshacerlo con la orden <code>git revert</code>.
 Modificamos otra vez el archivo como antes:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">// Este comentario está mal y hay que borrarlo</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">;</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola, </span><span class="si">{</span><span class="nv">$nombre</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="o">//</span> <span class="n">Este</span> <span class="n">comentario</span> <span class="n">está</span> <span class="n">mal</span> <span class="n">y</span> <span class="n">hay</span> <span class="n">que</span> <span class="n">borrarlo</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>Pero ahora sí hacemos commit:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git add hola.php
+<div class="language-text highlight"><pre><span></span><code>$ git add hola.py
 $ git commit -m &quot;Ups... este commit está mal.&quot;
-main 5a5d067] Ups... este commit está mal
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[main 5a5d067] Ups... este commit está mal
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 </code></pre></div>
 <p>Bien, una vez confirmado el cambio, vamos a deshacer el cambio con la orden <code>git revert</code>:</p>
 <div class="language-text highlight"><pre><span></span><code>$ git revert HEAD --no-edit
 [main 817407b] Revert &quot;Ups... este commit está mal&quot;
-1 file changed, 1 insertion(+), 1 deletion(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 $ git hist
 * 817407b 2013-06-16 | Revert &quot;Ups... este commit está mal&quot; (HEAD, main) [Sergio Gómez]
 * 5a5d067 2013-06-16 | Ups... este commit está mal [Sergio Gómez]
@@ -992,29 +983,40 @@ $ git hist
 * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "5a5d067"
-   commit id: "817407b"</code></pre>
+    commit id: "e19f2c1"
+    commit id: "efc252e"
+    commit id: "3283e0d" tag: "v1-beta"
+    commit id: "fd4da94" tag: "v1"
+    commit id: "5a5d067"
+    commit id: "817407b"</code></pre>
+</div>
 <h3 id="borrar-commits-de-una-rama">Borrar commits de una rama<a class="headerlink" href="#borrar-commits-de-una-rama" title="Permanent link">&para;</a></h3>
-<p>El anterior apartado revierte un commit, pero deja huella en el historial de cambios. Para hacer que no aparezca hay que usar la orden <code>git reset</code>.</p>
+<p>El anterior apartado revierte un commit, pero deja huella en el historial de cambios. Para hacer que no aparezca hay que usar la orden <code>git reset</code>:</p>
 <div class="language-text highlight"><pre><span></span><code>$ git reset --hard v1
 HEAD is now at fd4da94 Se añade un comentario al cambio del valor por defecto
 $ git hist
-* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (HEAD, tag: v1, main) [Sergio Góme
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (HEAD, tag: v1, main) [Sergio Gómez]
 * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
 * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"</code></pre>
-<p>El resto de cambios no se han borrado (aún), simplemente no están accesibles porque git no sabe como referenciarlos. Si sabemos su hash podemos acceder aún a ellos. Pasado un tiempo, eventualmente Git tiene un recolector de basura que los borrará. Se puede evitar etiquetando el estado final.</p>
+    commit id: "e19f2c1"
+    commit id: "efc252e"
+    commit id: "3283e0d" tag: "v1-beta"
+    commit id: "fd4da94" tag: "v1"
+    branch detached
+    commit id: "5a5d067"
+    commit id: "817407b"
+</code></pre>
+</div>
+<p>El resto de cambios no se han borrado (aún), simplemente no están accesibles porque git no sabe como referenciarlos. Si sabemos su hash podemos acceder aún a ellos. Pasado un tiempo, eventualmente Git tiene un recolector de basura que los borrará.</p>
+<p>Lo que hace <code>git reset</code> es modificar HEAD (recuerda, la posición de nuestro espacio de trabajo) al commit que le indiquemos. El parámetro <code>--hard</code> además le dice que mueva también el índice de la rama, es decir, lo que entiende git que es el último commit y desde donde debe continuar añadiendo.</p>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
 <p>La orden <em>reset</em> es una operación delicada. Debe evitarse si no se sabe bien lo que se está haciendo,
@@ -1022,42 +1024,48 @@ sobre todo cuando se trabaja en repositorios compartidos, porque podríamos alte
 lo cual puede provocar problemas de sincronización.</p>
 </div>
 <h3 id="modificar-un-commit">Modificar un commit<a class="headerlink" href="#modificar-un-commit" title="Permanent link">&para;</a></h3>
-<p>Esto se usa cuando hemos olvidado añadir un cambio a un commit que acabamos de realizar. Tenemos
-nuestro archivo <em>hola.php</em> de la siguiente manera:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">// Autor: Sergio Gómez</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">// El nombre por defecto es Mundo</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">;</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola, </span><span class="si">{</span><span class="nv">$nombre</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<p>Esto se usa cuando hemos olvidado añadir un cambio a un commit que acabamos de realizar. Vamos a modificar
+nuestro archivo <em>hola.py</em> de la siguiente manera:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Autor: Sergio Gómez</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># El nombre por defecto es Mundo</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>Y lo confirmamos:</p>
 <div class="language-text highlight"><pre><span></span><code>$ git commit -a -m &quot;Añadido el autor del programa&quot;
 [main cf405c1] Añadido el autor del programa
  1 file changed, 1 insertion(+)
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "cf405c1"</code></pre>
+    commit id: "e19f2c1"
+    commit id: "efc252e"
+    commit id: "3283e0d" tag: "v1-beta"
+    commit id: "fd4da94" tag: "v1"
+    commit id: "cf405c1"</code></pre>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>El parámetro <code>-a</code> hace un <code>git add</code> antes de hacer <em>commit</em> de todos los archivos modificados
  o borrados (de los nuevos no), con lo que nos ahorramos un paso.</p>
 </div>
 <p>Ahora nos percatamos que se nos ha olvidado poner el correo electrónico. Así que volvemos a modificar nuestro archivo:</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">// Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// El nombre por defecto es Mundo</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nv">$nombre</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">;</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="o">@</span><span class="k">print</span> <span class="s2">&quot;Hola, </span><span class="si">{</span><span class="nv">$nombre</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Autor: Sergio Gómez &lt;sergio@uco.es&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># El nombre por defecto es Mundo</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">nombre</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;Mundo&quot;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola, </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>Y en esta ocasión usamos <code>commit --amend</code> que nos permite modificar el último estado confirmado, sustituyéndolo por el estado actual:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git add hola.php
+<div class="language-text highlight"><pre><span></span><code>$ git add hola.py
 $ git commit --amend -m &quot;Añadido el autor del programa y su email&quot;
 [main 96a39df] Añadido el autor del programa y su email
  1 file changed, 1 insertion(+)
+
 $ git hist
 * 96a39df 2013-06-16 | Añadido el autor del programa y su email (HEAD, main) [Sergio Gómez]
 * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
@@ -1065,51 +1073,59 @@ $ git hist
 * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
 * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"</code></pre>
+    commit id: "e19f2c1"
+    commit id: "efc252e"
+    commit id: "3283e0d" tag: "v1-beta"
+    commit id: "fd4da94" tag: "v1"
+    commit id: "96a39df"</code></pre>
+</div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
 <p>Nunca modifiques un <em>commit</em> que ya hayas sincronizado con otro repositorio o
 que hayas recibido de él. Estarías alterando la historia de cambios y provocarías
-problemas de sincronización.</p>
+problemas de sincronización. Solo debes hacerlo en local y mientras no hayas compartido
+aún esos cambios con nadie. Lo veremos en el capítulo de Github.</p>
 </div>
 <h2 id="moviendo-y-borrando-archivos">Moviendo y borrando archivos<a class="headerlink" href="#moviendo-y-borrando-archivos" title="Permanent link">&para;</a></h2>
 <h3 id="mover-un-archivo-a-otro-directorio-con-git">Mover un archivo a otro directorio con git<a class="headerlink" href="#mover-un-archivo-a-otro-directorio-con-git" title="Permanent link">&para;</a></h3>
 <p>Para mover archivos usaremos la orden <code>git mv</code>:</p>
 <div class="language-text highlight"><pre><span></span><code>$ mkdir lib
-$ git mv hola.php lib
+$ git mv hola.py lib
 $ git status
-# On branch main
-# Changes to be committed:
-#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
-#
-#   renamed:    hola.php -&gt; lib/hola.php
-#
+On branch main
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+
+  renamed:    hola.py -&gt; lib/hola.py
 </code></pre></div>
-<h3 id="mover-y-borrar-archivos">Mover y borrar archivos.<a class="headerlink" href="#mover-y-borrar-archivos" title="Permanent link">&para;</a></h3>
+<div class="admonition info mover y borrar archivos">
+<p class="admonition-title">Info</p>
 <p>Podíamos haber hecho el paso anterior con la órden del sistema <em>mv</em> y el resultado hubiera sido el mismo. Lo siguiente es a modo de ejemplo y no es necesario que lo ejecutes:</p>
 <div class="language-text highlight"><pre><span></span><code>$ mkdir lib
-$ mv hola.php lib
-$ git add lib/hola.php
-$ git rm hola.php
+$ mv hola.py lib
+$ git add lib/hola.py
+$ git rm hola.py
 </code></pre></div>
+</div>
 <p>Y, ahora sí, ya podemos guardar los cambios:</p>
-<div class="language-text highlight"><pre><span></span><code>$ git commit -m &quot;Movido hola.php a lib.&quot;
-[main 8c2a509] Movido hola.php a lib.
+<div class="language-text highlight"><pre><span></span><code>$ git commit -m &quot;Movido hola.py a lib.&quot;
+[main 8c2a509] Movido hola.py a lib.
  1 file changed, 0 insertions(+), 0 deletions(-)
- rename hola.php =&gt; lib/hola.php (100%)
+ rename hola.py =&gt; lib/hola.py (100%)
 </code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Grafo del repositorio</p>
 <pre class="mermaid"><code>gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"</code></pre>
+    commit id: "e19f2c1"
+    commit id: "efc252e"
+    commit id: "3283e0d" tag: "v1-beta"
+    commit id: "fd4da94" tag: "v1"
+    commit id: "96a39df"
+    commit id: "8c2a509"</code></pre>
+</div>
 
 
 
@@ -1130,7 +1146,7 @@ $ git rm hola.php
     <span class="md-icon" title="Última actualización">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="22 de enero de 2024 15:48:19 UTC">22 de enero de 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="24 de octubre de 2025 18:33:24 UTC">24 de octubre de 2025</span>
   </span>
 
     

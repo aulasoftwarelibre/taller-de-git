@@ -6,7 +6,7 @@
 
 Si quieres instalar Git en Linux a través de un instalador binario, en general puedes hacerlo a través de la herramienta básica de gestión de paquetes que trae tu distribución. Si estás en Fedora, puedes usar yum:
 
-    $ yum install git-core
+    $ sudo dnf install git-core
 
 O si estás en una distribución basada en Debian como Ubuntu, prueba con apt-get:
 
@@ -39,6 +39,12 @@ También se recomienda configurar el siguiente parámetro:
 
     $ git config --global push.default simple
 
-### Bash Completion
+Otra opción muy habitual es usar `main` en vez de `master` para la rama principal. Si quieres usarla para todos tus nuevos proyectos puedes configurarla así:
 
-_Bash completion_ es una utilidad que permite a bash completar órdenes y parámetros. Por defecto suele venir desactivada en Ubuntu y es necesario modificar el archivo `$HOME/.bashrc` para poder activarla. Simplemente hay que descomentar las líneas que lo activan,
+    $ git config --global init.defaultBranch main
+
+### Shell Completion
+
+_Bash completion_ es una utilidad que permite a _bash_ completar órdenes y parámetros. Por defecto suele venir desactivada en Ubuntu y es necesario modificar el archivo `$HOME/.bashrc` para poder activarla. Simplemente hay que descomentar las líneas que lo activan.
+
+Si usas _zsh_ puedes consultar la documentación para activar los plugins de autocompletado y alias con git. Son bastante útiles y mejorarán tu productividad.

@@ -6,109 +6,112 @@
 
 Volvemos a la rama máster y vamos a modificar el comentario que pusimos:
 
-    $ git checkout main
+    $ git switch main
     Previous HEAD position was 3283e0d... Se añade un parámetro por defecto
     Switched to branch 'main'
 
-Modificamos _hola.php_ de la siguiente manera:
+Modificamos _hola.py_ de la siguiente manera:
 
-```php
-<?php
+```python
+import sys
 // Este comentario está mal y hay que borrarlo
-$nombre = isset($argv[1]) ? $argv[1] : "Mundo";
-@print "Hola, {$nombre}\n";
+nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
+print(f"Hola, {nombre}")
 ```
 
 Y comprobamos:
 
     $ git status
-    # On branch main
-    # Changes not staged for commit:
-    #   (use "git add <file>..." to update what will be committed)
-    #   (use "git checkout -- <file>..." to discard changes in working directory)
-    #
-    #   modified:   hola.php
-    #
+    On branch main
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+
+      modified:   hola.py
+
     no changes added to commit (use "git add" and/or "git commit -a")
 
 El mismo Git nos indica que debemos hacer para añadir los cambios o para deshacerlos:
 
-    $ git checkout hola.php
+    $ git restore hola.py
     $ git status
-    # On branch main
+    On branch main
     nothing to commit, working directory clean
-    $ cat hola.php
-    <?php
-    // El nombre por defecto es Mundo
-    $nombre = isset($argv[1]) ? $argv[1] : "Mundo";
-    @print "Hola, {$nombre}\n";
+
+Y comprobamos que el archivo ha vuelto a su estado original.
+
+    $ cat hola.py
+
+    import sys
+    # El nombre por defecto es Mundo
+    nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
+    print(f"Hola, {nombre}")
 
 ### Deshaciendo cambios antes del commit
 
 Vamos a hacer lo mismo que la vez anterior, pero esta vez sí añadiremos el cambio al _staging_ (sin hacer _commit_).
-Así que volvemos a modificar _hola.php_ igual que la anterior ocasión:
+Así que volvemos a modificar _hola.py_ igual que la anterior ocasión:
 
-```php
-<?php
+
+```python
+import sys
 // Este comentario está mal y hay que borrarlo
-$nombre = isset($argv[1]) ? $argv[1] : "Mundo";
-@print "Hola, {$nombre}\n";
+nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
+print(f"Hola, {nombre}")
 ```
 
-Y lo añadimos al _staging_
+Y lo añadimos al _staging_:
 
-    $ git add hola.php
+    $ git add hola.py
     $ git status
-    # On branch main
-    # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
-    #
-    #   modified:   hola.php
-    #
+    On branch main
+    Changes to be committed:
+      (use "git restore --staged <file>..." to unstage)
+
+      modified:   hola.py
+
 
 De nuevo, Git nos indica qué debemos hacer para deshacer el cambio:
 
-    $ git reset HEAD hola.php
-    Unstaged changes after reset:
-    M   hola.php
+    $ git restore --staged hola.py
     $ git status
-    # On branch main
-    # Changes not staged for commit:
-    #   (use "git add <file>..." to update what will be committed)
-    #   (use "git checkout -- <file>..." to discard changes in working directory)
-    #
-    #   modified:   hola.php
-    #
+    On branch main
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git checkout -- <file>..." to discard changes in working directory)
+    
+      modified:   hola.php
+    
     no changes added to commit (use "git add" and/or "git commit -a")
-    $ git checkout hola.php
+    $ git restore hola.py
 
 Y ya tenemos nuestro repositorio limpio otra vez. Como vemos hay que hacerlo en dos pasos:
 uno para borrar los datos del _staging_ y otro para restaurar la copia de trabajo.
 
-### Deshaciendo commits no deseados.
+### Deshaciendo commits no deseados
 
 Si a pesar de todo hemos hecho un commit y nos hemos equivocado, podemos deshacerlo con la orden `git revert`.
 Modificamos otra vez el archivo como antes:
 
-```php
-<?php
+```python
+import sys
 // Este comentario está mal y hay que borrarlo
-$nombre = isset($argv[1]) ? $argv[1] : "Mundo";
-@print "Hola, {$nombre}\n";
+nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
+print(f"Hola, {nombre}")
 ```
 
 Pero ahora sí hacemos commit:
 
-    $ git add hola.php
+    $ git add hola.py
     $ git commit -m "Ups... este commit está mal."
-    main 5a5d067] Ups... este commit está mal
-     1 file changed, 1 insertion(+), 1 deletion(-)
+    [main 5a5d067] Ups... este commit está mal
+     1 file changed, 1 insertion(+), 3 deletion(-)
 
 Bien, una vez confirmado el cambio, vamos a deshacer el cambio con la orden `git revert`:
 
     $ git revert HEAD --no-edit
     [main 817407b] Revert "Ups... este commit está mal"
-    1 file changed, 1 insertion(+), 1 deletion(-)
+     1 file changed, 1 insertion(+), 1 deletion(-)
     $ git hist
     * 817407b 2013-06-16 | Revert "Ups... este commit está mal" (HEAD, main) [Sergio Gómez]
     * 5a5d067 2013-06-16 | Ups... este commit está mal [Sergio Gómez]
@@ -117,35 +120,37 @@ Bien, una vez confirmado el cambio, vamos a deshacer el cambio con la orden `git
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "5a5d067"
-   commit id: "817407b"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+        commit id: "e19f2c1"
+        commit id: "efc252e"
+        commit id: "3283e0d" tag: "v1-beta"
+        commit id: "fd4da94" tag: "v1"
+        commit id: "5a5d067"
+        commit id: "817407b"
+    ```
 
 ### Borrar commits de una rama
 
-El anterior apartado revierte un commit, pero deja huella en el historial de cambios. Para hacer que no aparezca hay que usar la orden `git reset`.
+El anterior apartado revierte un commit, pero deja huella en el historial de cambios. Para hacer que no aparezca hay que usar la orden `git reset`:
 
     $ git reset --hard v1
     HEAD is now at fd4da94 Se añade un comentario al cambio del valor por defecto
     $ git hist
-    * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (HEAD, tag: v1, main) [Sergio Góme
+    * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (HEAD, tag: v1, main) [Sergio Gómez]
     * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+        commit id: "e19f2c1"
+        commit id: "efc252e"
+        commit id: "3283e0d" tag: "v1-beta"
+        commit id: "fd4da94" tag: "v1"
+    ```
 
 
 El resto de cambios no se han borrado (aún), simplemente no están accesibles porque git no sabe como referenciarlos. Si sabemos su hash podemos acceder aún a ellos. Pasado un tiempo, eventualmente Git tiene un recolector de basura que los borrará. Se puede evitar etiquetando el estado final.
@@ -159,14 +164,14 @@ El resto de cambios no se han borrado (aún), simplemente no están accesibles p
 ### Modificar un commit
 
 Esto se usa cuando hemos olvidado añadir un cambio a un commit que acabamos de realizar. Tenemos
-nuestro archivo _hola.php_ de la siguiente manera:
+nuestro archivo _hola.py_ de la siguiente manera:
 
-```php
-<?php
-// Autor: Sergio Gómez
-// El nombre por defecto es Mundo
-$nombre = isset($argv[1]) ? $argv[1] : "Mundo";
-@print "Hola, {$nombre}\n";
+```python
+import sys
+# Autor: Sergio Gómez
+# El nombre por defecto es Mundo
+nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
+print(f"Hola, {nombre}")
 ```
 
 Y lo confirmamos:
@@ -175,14 +180,16 @@ Y lo confirmamos:
     [main cf405c1] Añadido el autor del programa
      1 file changed, 1 insertion(+)
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "cf405c1"
-```
+!!! example
+
+    ```mermaid
+    gitGraph:
+        commit id: "e19f2c1"
+        commit id: "efc252e"
+        commit id: "3283e0d" tag: "v1-beta"
+        commit id: "fd4da94" tag: "v1"
+        commit id: "cf405c1"
+    ```
 
 !!! tip
 
@@ -191,20 +198,21 @@ gitGraph:
 
 Ahora nos percatamos que se nos ha olvidado poner el correo electrónico. Así que volvemos a modificar nuestro archivo:
 
-```php
-<?php
-// Autor: Sergio Gómez <sergio@uco.es>
-// El nombre por defecto es Mundo
-$nombre = isset($argv[1]) ? $argv[1] : "Mundo";
-@print "Hola, {$nombre}\n";
+```python
+import sys
+# Autor: Sergio Gómez <sergio@uco.es>
+# El nombre por defecto es Mundo
+nombre = sys.argv[1] if len(sys.argv) > 1 else "Mundo"
+print(f"Hola, {nombre}")
 ```
 
 Y en esta ocasión usamos `commit --amend` que nos permite modificar el último estado confirmado, sustituyéndolo por el estado actual:
 
-    $ git add hola.php
+    $ git add hola.py
     $ git commit --amend -m "Añadido el autor del programa y su email"
     [main 96a39df] Añadido el autor del programa y su email
      1 file changed, 1 insertion(+)
+
     $ git hist
     * 96a39df 2013-06-16 | Añadido el autor del programa y su email (HEAD, main) [Sergio Gómez]
     * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
@@ -212,21 +220,21 @@ Y en esta ocasión usamos `commit --amend` que nos permite modificar el último 
     * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
     * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
 
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+        commit id: "e19f2c1"
+        commit id: "efc252e"
+        commit id: "3283e0d" tag: "v1-beta"
+        commit id: "fd4da94" tag: "v1"
+        commit id: "96a39df"
+    ```
 
 !!! danger
 
     Nunca modifiques un _commit_ que ya hayas sincronizado con otro repositorio o
     que hayas recibido de él. Estarías alterando la historia de cambios y provocarías
     problemas de sincronización.
-
 ## Moviendo y borrando archivos
 
 ### Mover un archivo a otro directorio con git
@@ -234,38 +242,37 @@ gitGraph:
 Para mover archivos usaremos la orden `git mv`:
 
     $ mkdir lib
-    $ git mv hola.php lib
+    $ git mv hola.py lib
     $ git status
-    # On branch main
-    # Changes to be committed:
-    #   (use "git reset HEAD <file>..." to unstage)
-    #
-    #   renamed:    hola.php -> lib/hola.php
-    #
+    On branch main
+    Changes to be committed:
+      (use "git restore --staged <file>..." to unstage)
+    
+      renamed:    hola.py -> lib/hola.py
+    
+!!! info Mover y borrar archivos
 
-### Mover y borrar archivos.
+    Podíamos haber hecho el paso anterior con la órden del sistema _mv_ y el resultado hubiera sido el mismo. Lo siguiente es a modo de ejemplo y no es necesario que lo ejecutes:
 
-Podíamos haber hecho el paso anterior con la órden del sistema _mv_ y el resultado hubiera sido el mismo. Lo siguiente es a modo de ejemplo y no es necesario que lo ejecutes:
-
-    $ mkdir lib
-    $ mv hola.php lib
-    $ git add lib/hola.php
-    $ git rm hola.php
+        $ mkdir lib
+        $ mv hola.php lib
+        $ git add lib/hola.php
+        $ git rm hola.php
 
 Y, ahora sí, ya podemos guardar los cambios:
 
-    $ git commit -m "Movido hola.php a lib."
-    [main 8c2a509] Movido hola.php a lib.
+    $ git commit -m "Movido hola.py a lib."
+    [main 8c2a509] Movido hola.py a lib.
      1 file changed, 0 insertions(+), 0 deletions(-)
-     rename hola.php => lib/hola.php (100%)
+     rename hola.py => lib/hola.py (100%)
 
-
-```mermaid
-gitGraph:
-   commit id: "e19f2c1"
-   commit id: "efc252e"
-   commit id: "3283e0d" tag: "v1-beta"
-   commit id: "fd4da94" tag: "v1"
-   commit id: "96a39df"
-   commit id: "8c2a509"
-```
+!!! example
+    ```mermaid
+    gitGraph:
+        commit id: "e19f2c1"
+        commit id: "efc252e"
+        commit id: "3283e0d" tag: "v1-beta"
+        commit id: "fd4da94" tag: "v1"
+        commit id: "96a39df"
+        commit id: "8c2a509"
+    ```
